@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C6A28942ADA960A0097FAB1 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28932ADA960A0097FAB1 /* UserDefault.swift */; };
+		4C6A28962ADA962D0097FAB1 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28952ADA962D0097FAB1 /* SettingsManager.swift */; };
+		4C6A28982ADA964F0097FAB1 /* BaseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28972ADA964F0097FAB1 /* BaseUseCase.swift */; };
+		4C6A289A2ADA96640097FAB1 /* Optional+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28992ADA96640097FAB1 /* Optional+Ext.swift */; };
+		4C6A289C2ADA967C0097FAB1 /* Colors+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A289B2ADA967C0097FAB1 /* Colors+Ext.swift */; };
+		4C6A289F2ADA98230097FAB1 /* Rounded+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A289E2ADA98230097FAB1 /* Rounded+Ext.swift */; };
+		4C6A28A12ADA98500097FAB1 /* ShimmerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28A02ADA98500097FAB1 /* ShimmerModifier.swift */; };
+		4C6A28A42ADA98B20097FAB1 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28A32ADA98B20097FAB1 /* ContentViewModel.swift */; };
 		4C731E992ADA8B6300B60760 /* skripsiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C731E982ADA8B6300B60760 /* skripsiApp.swift */; };
 		4C731E9B2ADA8B6300B60760 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C731E9A2ADA8B6300B60760 /* ContentView.swift */; };
 		4C731E9D2ADA8B6400B60760 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C731E9C2ADA8B6400B60760 /* Assets.xcassets */; };
@@ -14,6 +22,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C6A28932ADA960A0097FAB1 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		4C6A28952ADA962D0097FAB1 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		4C6A28972ADA964F0097FAB1 /* BaseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUseCase.swift; sourceTree = "<group>"; };
+		4C6A28992ADA96640097FAB1 /* Optional+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Ext.swift"; sourceTree = "<group>"; };
+		4C6A289B2ADA967C0097FAB1 /* Colors+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+Ext.swift"; sourceTree = "<group>"; };
+		4C6A289E2ADA98230097FAB1 /* Rounded+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rounded+Ext.swift"; sourceTree = "<group>"; };
+		4C6A28A02ADA98500097FAB1 /* ShimmerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerModifier.swift; sourceTree = "<group>"; };
+		4C6A28A32ADA98B20097FAB1 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4C731E952ADA8B6300B60760 /* skripsi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skripsi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C731E982ADA8B6300B60760 /* skripsiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skripsiApp.swift; sourceTree = "<group>"; };
 		4C731E9A2ADA8B6300B60760 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +48,162 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C6A28812ADA94BE0097FAB1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C731E9C2ADA8B6400B60760 /* Assets.xcassets */,
+				4C731E9E2ADA8B6400B60760 /* Preview Content */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4C6A28822ADA94DA0097FAB1 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28862ADA95230097FAB1 /* UseCases */,
+				4C6A28872ADA952B0097FAB1 /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		4C6A28832ADA94DF0097FAB1 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A288B2ADA95510097FAB1 /* Constants */,
+				4C6A288A2ADA954B0097FAB1 /* Utils */,
+				4C6A28892ADA95440097FAB1 /* Components */,
+				4C6A28882ADA953D0097FAB1 /* Modifier */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		4C6A28842ADA94EB0097FAB1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A288D2ADA95680097FAB1 /* Repository */,
+				4C6A288C2ADA95610097FAB1 /* DataSource */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		4C6A28852ADA94F10097FAB1 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28A22ADA98680097FAB1 /* OnBoarding */,
+				4C6A28902ADA958B0097FAB1 /* Transaction */,
+				4C6A288F2ADA95830097FAB1 /* Statistics */,
+				4C6A288E2ADA957E0097FAB1 /* Home */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		4C6A28862ADA95230097FAB1 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		4C6A28872ADA952B0097FAB1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		4C6A28882ADA953D0097FAB1 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28A02ADA98500097FAB1 /* ShimmerModifier.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
+		4C6A28892ADA95440097FAB1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		4C6A288A2ADA954B0097FAB1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28972ADA964F0097FAB1 /* BaseUseCase.swift */,
+				4C6A28992ADA96640097FAB1 /* Optional+Ext.swift */,
+				4C6A289B2ADA967C0097FAB1 /* Colors+Ext.swift */,
+				4C6A289E2ADA98230097FAB1 /* Rounded+Ext.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4C6A288B2ADA95510097FAB1 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28932ADA960A0097FAB1 /* UserDefault.swift */,
+				4C6A28952ADA962D0097FAB1 /* SettingsManager.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		4C6A288C2ADA95610097FAB1 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28922ADA95D30097FAB1 /* Local */,
+				4C6A28912ADA95CD0097FAB1 /* Remote */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		4C6A288D2ADA95680097FAB1 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		4C6A288E2ADA957E0097FAB1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4C6A288F2ADA95830097FAB1 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		4C6A28902ADA958B0097FAB1 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		4C6A28912ADA95CD0097FAB1 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		4C6A28922ADA95D30097FAB1 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		4C6A28A22ADA98680097FAB1 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
 		4C731E8C2ADA8B6300B60760 = {
 			isa = PBXGroup;
 			children = (
@@ -51,10 +223,14 @@
 		4C731E972ADA8B6300B60760 /* skripsi */ = {
 			isa = PBXGroup;
 			children = (
+				4C6A28822ADA94DA0097FAB1 /* Domain */,
+				4C6A28832ADA94DF0097FAB1 /* Commons */,
+				4C6A28842ADA94EB0097FAB1 /* Data */,
+				4C6A28852ADA94F10097FAB1 /* Features */,
 				4C731E982ADA8B6300B60760 /* skripsiApp.swift */,
 				4C731E9A2ADA8B6300B60760 /* ContentView.swift */,
-				4C731E9C2ADA8B6400B60760 /* Assets.xcassets */,
-				4C731E9E2ADA8B6400B60760 /* Preview Content */,
+				4C6A28A32ADA98B20097FAB1 /* ContentViewModel.swift */,
+				4C6A28812ADA94BE0097FAB1 /* Resources */,
 			);
 			path = skripsi;
 			sourceTree = "<group>";
@@ -137,8 +313,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C6A28962ADA962D0097FAB1 /* SettingsManager.swift in Sources */,
+				4C6A289F2ADA98230097FAB1 /* Rounded+Ext.swift in Sources */,
 				4C731E9B2ADA8B6300B60760 /* ContentView.swift in Sources */,
 				4C731E992ADA8B6300B60760 /* skripsiApp.swift in Sources */,
+				4C6A28A42ADA98B20097FAB1 /* ContentViewModel.swift in Sources */,
+				4C6A289C2ADA967C0097FAB1 /* Colors+Ext.swift in Sources */,
+				4C6A28982ADA964F0097FAB1 /* BaseUseCase.swift in Sources */,
+				4C6A28942ADA960A0097FAB1 /* UserDefault.swift in Sources */,
+				4C6A289A2ADA96640097FAB1 /* Optional+Ext.swift in Sources */,
+				4C6A28A12ADA98500097FAB1 /* ShimmerModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
