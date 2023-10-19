@@ -15,6 +15,14 @@
 		4C6A289F2ADA98230097FAB1 /* Rounded+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A289E2ADA98230097FAB1 /* Rounded+Ext.swift */; };
 		4C6A28A12ADA98500097FAB1 /* ShimmerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28A02ADA98500097FAB1 /* ShimmerModifier.swift */; };
 		4C6A28A42ADA98B20097FAB1 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28A32ADA98B20097FAB1 /* ContentViewModel.swift */; };
+		4C6A28AD2ADA9A720097FAB1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28AC2ADA9A720097FAB1 /* HomeViewModel.swift */; };
+		4C6A28B12ADA9A830097FAB1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28B02ADA9A830097FAB1 /* HomeView.swift */; };
+		4C6A28B32ADBA64D0097FAB1 /* HistoryTransactionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28B22ADBA64D0097FAB1 /* HistoryTransactionCard.swift */; };
+		4C6A28B62ADC1D8A0097FAB1 /* DetailHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28B52ADC1D8A0097FAB1 /* DetailHistoryView.swift */; };
+		4C6A28B82ADC21220097FAB1 /* ItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28B72ADC21220097FAB1 /* ItemCardView.swift */; };
+		4C6A28C02ADC26290097FAB1 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28BF2ADC26290097FAB1 /* StatisticsView.swift */; };
+		4C6A28C22ADCDCE50097FAB1 /* PromoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28C12ADCDCE50097FAB1 /* PromoCardView.swift */; };
+		4C6A28C42ADD72BD0097FAB1 /* FoodListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28C32ADD72BD0097FAB1 /* FoodListView.swift */; };
 		4C731E992ADA8B6300B60760 /* skripsiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C731E982ADA8B6300B60760 /* skripsiApp.swift */; };
 		4C731E9B2ADA8B6300B60760 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C731E9A2ADA8B6300B60760 /* ContentView.swift */; };
 		4C731E9D2ADA8B6400B60760 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C731E9C2ADA8B6400B60760 /* Assets.xcassets */; };
@@ -30,6 +38,14 @@
 		4C6A289E2ADA98230097FAB1 /* Rounded+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rounded+Ext.swift"; sourceTree = "<group>"; };
 		4C6A28A02ADA98500097FAB1 /* ShimmerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerModifier.swift; sourceTree = "<group>"; };
 		4C6A28A32ADA98B20097FAB1 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		4C6A28AC2ADA9A720097FAB1 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4C6A28B02ADA9A830097FAB1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4C6A28B22ADBA64D0097FAB1 /* HistoryTransactionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTransactionCard.swift; sourceTree = "<group>"; };
+		4C6A28B52ADC1D8A0097FAB1 /* DetailHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryView.swift; sourceTree = "<group>"; };
+		4C6A28B72ADC21220097FAB1 /* ItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardView.swift; sourceTree = "<group>"; };
+		4C6A28BF2ADC26290097FAB1 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		4C6A28C12ADCDCE50097FAB1 /* PromoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCardView.swift; sourceTree = "<group>"; };
+		4C6A28C32ADD72BD0097FAB1 /* FoodListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListView.swift; sourceTree = "<group>"; };
 		4C731E952ADA8B6300B60760 /* skripsi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skripsi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C731E982ADA8B6300B60760 /* skripsiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skripsiApp.swift; sourceTree = "<group>"; };
 		4C731E9A2ADA8B6300B60760 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -122,6 +138,9 @@
 		4C6A28892ADA95440097FAB1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4C6A28B22ADBA64D0097FAB1 /* HistoryTransactionCard.swift */,
+				4C6A28B72ADC21220097FAB1 /* ItemCardView.swift */,
+				4C6A28C12ADCDCE50097FAB1 /* PromoCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -165,6 +184,8 @@
 		4C6A288E2ADA957E0097FAB1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4C6A28AB2ADA9A6A0097FAB1 /* ViewModel */,
+				4C6A28AA2ADA9A650097FAB1 /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -172,6 +193,8 @@
 		4C6A288F2ADA95830097FAB1 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
+				4C6A28BA2ADC26010097FAB1 /* ViewModel */,
+				4C6A28B92ADC25FB0097FAB1 /* View */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -179,6 +202,8 @@
 		4C6A28902ADA958B0097FAB1 /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
+				4C6A28BC2ADC260D0097FAB1 /* ViewModel */,
+				4C6A28BB2ADC260A0097FAB1 /* View */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -200,8 +225,79 @@
 		4C6A28A22ADA98680097FAB1 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				4C6A28BE2ADC26160097FAB1 /* ViewModel */,
+				4C6A28BD2ADC26130097FAB1 /* View */,
 			);
 			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		4C6A28AA2ADA9A650097FAB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28B42ADC1D7C0097FAB1 /* SubView */,
+				4C6A28B02ADA9A830097FAB1 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4C6A28AB2ADA9A6A0097FAB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28AC2ADA9A720097FAB1 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4C6A28B42ADC1D7C0097FAB1 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28B52ADC1D8A0097FAB1 /* DetailHistoryView.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		4C6A28B92ADC25FB0097FAB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28BF2ADC26290097FAB1 /* StatisticsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4C6A28BA2ADC26010097FAB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4C6A28BB2ADC260A0097FAB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C6A28C32ADD72BD0097FAB1 /* FoodListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4C6A28BC2ADC260D0097FAB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4C6A28BD2ADC26130097FAB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4C6A28BE2ADC26160097FAB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		4C731E8C2ADA8B6300B60760 = {
@@ -313,14 +409,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C6A28C42ADD72BD0097FAB1 /* FoodListView.swift in Sources */,
+				4C6A28B32ADBA64D0097FAB1 /* HistoryTransactionCard.swift in Sources */,
 				4C6A28962ADA962D0097FAB1 /* SettingsManager.swift in Sources */,
+				4C6A28AD2ADA9A720097FAB1 /* HomeViewModel.swift in Sources */,
+				4C6A28C22ADCDCE50097FAB1 /* PromoCardView.swift in Sources */,
+				4C6A28B82ADC21220097FAB1 /* ItemCardView.swift in Sources */,
 				4C6A289F2ADA98230097FAB1 /* Rounded+Ext.swift in Sources */,
+				4C6A28C02ADC26290097FAB1 /* StatisticsView.swift in Sources */,
 				4C731E9B2ADA8B6300B60760 /* ContentView.swift in Sources */,
 				4C731E992ADA8B6300B60760 /* skripsiApp.swift in Sources */,
+				4C6A28B62ADC1D8A0097FAB1 /* DetailHistoryView.swift in Sources */,
 				4C6A28A42ADA98B20097FAB1 /* ContentViewModel.swift in Sources */,
 				4C6A289C2ADA967C0097FAB1 /* Colors+Ext.swift in Sources */,
 				4C6A28982ADA964F0097FAB1 /* BaseUseCase.swift in Sources */,
 				4C6A28942ADA960A0097FAB1 /* UserDefault.swift in Sources */,
+				4C6A28B12ADA9A830097FAB1 /* HomeView.swift in Sources */,
 				4C6A289A2ADA96640097FAB1 /* Optional+Ext.swift in Sources */,
 				4C6A28A12ADA98500097FAB1 /* ShimmerModifier.swift in Sources */,
 			);
@@ -455,7 +559,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"skripsi/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"skripsi/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 8DNTD99SB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -484,7 +588,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"skripsi/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"skripsi/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 8DNTD99SB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

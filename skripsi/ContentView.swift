@@ -8,14 +8,39 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject private var vm = ContentViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack(path: $vm.navigationPath) {
+            TabView {
+                HomeView()
+                    .environmentObject(vm)
+                    .tabItem {
+                        Label {
+                            Text("Home")
+                        } icon: {
+                            Image(systemName: "house")
+                        }
+                    }
+                
+                StatisticsView()
+                    .environmentObject(vm)
+                    .tabItem {
+                        Label {
+                            Text("Statistics")
+                        } icon: {
+                            Image(systemName: "chart.bar")
+                        }
+                    }
+            }
+            .navigationDestination(for: RouteType.self) {type in
+                if type == .detail {
+                    DetailHistoryView()
+                        
+                }
+            }
         }
-        .padding()
     }
 }
 

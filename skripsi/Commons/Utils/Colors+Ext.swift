@@ -13,8 +13,9 @@ extension Color {
     static let primaryColor70 = Color("Primary70")
     static let primaryColor20 = Color("Primary20")
     
-    static let secondaryColor = Color("Secondary")
+    static let secondaryColor = Color("Secondary100")
     static let tertiaryColor = Color("Tertiary")
+    static let quartenaryColor = Color("Quartenary")
     
     struct background {
         static let primary = Color("Background-primary")
@@ -22,7 +23,9 @@ extension Color {
     }
     
     struct text {
-        static let primary = Color("Text-primary")
+        static let primary100 = Color("Text-primary100")
+        static let primary30 = Color("Text-primary30")
         static let blue = Color("Text-blue")
+        static let white = Color("Text-white")
     }
 }

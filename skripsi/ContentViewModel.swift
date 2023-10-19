@@ -6,7 +6,18 @@
 //
 
 import Foundation
+import SwiftUI
 
-class ContentViewModel {
+class ContentViewModel: ObservableObject {
     
+    @Published var navigationPath = NavigationPath()
+    
+    func navigate(routeType: RouteType) {
+        navigationPath.append(routeType)
+    }
+    
+}
+
+enum RouteType {
+    case detail
 }
