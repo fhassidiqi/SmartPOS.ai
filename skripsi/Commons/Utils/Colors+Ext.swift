@@ -27,5 +27,6 @@ extension Color {
         static let primary30 = Color("Text-primary30")
         static let blue = Color("Text-blue")
         static let white = Color("Text-white")
+        static let green = Color("Text-green")
     }
 }

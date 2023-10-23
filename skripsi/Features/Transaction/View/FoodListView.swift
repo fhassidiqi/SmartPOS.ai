@@ -12,12 +12,13 @@ struct FoodListView: View {
     @State private var selectedIndex = 0
     private let categories = ["All", "Coffee", "Meal", "Snack", "Dessert"]
     private let isActive = false
+    @EnvironmentObject private var route: ContentViewModel
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.background.primary
-                    .ignoresSafeArea()
+                    .edgesIgnoringSafeArea(.top)
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Today's Promo")
                         .font(.headline)
@@ -66,30 +67,7 @@ struct FoodListView: View {
             .toolbarBackground(.visible, for: .automatic)
             .toolbarBackground(Color.primary100, for: .automatic)
         }
-        .overlay {
-            Button {
-                
-            } label: {
-                HStack {
-                    Text("Item")
-                        
-                    Spacer()
-                    
-                    Text("Rp. 129.000")
-                    Image(systemName: "chevron.right.circle.fill")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                }
-                .font(.headline)
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(Color.text.white)
-                .background(Color.primaryColor100)
-                .cornerRadius(8)
-                .frame(maxHeight: .infinity, alignment: .bottom)
-                .padding()
-            }
-        }
+        .floatingActionButton(color: Color.primary100, text1: "Item", text2: "Rp. 129.000", image: "chevron.right.circle.fill", action: {})
     }
 }
 

@@ -10,14 +10,15 @@ import SwiftUI
 
 class ContentViewModel: ObservableObject {
     
-    @Published var navigationPath = NavigationPath()
-    
-    func navigate(routeType: RouteType) {
-        navigationPath.append(routeType)
-    }
+//    @Published var path = NavigationPath()
+//    @Published var navigationPath = NavigationPath()
+//    
+//    func navigate(routeType: RouteType) {
+//        navigationPath.append(routeType)
+//    }
     
 }
 
-enum RouteType {
-    case detail
-}
+//enum RouteType {
+//    case detail, foodList, pay, statistics
+//}

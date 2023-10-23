@@ -63,24 +63,7 @@ struct PayView: View {
             .toolbarBackground(.visible, for: .automatic)
             .toolbarBackground(Color.primary100, for: .automatic)
         }
-        .overlay {
-            Button {
-                
-            } label: {
-                HStack {
-                    Text("Proceed")
-                        .font(.headline)
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        
-                }
-                .foregroundStyle(Color.text.white)
-                .background(Color.primaryColor100)
-                .cornerRadius(8)
-                .frame(maxHeight: .infinity, alignment: .bottom)
-                .padding()
-            }
-        }
+        .floatingActionButton(color: Color.primaryColor100, text1: "Proceed", text2: nil, image: "", action: {})
     }
 }
 

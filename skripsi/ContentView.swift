@@ -12,7 +12,7 @@ struct ContentView: View {
     @StateObject private var vm = ContentViewModel()
     
     var body: some View {
-        NavigationStack(path: $vm.navigationPath) {
+        NavigationStack {
             TabView {
                 HomeView()
                     .environmentObject(vm)
@@ -21,6 +21,17 @@ struct ContentView: View {
                             Text("Home")
                         } icon: {
                             Image(systemName: "house")
+                        }
+                    }
+                
+                FoodListView()
+                    .environmentObject(vm)
+                    .tabItem {
+                        Label {
+                            Text("Transaction")
+                        } icon: {
+                            Image(systemName: "cart")
+                                .resizable()
                         }
                     }
                 
@@ -34,12 +45,18 @@ struct ContentView: View {
                         }
                     }
             }
-            .navigationDestination(for: RouteType.self) {type in
-                if type == .detail {
-                    DetailHistoryView()
-                        
-                }
-            }
+//            .navigationDestination(for: RouteType.self) {type in
+//                switch type {
+//                case .detail:
+//                    DetailHistoryView()
+//                case .foodList:
+//                    FoodListView()
+//                case .pay:
+//                    PayView()
+//                case .statistics:
+//                    StatisticsView()
+//                }
+//            }
         }
     }
 }

@@ -9,9 +9,26 @@ import SwiftUI
 
 @main
 struct skripsiApp: App {
+    
+    @ObservedObject var router = Router()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack(path: $router.navPath) {
+                ContentView()
+                    .navigationDestination(for: Router.Destination.self) { destination in
+                        switch destination {
+                        case .detailTransaction:
+                            DetailHistoryView()
+                        case .pay:
+                            PayView()
+                        case .scan:
+                            ScanView()
+                        }
+                    }
+                    .environmentObject(router)
+            }
+            
         }
     }
 }
