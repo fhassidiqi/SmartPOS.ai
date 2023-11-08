@@ -6,29 +6,27 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+    return true
+  }
+}
 
 @main
 struct skripsiApp: App {
     
-    @ObservedObject var router = Router()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject private var viewModel = ContentViewModel()
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $router.navPath) {
+            NavigationView {
                 ContentView()
-                    .navigationDestination(for: Router.Destination.self) { destination in
-                        switch destination {
-                        case .detailTransaction:
-                            DetailHistoryView()
-                        case .pay:
-                            PayView()
-                        case .scan:
-                            ScanView()
-                        }
-                    }
-                    .environmentObject(router)
+                    .environmentObject(viewModel)
             }
-            
         }
     }
 }

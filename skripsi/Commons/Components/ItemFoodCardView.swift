@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct ItemFoodCardView: View {
+    
+    var itemModel: ItemModel
+    
     var body: some View {
         HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Bottegea’s Fried Rice")
+                
+                Text(itemModel.name)
                     .font(.headline)
                 
-                Text("Orange leaves, chicken, tempeh, sambal, singkong, egg, crackers.")
+                Text(itemModel.description)
                     .font(.caption)
                 
-                Text("Rp. 129.000")
+                Text("\(itemModel.price)")
                     .font(.caption)
                 
                 Button(action: {
@@ -39,11 +43,11 @@ struct ItemFoodCardView: View {
             
             Spacer()
             
-            Image("makan2")
+            AsyncImage(url: URL(string: itemModel.imageUrl))
         }
     }
 }
 
 #Preview {
-    ItemFoodCardView()
+    ItemFoodCardView(itemModel: ItemModel(id: "1", name: "Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 120000, profit: 10000, price: 130000))
 }
