@@ -18,19 +18,14 @@ class FoodListViewModel: ObservableObject {
     
     func getCategories() {
         Task {
-            do {
-                let result = await getCategoriesUseCase.execute(params: GetCategoriesUseCase.Param())
-                switch result {
-                case .success(let categories):
-                    print("Fetched categories:", categories)
-                    DispatchQueue.main.sync {
-                        self.categoriesModel = categories
-                    }
-                case .failure(let error):
-                    print("Error fetching categories: \(error.localizedDescription)")
+            let result = await getCategoriesUseCase.execute(params: GetCategoriesUseCase.Param())
+            switch result {
+            case .success(let categories):
+                DispatchQueue.main.sync {
+                    self.categoriesModel = categories
                 }
-            } catch {
-                print("An error occurred: \(error.localizedDescription)")
+            case .failure(let error):
+                print("Error fetching categories: \(error.localizedDescription)")
             }
         }
     }
@@ -45,7 +40,6 @@ class FoodListViewModel: ObservableObject {
             let result = await getItemUseCase.execute(params: GetItemsUseCase.Param(categories: categories))
             switch result {
             case .success(let items):
-                print("Fetched items:", items)
                 DispatchQueue.main.sync {
                     self.itemsModel = items
                 }

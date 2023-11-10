@@ -39,20 +39,19 @@ class RemoteDataSource {
                 db.collection(CategoryResponse.collectionName).document(category)
             }
             filters.append(Filter.whereField("category", in: categoryRefs))
-            print("Categories: \(categories)")
         }
         
         let itemDocumentRefference = db.collection(ItemResponse.collectionName)
             .whereFilter(Filter.andFilter(filters))
-        
+    
         let snapshots = try await itemDocumentRefference.getDocuments()
         return try snapshots.documents.map { snapshots in
             try snapshots.data(as: ItemResponse.self)
         }
     }
     
-    func fetchItem(refference: DocumentReference) async throws -> ItemResponse {
-        return try await refference.getDocument(as: ItemResponse.self)
+    func fetchItem(reference: DocumentReference) async throws -> ItemResponse {
+        return try await reference.getDocument(as: ItemResponse.self)
     }
     
     func transactionDocument(transactionId: String) -> DocumentReference {
@@ -60,28 +59,44 @@ class RemoteDataSource {
         return collectionName.document(transactionId)
     }
     
-    // TODO: Create add transaction and edit
-    func createNewTransaction(transaction: TransactionModel) async throws {
-        let transactionRefference = try await transactionDocument(transactionId: transaction.id.orEmpty())
-            .getDocument()
+    func fetchTransactions(items: [String]? = nil) async throws -> [TransactionResponse] {
+        var filters = [Filter]()
+        if let items = items {
+            let itemRefs = items.map { item in
+                db.collection(ItemResponse.collectionName).document(item)
+            }
+            filters.append(Filter.whereField("item", in: itemRefs))
+        }
         
-        if !transactionRefference.exists {
-            try await transactionDocument(transactionId: transaction.id.orEmpty())
-                .setData([
-                    "id" : transaction.id.orEmpty(),
-                    "orderNumber" : transaction.orderNumber.orEmpty(),
-                    "date" : transaction.date ?? Date.now,
-                    "item" : transaction.item,
-                    "quantity" : transaction.quantity,
-                    "amount" : transaction.amount,
-                    "cashier" : transaction.cashier.orEmpty()
-                ], merge: true)
+        let transactionDocReff = db.collection(TransactionResponse.collectionName)
+            .whereFilter(Filter.andFilter(filters))
+        
+        let snapshots = try await transactionDocReff.getDocuments()
+        return try snapshots.documents.map { snapshots in
+            try snapshots.data(as: TransactionResponse.self)
         }
     }
     
-    func getTransaction(transactionId: String) async throws -> TransactionModel {
-        try await transactionDocument(transactionId: transactionId).getDocument(as: TransactionModel.self)
+    func fetchTransaction(reference: DocumentReference) async throws -> TransactionResponse {
+        return try await reference.getDocument(as: TransactionResponse.self)
     }
-    
+    // TODO: Create add transaction and edit
+//    func createNewTransaction(transaction: TransactionModel) async throws {
+//        let transactionRefference = try await transactionDocument(transactionId: transaction.id.orEmpty())
+//            .getDocument()
+//        
+//        if !transactionRefference.exists {
+//            try await transactionDocument(transactionId: transaction.id.orEmpty())
+//                .setData([
+//                    "id" : transaction.id.orEmpty(),
+//                    "orderNumber" : transaction.orderNumber,
+//                    "date" : transaction.date,
+//                    "item" : transaction.item,
+//                    "quantity" : transaction.quantity,
+//                    "amount" : transaction.amount,
+//                    "cashier" : transaction.cashier
+//                ], merge: true)
+//        }
+//    }
     
 }

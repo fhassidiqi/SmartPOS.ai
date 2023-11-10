@@ -43,11 +43,28 @@ struct ItemFoodCardView: View {
             
             Spacer()
             
-            AsyncImage(url: URL(string: itemModel.imageUrl))
+            AsyncImage(url: URL(string: itemModel.imageUrl)) { phase in
+                switch phase {
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 100, height: 100)
+                case .empty:
+                    ProgressView()
+                case .failure(_):
+                    Image(systemName: "photo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+                @unknown default:
+                    EmptyView()
+                }
+            }
         }
     }
 }
 
 #Preview {
-    ItemFoodCardView(itemModel: ItemModel(id: "1", name: "Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 120000, profit: 10000, price: 130000))
+    ItemFoodCardView(itemModel: ItemModel(id: "1", name: "Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 120000, profit: 10000, price: 130000, quantity: 1, totalPrice: 1, discount: 0))
 }

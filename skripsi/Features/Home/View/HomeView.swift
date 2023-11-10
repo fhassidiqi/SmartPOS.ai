@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var router: Router
+    @StateObject private var vm = HomeViewModel()
     
     var body: some View {
         ZStack {
@@ -56,33 +57,22 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
                 
-                Button {
-                    router.navigate(to: .detailTransaction)
-                } label: {
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text("SHP 030923001")
-                            .font(.subheadline).bold()
-                        
-                        
-                        Text("03 Sep 2023, 10:20 WIB")
-                            .font(.caption2)
-                            .foregroundStyle(Color.text.primary30)
-                    }
-                    Spacer()
-                    
-                    Text("Rp. 32.500")
-                    
-                    Image(systemName: "chevron.right")
-                }
-                .foregroundStyle(Color.text.primary100)
-                .padding()
-                .background(Color.background.base)
-                .cornerRadius(8)
-                .padding(.horizontal)
                 
+                ForEach(vm.transactionModel, id: \.self) { transaction in
+                    Button {
+                        // TODO: Navigate to detail history view
+                        
+                    } label: {
+                        HistoryTransactionCard(transactionModel: transaction)
+                    }
+                }
+                .padding(.horizontal)
                 
                 Spacer()
             }
+        }
+        .onAppear {
+            vm.getTransactions()
         }
     }
 }

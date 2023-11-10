@@ -10,33 +10,38 @@ import SwiftUI
 struct HistoryTransactionCard: View {
     
     @EnvironmentObject private var router: ContentViewModel
+    var transactionModel: TransactionModel
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 3) {
-                Text("SHP 030923001")
+                Text(transactionModel.orderNumber)
                     .font(.subheadline).bold()
-                    
                 
-                Text("03 Sep 2023, 10:20 WIB")
+                
+                Text(formatDate(transactionModel.date))
                     .font(.caption2)
                     .foregroundStyle(Color.text.primary30)
             }
             Spacer()
             
-            Text("Rp. 32.500")
+            Text("\(transactionModel.amount)")
             
             Image(systemName: "chevron.right")
         }
         .foregroundStyle(Color.text.primary100)
         .padding()
         .background(Color.background.base)
-        .onTapGesture {
-//            router.navigate(routeType: .detail)
-        }
+        .cornerRadius(8)
+    }
+    func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
     }
 }
 
 #Preview {
-    HistoryTransactionCard()
+    HistoryTransactionCard(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, quantity: 1, totalPrice: 120000, discount: 1)], amount: 120000, cashier: "Falah"))
 }

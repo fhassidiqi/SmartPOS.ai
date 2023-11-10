@@ -9,8 +9,7 @@ import SwiftUI
 
 struct FoodListView: View {
     
-    @State private var selectedIndex = 0
-    private let isActive = false
+    @State private var selectedCategory: CategoryModel? = nil
     @EnvironmentObject private var route: ContentViewModel
     @StateObject private var vm = FoodListViewModel()
     
@@ -40,10 +39,13 @@ struct FoodListView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(vm.categoriesModel.indices, id: \.self) { index in
-                                    CategoryView(isActive: index == selectedIndex, categoryModel: vm.categoriesModel[index])
-                                        .onTapGesture {
-                                            selectedIndex = index
-                                        }
+                                    CategoryView(
+                                        isActive: vm.categoriesModel[index] == selectedCategory,
+                                        categoryModel: vm.categoriesModel[index]
+                                    )
+                                    .onTapGesture {
+                                        selectedCategory = vm.categoriesModel[index]
+                                    }
                                 }
                             }
                         }
@@ -51,7 +53,9 @@ struct FoodListView: View {
                     .padding()
                     
                     ScrollView(.vertical, showsIndicators: false) {
-                        ForEach(vm.itemsModel) { item in
+                        ForEach(vm.itemsModel.filter { item in
+                            selectedCategory == nil || item.category == selectedCategory?.name
+                        }) { item in
                             ItemFoodCardView(itemModel: item)
                             Divider()
                         }
@@ -75,10 +79,7 @@ struct FoodListView: View {
         }
         .onAppear {
             if vm.categoriesModel.isEmpty {
-                print("CategoriesModel is empty before fetching")
                 vm.getCategories()
-            } else {
-                print("CategoriesModel already has data:", vm.categoriesModel)
             }
             
             if vm.itemsModel.isEmpty {

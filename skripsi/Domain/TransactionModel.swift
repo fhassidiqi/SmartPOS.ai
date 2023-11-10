@@ -9,12 +9,12 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct TransactionModel: Codable, Hashable {
+struct TransactionModel: Identifiable, Hashable {
     let id: String?
-    let orderNumber: String?
-    let date: Date?
-    let item: [DocumentReference]
-    let quantity: Int
+    let orderNumber: String
+    let date: Date
+    let item: [ItemModel]
     let amount: Int
-    let cashier: String?
+    let cashier: String
+    
 }

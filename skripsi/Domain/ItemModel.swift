@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ItemModel: Identifiable, Hashable {
+struct ItemModel: Identifiable, Hashable, Codable {
     let id: String?
     let name: String
     let imageUrl: String
@@ -16,4 +16,7 @@ struct ItemModel: Identifiable, Hashable {
     let omzet: Int
     let profit: Int
     let price: Int
+    let quantity: Int?
+    let totalPrice: Int?
+    let discount: Int?
 }

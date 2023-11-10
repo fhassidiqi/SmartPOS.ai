@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailHistoryView: View {
     
     @EnvironmentObject private var router: ContentViewModel
+    var transactionModel: TransactionModel
     
     var body: some View {
         NavigationStack {
@@ -21,8 +22,9 @@ struct DetailHistoryView: View {
                         .font(.headline)
                         .padding(.top, 25)
                     
-                    Text("Rp. 32.500")
-                        .font(.title).bold()
+                    Text("\(transactionModel.amount)")
+                        .font(.title)
+                        .fontWeight(.semibold)
                     
                     Divider()
                         .padding(.vertical)
@@ -33,7 +35,7 @@ struct DetailHistoryView: View {
                         
                         Spacer()
                         
-                        Text("SHP 030123001")
+                        Text(transactionModel.orderNumber)
                             .foregroundStyle(Color.text.primary100)
                     }
                     .font(.subheadline)
@@ -44,7 +46,7 @@ struct DetailHistoryView: View {
                         
                         Spacer()
                         
-                        Text("03 Sep 2023, 10:20 WIB")
+                        Text(formatDate(transactionModel.date))
                             .foregroundStyle(Color.text.primary100)
                     }
                     .font(.subheadline)
@@ -72,8 +74,14 @@ struct DetailHistoryView: View {
             .toolbarBackground(Color.primary100, for: .automatic)
         }
     }
+    func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
+    }
 }
 
 #Preview {
-    DetailHistoryView()
+    DetailHistoryView(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, quantity: 1, totalPrice: 120000, discount: 1)], amount: 120000, cashier: "Falah"))
 }

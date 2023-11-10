@@ -19,24 +19,21 @@ class ItemRepository: IItemRepository {
     
     func getItems(categories: [String]?) async throws -> [ItemModel] {
         do {
-            var response = try await remoteDataSource.fetchItems(categories: categories)
+            let response = try await remoteDataSource.fetchItems(categories: categories)
             
             var items = [ItemModel]()
             
             for itemData in response {
                 let category = try await remoteDataSource.fetchCategory(reference: itemData.category)
                 
-                items.append(ItemModel(id: itemData.id.orEmpty(), name: itemData.name, imageUrl: itemData.imageUrl, description: itemData.description, category: category.name, omzet: itemData.omzet, profit: itemData.profit, price: itemData.price))
+                items.append(ItemModel(id: itemData.id.orEmpty(), name: itemData.name, imageUrl: itemData.imageUrl, description: itemData.description, category: category.name, omzet: itemData.omzet, profit: itemData.profit, price: itemData.price, quantity: itemData.quantity, totalPrice: itemData.totalPrice, discount: itemData.discount))
             }
-            
-            print("Returning items: \(items)")
             return items
         } catch {
             print("Error in getItems: \(error)")
             throw error
         }
     }
-    
     
     func getItem(id: String) async throws -> ItemModel? {
         return nil

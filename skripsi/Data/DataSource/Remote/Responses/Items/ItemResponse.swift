@@ -20,15 +20,21 @@ struct ItemResponse: Codable {
     var price: Int
     var omzet: Int
     var profit: Int
+    var quantity: Int
+    var totalPrice: Int
+    var discount: Int
     
     enum CodingKeys: String, CodingKey {
-            case id
-            case name
-            case category
-            case imageUrl
-            case description
-            case price
-            case omzet
-            case profit
-        }
+        case id
+        case name
+        case category
+        case imageUrl
+        case description
+        case price
+        case omzet
+        case profit
+        case quantity
+        case totalPrice
+        case discount
+    }
 }
