@@ -81,22 +81,4 @@ class RemoteDataSource {
         return try await reference.getDocument(as: TransactionResponse.self)
     }
     // TODO: Create add transaction and edit
-//    func createNewTransaction(transaction: TransactionModel) async throws {
-//        let transactionRefference = try await transactionDocument(transactionId: transaction.id.orEmpty())
-//            .getDocument()
-//        
-//        if !transactionRefference.exists {
-//            try await transactionDocument(transactionId: transaction.id.orEmpty())
-//                .setData([
-//                    "id" : transaction.id.orEmpty(),
-//                    "orderNumber" : transaction.orderNumber,
-//                    "date" : transaction.date,
-//                    "item" : transaction.item,
-//                    "quantity" : transaction.quantity,
-//                    "amount" : transaction.amount,
-//                    "cashier" : transaction.cashier
-//                ], merge: true)
-//        }
-//    }
-    
 }

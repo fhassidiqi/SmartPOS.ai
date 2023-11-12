@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HistoryTransactionCard: View {
     
-    @EnvironmentObject private var router: ContentViewModel
     var transactionModel: TransactionModel
     
     var body: some View {

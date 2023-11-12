@@ -2,18 +2,17 @@
 //  Router.swift
 //  skripsi
 //
-//  Created by Falah Hasbi Assidiqi on 22/10/23.
+//  Created by Falah Hasbi Assidiqi on 12/11/23.
 //
 
-import Foundation
 import SwiftUI
 
+@MainActor
 final class Router: ObservableObject {
     
     public enum Destination: Codable, Hashable {
-        case detailTransaction
         case pay
-        case scan
+        case scanQR
     }
     
     @Published var navPath = NavigationPath()
@@ -28,5 +27,9 @@ final class Router: ObservableObject {
     
     func navigateToRoot() {
         navPath.removeLast(navPath.count)
+    }
+    
+    func navigateToDetailTransaction(transaction: TransactionModel) {
+        navPath.append(transaction)
     }
 }

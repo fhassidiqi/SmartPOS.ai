@@ -14,8 +14,8 @@ struct TransactionResponse: Codable {
     
     @DocumentID var id: String?
     var orderNumber: String
-    var date: Date
-    var item: [ItemResponse]
+    var date: Timestamp
+    var item: [DocumentReference]
     var amount: Int
     var cashier: String
 }

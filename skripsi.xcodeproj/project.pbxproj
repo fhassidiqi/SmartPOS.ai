@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C0D6F2F2AE2D3C300C74BF7 /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F2E2AE2D3C300C74BF7 /* PayView.swift */; };
+		4C0503602B00CCE40042BDEA /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05035F2B00CCE40042BDEA /* PaymentView.swift */; };
 		4C0D6F312AE2D5C600C74BF7 /* ItemPayCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F302AE2D5C600C74BF7 /* ItemPayCardView.swift */; };
 		4C0D6F332AE3424A00C74BF7 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F322AE3424A00C74BF7 /* RoundedCornerShape.swift */; };
 		4C0D6F352AE348E700C74BF7 /* OmzetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F342AE348E700C74BF7 /* OmzetCardView.swift */; };
 		4C0D6F372AE3DD4A00C74BF7 /* RevenueCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F362AE3DD4A00C74BF7 /* RevenueCardView.swift */; };
 		4C0D6F392AE422F800C74BF7 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F382AE422F800C74BF7 /* Date+Ext.swift */; };
 		4C0D6F3B2AE42B9700C74BF7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F3A2AE42B9700C74BF7 /* CustomTabBar.swift */; };
-		4C25362B2AE4EBFE00DACB6E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25362A2AE4EBFE00DACB6E /* Router.swift */; };
 		4C25362D2AE4EC7200DACB6E /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25362C2AE4EC7200DACB6E /* ScanView.swift */; };
+		4C583EB92B0092540066C4E4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C583EB82B0092540066C4E4 /* Router.swift */; };
 		4C6A28942ADA960A0097FAB1 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28932ADA960A0097FAB1 /* UserDefault.swift */; };
 		4C6A28962ADA962D0097FAB1 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28952ADA962D0097FAB1 /* SettingsManager.swift */; };
 		4C6A28982ADA964F0097FAB1 /* BaseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28972ADA964F0097FAB1 /* BaseUseCase.swift */; };
@@ -23,7 +23,6 @@
 		4C6A289C2ADA967C0097FAB1 /* Colors+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A289B2ADA967C0097FAB1 /* Colors+Ext.swift */; };
 		4C6A289F2ADA98230097FAB1 /* Rounded+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A289E2ADA98230097FAB1 /* Rounded+Ext.swift */; };
 		4C6A28A12ADA98500097FAB1 /* ShimmerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28A02ADA98500097FAB1 /* ShimmerModifier.swift */; };
-		4C6A28A42ADA98B20097FAB1 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28A32ADA98B20097FAB1 /* ContentViewModel.swift */; };
 		4C6A28AD2ADA9A720097FAB1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28AC2ADA9A720097FAB1 /* HomeViewModel.swift */; };
 		4C6A28B12ADA9A830097FAB1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28B02ADA9A830097FAB1 /* HomeView.swift */; };
 		4C6A28B32ADBA64D0097FAB1 /* HistoryTransactionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28B22ADBA64D0097FAB1 /* HistoryTransactionCard.swift */; };
@@ -64,15 +63,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C0D6F2E2AE2D3C300C74BF7 /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
+		4C05035F2B00CCE40042BDEA /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		4C0D6F302AE2D5C600C74BF7 /* ItemPayCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPayCardView.swift; sourceTree = "<group>"; };
 		4C0D6F322AE3424A00C74BF7 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
 		4C0D6F342AE348E700C74BF7 /* OmzetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmzetCardView.swift; sourceTree = "<group>"; };
 		4C0D6F362AE3DD4A00C74BF7 /* RevenueCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCardView.swift; sourceTree = "<group>"; };
 		4C0D6F382AE422F800C74BF7 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		4C0D6F3A2AE42B9700C74BF7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		4C25362A2AE4EBFE00DACB6E /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4C25362C2AE4EC7200DACB6E /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
+		4C583EB82B0092540066C4E4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4C6A28932ADA960A0097FAB1 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		4C6A28952ADA962D0097FAB1 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		4C6A28972ADA964F0097FAB1 /* BaseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUseCase.swift; sourceTree = "<group>"; };
@@ -80,7 +79,6 @@
 		4C6A289B2ADA967C0097FAB1 /* Colors+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+Ext.swift"; sourceTree = "<group>"; };
 		4C6A289E2ADA98230097FAB1 /* Rounded+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rounded+Ext.swift"; sourceTree = "<group>"; };
 		4C6A28A02ADA98500097FAB1 /* ShimmerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerModifier.swift; sourceTree = "<group>"; };
-		4C6A28A32ADA98B20097FAB1 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4C6A28AC2ADA9A720097FAB1 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4C6A28B02ADA9A830097FAB1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4C6A28B22ADBA64D0097FAB1 /* HistoryTransactionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTransactionCard.swift; sourceTree = "<group>"; };
@@ -135,10 +133,18 @@
 		4C0D6F2D2AE2D3AF00C74BF7 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
-				4C0D6F2E2AE2D3C300C74BF7 /* PayView.swift */,
 				4C25362C2AE4EC7200DACB6E /* ScanView.swift */,
+				4C05035F2B00CCE40042BDEA /* PaymentView.swift */,
 			);
 			path = SubView;
+			sourceTree = "<group>";
+		};
+		4C583EB72B00924B0066C4E4 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				4C583EB82B0092540066C4E4 /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		4C6A28812ADA94BE0097FAB1 /* Resources */ = {
@@ -162,6 +168,7 @@
 		4C6A28832ADA94DF0097FAB1 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				4C583EB72B00924B0066C4E4 /* Router */,
 				4C6A288B2ADA95510097FAB1 /* Constants */,
 				4C6A288A2ADA954B0097FAB1 /* Utils */,
 				4C6A28892ADA95440097FAB1 /* Components */,
@@ -424,8 +431,6 @@
 				4C6A28852ADA94F10097FAB1 /* Features */,
 				4C731E982ADA8B6300B60760 /* skripsiApp.swift */,
 				4C731E9A2ADA8B6300B60760 /* ContentView.swift */,
-				4C25362A2AE4EBFE00DACB6E /* Router.swift */,
-				4C6A28A32ADA98B20097FAB1 /* ContentViewModel.swift */,
 				4C6A28812ADA94BE0097FAB1 /* Resources */,
 			);
 			path = skripsi;
@@ -604,7 +609,6 @@
 				4C6A28B32ADBA64D0097FAB1 /* HistoryTransactionCard.swift in Sources */,
 				4C0D6F352AE348E700C74BF7 /* OmzetCardView.swift in Sources */,
 				4C6A28962ADA962D0097FAB1 /* SettingsManager.swift in Sources */,
-				4C25362B2AE4EBFE00DACB6E /* Router.swift in Sources */,
 				4C6A28AD2ADA9A720097FAB1 /* HomeViewModel.swift in Sources */,
 				4CF1D18A2AE2C194007B72DE /* ItemFoodCardView.swift in Sources */,
 				4C6A28C22ADCDCE50097FAB1 /* PromoCardView.swift in Sources */,
@@ -623,12 +627,12 @@
 				4C0D6F332AE3424A00C74BF7 /* RoundedCornerShape.swift in Sources */,
 				4C6A28B62ADC1D8A0097FAB1 /* DetailHistoryView.swift in Sources */,
 				4C0D6F3B2AE42B9700C74BF7 /* CustomTabBar.swift in Sources */,
-				4C6A28A42ADA98B20097FAB1 /* ContentViewModel.swift in Sources */,
-				4C0D6F2F2AE2D3C300C74BF7 /* PayView.swift in Sources */,
 				4C98BEF62AE6AA0C00482D25 /* ItemResponse.swift in Sources */,
 				4C6A289C2ADA967C0097FAB1 /* Colors+Ext.swift in Sources */,
 				4C25362D2AE4EC7200DACB6E /* ScanView.swift in Sources */,
+				4C0503602B00CCE40042BDEA /* PaymentView.swift in Sources */,
 				4C6A28982ADA964F0097FAB1 /* BaseUseCase.swift in Sources */,
+				4C583EB92B0092540066C4E4 /* Router.swift in Sources */,
 				4CEF389B2AE536F80098AEDC /* FloatingActionButtonView.swift in Sources */,
 				4C6A28942ADA960A0097FAB1 /* UserDefault.swift in Sources */,
 				4C98BEE92AE6A29C00482D25 /* TransactionModel.swift in Sources */,

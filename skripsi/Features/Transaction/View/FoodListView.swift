@@ -10,8 +10,8 @@ import SwiftUI
 struct FoodListView: View {
     
     @State private var selectedCategory: CategoryModel? = nil
-    @EnvironmentObject private var route: ContentViewModel
     @StateObject private var vm = FoodListViewModel()
+    @EnvironmentObject var router: Router
     
     var body: some View {
         NavigationStack {
@@ -63,6 +63,12 @@ struct FoodListView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.background.base)
+                    
+                    Button {
+                        router.navigate(to: .pay)
+                    } label: {
+                        Text("Coba coba")
+                    }
                 }
             }
             
@@ -86,7 +92,9 @@ struct FoodListView: View {
                 vm.getItems()
             }
         }
-        .floatingActionButton(color: Color.primary100, text1: "Item", text2: "Rp. 129.000", image: "chevron.right.circle.fill", action: {})
+        .floatingActionButton(color: Color.primary100, text1: "Item", text2: "Rp. 129.000", image: "chevron.right.circle.fill", action: {
+            router.navigate(to: .pay)
+        })
     }
 }
 

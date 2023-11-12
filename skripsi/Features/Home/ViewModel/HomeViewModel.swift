@@ -21,7 +21,7 @@ class HomeViewModel: ObservableObject {
                     self.transactionModel = transaction
                 }
             case .failure(let error):
-                print("Error fetching transaction: \(error.localizedDescription)")
+                print("Error fetching transaction: \(error)")
             }
         }
     }

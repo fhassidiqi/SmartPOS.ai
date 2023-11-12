@@ -24,14 +24,38 @@ class TransactionRepository: ITransactionRepository {
             var transactions = [TransactionModel]()
             
             for transactionData in response {
+                
+                var items = [ItemModel]()
+                for itemResponse in transactionData.item {
+                    do {
+                        let itemResponse = try await remoteDataSource.fetchItem(reference: itemResponse)
+                        let category = try await remoteDataSource.fetchCategory(reference: itemResponse.category)
+
+                        let itemModel = ItemModel(
+                            id: itemResponse.id.orEmpty(),
+                            name: itemResponse.name,
+                            imageUrl: itemResponse.imageUrl,
+                            description: itemResponse.description,
+                            category: category.name,
+                            omzet: itemResponse.omzet,
+                            profit: itemResponse.profit,
+                            price: itemResponse.price,
+                            quantity: itemResponse.quantity,
+                            totalPrice: itemResponse.totalPrice,
+                            discount: itemResponse.discount
+                        )
+                        items.append(itemModel)
+                    } catch {
+                        print("Error fetching item for reference: \(itemResponse.path), \(error)")
+                    }
+                }
+                
                 transactions.append(
                     TransactionModel(
                         id: transactionData.id.orEmpty(),
                         orderNumber: transactionData.orderNumber,
-                        date: transactionData.date,
-                        item: transactionData.item.map {
-                            ItemModel(id: $0.id.orEmpty(), name: $0.name, imageUrl: $0.imageUrl, description: $0.description, category: $0.category.documentID, omzet: $0.omzet, profit: $0.profit, price: $0.price, quantity: $0.quantity, totalPrice: $0.totalPrice, discount: $0.discount)
-                        },
+                        date: transactionData.date.dateValue(),
+                        item: items,
                         amount: transactionData.amount,
                         cashier: transactionData.cashier
                     )

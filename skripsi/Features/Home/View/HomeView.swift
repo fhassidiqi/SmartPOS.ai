@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var router: Router
     @StateObject private var vm = HomeViewModel()
+    @EnvironmentObject var router: Router
     
     var body: some View {
         ZStack {
@@ -61,7 +61,7 @@ struct HomeView: View {
                 ForEach(vm.transactionModel, id: \.self) { transaction in
                     Button {
                         // TODO: Navigate to detail history view
-                        
+                        router.navigateToDetailTransaction(transaction: transaction)
                     } label: {
                         HistoryTransactionCard(transactionModel: transaction)
                     }
