@@ -10,6 +10,7 @@ import SwiftUI
 struct ItemFoodCardView: View {
     
     var itemModel: ItemModel
+    var transactionModel: TransactionModel
     
     var body: some View {
         HStack(spacing: 16) {
@@ -24,9 +25,10 @@ struct ItemFoodCardView: View {
                 Text("\(itemModel.price)")
                     .font(.caption)
                 
-                Button(action: {
+                Button {
                     
-                }, label: {
+                } label: {
+                    
                     Text("Add")
                         .font(.caption)
                         .fontWeight(.semibold)
@@ -38,7 +40,8 @@ struct ItemFoodCardView: View {
                                 .inset(by: 0.5)
                                 .strokeBorder(Color.primary100, lineWidth: 1)
                         )
-                })
+                    
+                }
             }
             
             Spacer()
@@ -63,8 +66,4 @@ struct ItemFoodCardView: View {
             }
         }
     }
-}
-
-#Preview {
-    ItemFoodCardView(itemModel: ItemModel(id: "1", name: "Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 120000, profit: 10000, price: 130000, quantity: 1, totalPrice: 1, discount: 0))
 }

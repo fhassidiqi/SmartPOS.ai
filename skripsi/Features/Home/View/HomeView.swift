@@ -60,7 +60,6 @@ struct HomeView: View {
                 
                 ForEach(vm.transactionModel, id: \.self) { transaction in
                     Button {
-                        // TODO: Navigate to detail history view
                         router.navigateToDetailTransaction(transaction: transaction)
                     } label: {
                         HistoryTransactionCard(transactionModel: transaction)

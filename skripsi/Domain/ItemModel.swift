@@ -16,7 +16,5 @@ struct ItemModel: Identifiable, Hashable, Codable {
     let omzet: Int
     let profit: Int
     let price: Int
-    let quantity: Int?
-    let totalPrice: Int?
     let discount: Int?
 }

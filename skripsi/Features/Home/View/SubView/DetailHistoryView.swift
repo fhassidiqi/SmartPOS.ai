@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailHistoryView: View {
     
     var transactionModel: TransactionModel
+    @EnvironmentObject private var router: Router
     
     var body: some View {
         ZStack {
@@ -52,8 +53,21 @@ struct DetailHistoryView: View {
                 Divider()
                     .padding(.vertical)
                 
-                ForEach(0..<5) { item in
-                    ItemCardView()
+                ForEach(transactionModel.item) { item in
+                    HStack {
+                        Text(item.name)
+                        
+                        Spacer()
+                        Spacer()
+                        
+                        Text("\(transactionModel.quantity)")
+                        Spacer()
+                        
+                        Text("\(item.price)")
+                        Spacer()
+                        
+                        Text("\(transactionModel.totalPrice)")
+                    }
                 }
                 
                 Spacer()
@@ -61,13 +75,12 @@ struct DetailHistoryView: View {
             .padding(.horizontal)
         }
         .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text("Detail Transaction")
-                    .font(.headline)
-                    .foregroundStyle(Color.text.white)
+            CustomToolbar(title: "Detail Transaction", leadingTitle: "Home") {
+                router.navigateBack()
             }
         }
         .toolbarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
         .toolbarBackground(.visible, for: .automatic)
         .toolbarBackground(Color.primary100, for: .automatic)
     }
@@ -81,5 +94,5 @@ struct DetailHistoryView: View {
 }
 
 #Preview {
-    DetailHistoryView(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, quantity: 1, totalPrice: 120000, discount: 1)], amount: 120000, cashier: "Falah"))
+    DetailHistoryView(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, discount: 1)], quantity: 2, totalPrice: 80000, amount: 80000, cashier: "Falah"))
 }

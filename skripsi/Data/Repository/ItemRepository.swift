@@ -26,7 +26,7 @@ class ItemRepository: IItemRepository {
             for itemData in response {
                 let category = try await remoteDataSource.fetchCategory(reference: itemData.category)
                 
-                items.append(ItemModel(id: itemData.id.orEmpty(), name: itemData.name, imageUrl: itemData.imageUrl, description: itemData.description, category: category.name, omzet: itemData.omzet, profit: itemData.profit, price: itemData.price, quantity: itemData.quantity, totalPrice: itemData.totalPrice, discount: itemData.discount))
+                items.append(ItemModel(id: itemData.id.orEmpty(), name: itemData.name, imageUrl: itemData.imageUrl, description: itemData.description, category: category.name, omzet: itemData.omzet, profit: itemData.profit, price: itemData.price, discount: itemData.discount))
             }
             return items
         } catch {

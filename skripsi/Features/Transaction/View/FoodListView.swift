@@ -14,7 +14,6 @@ struct FoodListView: View {
     @EnvironmentObject var router: Router
     
     var body: some View {
-        NavigationStack {
             ZStack {
                 Color.background.primary
                     .edgesIgnoringSafeArea(.top)
@@ -63,38 +62,20 @@ struct FoodListView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.background.base)
-                    
-                    Button {
-                        router.navigate(to: .pay)
-                    } label: {
-                        Text("Coba coba")
-                    }
                 }
             }
-            
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("Food List")
-                        .font(.headline)
-                        .foregroundStyle(Color.textWhite)
+            .onAppear {
+                if vm.categoriesModel.isEmpty {
+                    vm.getCategories()
+                }
+                
+                if vm.itemsModel.isEmpty {
+                    vm.getItems()
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(.visible, for: .automatic)
-            .toolbarBackground(Color.primary100, for: .automatic)
-        }
-        .onAppear {
-            if vm.categoriesModel.isEmpty {
-                vm.getCategories()
-            }
-            
-            if vm.itemsModel.isEmpty {
-                vm.getItems()
-            }
-        }
-        .floatingActionButton(color: Color.primary100, text1: "Item", text2: "Rp. 129.000", image: "chevron.right.circle.fill", action: {
-            router.navigate(to: .pay)
-        })
+            .floatingActionButton(color: Color.primary100, text1: "Item", text2: "Rp. 129.000", image: "chevron.right.circle.fill", action: {
+                router.navigate(to: .pay)
+            })
     }
 }
 

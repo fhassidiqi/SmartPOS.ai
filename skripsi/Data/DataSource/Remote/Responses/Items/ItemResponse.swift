@@ -20,8 +20,6 @@ struct ItemResponse: Codable {
     var price: Int
     var omzet: Int
     var profit: Int
-    var quantity: Int
-    var totalPrice: Int
     var discount: Int
 
 }

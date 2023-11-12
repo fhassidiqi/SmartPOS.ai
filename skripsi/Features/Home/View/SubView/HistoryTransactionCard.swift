@@ -42,5 +42,5 @@ struct HistoryTransactionCard: View {
 }
 
 #Preview {
-    HistoryTransactionCard(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, quantity: 1, totalPrice: 120000, discount: 1)], amount: 120000, cashier: "Falah"))
+    HistoryTransactionCard(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, discount: 1)], quantity: 2, totalPrice: 80000, amount: 80000, cashier: "Falah"))
 }

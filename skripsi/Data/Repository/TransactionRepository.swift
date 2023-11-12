@@ -40,8 +40,6 @@ class TransactionRepository: ITransactionRepository {
                             omzet: itemResponse.omzet,
                             profit: itemResponse.profit,
                             price: itemResponse.price,
-                            quantity: itemResponse.quantity,
-                            totalPrice: itemResponse.totalPrice,
                             discount: itemResponse.discount
                         )
                         items.append(itemModel)
@@ -56,6 +54,8 @@ class TransactionRepository: ITransactionRepository {
                         orderNumber: transactionData.orderNumber,
                         date: transactionData.date.dateValue(),
                         item: items,
+                        quantity: transactionData.quantity,
+                        totalPrice: transactionData.totalPrice,
                         amount: transactionData.amount,
                         cashier: transactionData.cashier
                     )

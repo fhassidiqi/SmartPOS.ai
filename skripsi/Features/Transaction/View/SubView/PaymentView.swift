@@ -54,20 +54,8 @@ struct PaymentView: View {
             }
         }
         .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text("Pay")
-                    .font(.headline)
-                    .foregroundStyle(Color.text.white)
-            }
-            
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    router.navigateBack()
-                } label: {
-                    Text("Back")
-                        .font(.headline)
-                        .foregroundStyle(Color.text.white)
-                }
+            CustomToolbar(title: "Pay", leadingTitle: "Food List") {
+                router.navigateBack()
             }
         }
         .navigationBarTitleDisplayMode(.inline)
