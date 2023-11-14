@@ -81,4 +81,37 @@ class RemoteDataSource {
         return try await reference.getDocument(as: TransactionResponse.self)
     }
     // TODO: Create add transaction and edit
+    
+    func getItemTransaction(itemID: String) async throws -> TransactionResponse? {
+        let itemReference = db.collection(ItemResponse.collectionName).document(itemID)
+        let itemTransactionReference = db.collection(TransactionResponse.collectionName)
+            .whereField("item", isEqualTo: itemReference)
+        let snapshot = try await itemTransactionReference.getDocuments()
+        if snapshot.documents.count > 0 {
+            return try snapshot.documents[0].data(as: TransactionResponse.self)
+        } else {
+            return nil
+        }
+    }
+    
+    func addItemTransaction(transactionId: String, itemId: String, orderNumber: Int, quantity: Int, amount: Double, totalPrice: Double, cashier: String) async throws {
+        let item = db.collection(ItemResponse.collectionName).document(itemId)
+        let newTransactionReference = db.collection(TransactionResponse.collectionName).document()
+        let transactionDocument = try await db.collection(TransactionResponse.collectionName)
+            .whereField("item", isEqualTo: item)
+            .getDocuments()
+        
+        if transactionDocument.isEmpty {
+            try await newTransactionReference
+                .setData([
+                    "orderNumber": orderNumber,
+                    "item": [item],
+                    "quantity": quantity,
+                    "date": Timestamp(),
+                    "amount": amount,
+                    "totalPrice": totalPrice,
+                    "cashier": cashier,
+                ], merge: true)
+        }
+    }
 }

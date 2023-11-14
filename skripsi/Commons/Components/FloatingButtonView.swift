@@ -1,13 +1,13 @@
 //
-//  FloatingActionButtonView.swift
+//  FloatingButtonView.swift
 //  skripsi
 //
-//  Created by Falah Hasbi Assidiqi on 22/10/23.
+//  Created by Falah Hasbi Assidiqi on 14/11/23.
 //
 
 import SwiftUI
 
-struct FloatingActionButtonView: ViewModifier {
+struct FloatingButtonView: View {
     
     let color: Color
     let image: String
@@ -19,17 +19,7 @@ struct FloatingActionButtonView: ViewModifier {
     private let sizeHeight: CGFloat = 50
     private let margin: CGFloat = 15
     
-    func body(content: Content) -> some View {
-        ZStack {
-            
-            Color.clear
-            content
-            button()
-                .frame(maxHeight: .infinity, alignment: .bottom)
-        }
-    }
-    
-    @ViewBuilder private func button() -> some View {
+    var body: some View {
         Button(action: action){
             HStack {
                 
@@ -54,19 +44,4 @@ struct FloatingActionButtonView: ViewModifier {
             
         }
     }
-}
-
-extension View {
-    func floatingActionButton(
-        color: Color,
-        text1: String,
-        text2: String?,
-        image: String,
-        action: @escaping () -> Void) -> some View {
-            self.modifier(FloatingActionButtonView(color: color,
-                                                   image: image,
-                                                   text1: text1,
-                                                   text2: text2,
-                                                   action: action))
-        }
 }

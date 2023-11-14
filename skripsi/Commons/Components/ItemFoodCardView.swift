@@ -10,7 +10,7 @@ import SwiftUI
 struct ItemFoodCardView: View {
     
     var itemModel: ItemModel
-    var transactionModel: TransactionModel
+    @StateObject private var vm = FoodListViewModel()
     
     var body: some View {
         HStack(spacing: 16) {
@@ -22,25 +22,59 @@ struct ItemFoodCardView: View {
                 Text(itemModel.description)
                     .font(.caption)
                 
-                Text("\(itemModel.price)")
-                    .font(.caption)
-                
-                Button {
-                    
-                } label: {
-                    
-                    Text("Add")
+                if vm.quantity > 1 {
+                    Text("\(itemModel.price * vm.quantity)")
                         .font(.caption)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(Color.primary100)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .inset(by: 0.5)
-                                .strokeBorder(Color.primary100, lineWidth: 1)
-                        )
-                    
+                } else {
+                    Text("\(itemModel.price)")
+                        .font(.caption)
+                }
+                
+                if vm.quantity == 0 {
+                    Button {
+                        vm.quantity += 1
+                        print(vm.quantity)
+                    } label: {
+                        Text("Add")
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.primary100)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .inset(by: 0.5)
+                                    .strokeBorder(Color.primary100, lineWidth: 1)
+                            )
+                        
+                    }
+                } else {
+                    HStack {
+                        Image(systemName: "minus.circle")
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.primary100)
+                            .onTapGesture {
+                                // TODO: quantity berkurang
+                                vm.quantity -= 1
+                                print(vm.quantity)
+                            }
+                        
+                        Text("\(vm.quantity)")
+                            .font(.caption).bold()
+                            .foregroundStyle(Color.text.black)
+                            .padding(6)
+                        
+                        Image(systemName: "plus.circle")
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.primary100)
+                            .onTapGesture {
+                                // TODO: quantity nambah
+                                vm.quantity += 1
+                                print(vm.quantity)
+                            }
+                    }
                 }
             }
             

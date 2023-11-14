@@ -12,6 +12,7 @@ struct PaymentView: View {
     private let paymentType = ["Sub Total", "Tax(10%)", "Total", "Cash", "Return"]
     private let payment = [129000, 12900, 129000, 129000, 0]
     @EnvironmentObject private var router: Router
+    @StateObject private var vm = FoodListViewModel()
     
     var body: some View {
         ZStack {
@@ -62,9 +63,9 @@ struct PaymentView: View {
         .toolbarBackground(.visible, for: .automatic)
         .navigationBarBackButtonHidden()
         .toolbarBackground(Color.primary100, for: .automatic)
-        .floatingActionButton(color: Color.primaryColor100, text1: "Proceed", text2: nil, image: "", action: {
-            router.navigate(to: .scanQR)
-        })
+//        .floatingActionButton(color: Color.primaryColor100, text1: "Proceed", text2: nil, image: "", viewModel: vm, action: {
+//            router.navigate(to: .scanQR)
+//        })
     }
 }
 

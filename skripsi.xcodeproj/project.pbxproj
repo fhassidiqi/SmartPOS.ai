@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C0503602B00CCE40042BDEA /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05035F2B00CCE40042BDEA /* PaymentView.swift */; };
 		4C0503622B010D960042BDEA /* CustomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0503612B010D960042BDEA /* CustomToolbar.swift */; };
+		4C0C08CF2B029BC100207617 /* FloatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C08CE2B029BC100207617 /* FloatingButtonView.swift */; };
 		4C0D6F312AE2D5C600C74BF7 /* ItemPayCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F302AE2D5C600C74BF7 /* ItemPayCardView.swift */; };
 		4C0D6F332AE3424A00C74BF7 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F322AE3424A00C74BF7 /* RoundedCornerShape.swift */; };
 		4C0D6F352AE348E700C74BF7 /* OmzetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F342AE348E700C74BF7 /* OmzetCardView.swift */; };
@@ -64,6 +65,7 @@
 /* Begin PBXFileReference section */
 		4C05035F2B00CCE40042BDEA /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		4C0503612B010D960042BDEA /* CustomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolbar.swift; sourceTree = "<group>"; };
+		4C0C08CE2B029BC100207617 /* FloatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtonView.swift; sourceTree = "<group>"; };
 		4C0D6F302AE2D5C600C74BF7 /* ItemPayCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPayCardView.swift; sourceTree = "<group>"; };
 		4C0D6F322AE3424A00C74BF7 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
 		4C0D6F342AE348E700C74BF7 /* OmzetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmzetCardView.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				4C0D6F302AE2D5C600C74BF7 /* ItemPayCardView.swift */,
 				4CEF389A2AE536F80098AEDC /* FloatingActionButtonView.swift */,
 				4C0503612B010D960042BDEA /* CustomToolbar.swift */,
+				4C0C08CE2B029BC100207617 /* FloatingButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				4C6A28B62ADC1D8A0097FAB1 /* DetailHistoryView.swift in Sources */,
 				4C0503622B010D960042BDEA /* CustomToolbar.swift in Sources */,
 				4C98BEF62AE6AA0C00482D25 /* ItemResponse.swift in Sources */,
+				4C0C08CF2B029BC100207617 /* FloatingButtonView.swift in Sources */,
 				4C6A289C2ADA967C0097FAB1 /* Colors+Ext.swift in Sources */,
 				4C25362D2AE4EC7200DACB6E /* ScanView.swift in Sources */,
 				4C0503602B00CCE40042BDEA /* PaymentView.swift in Sources */,

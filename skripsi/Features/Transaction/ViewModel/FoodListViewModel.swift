@@ -12,6 +12,7 @@ class FoodListViewModel: ObservableObject {
     
     @Published var categoriesModel = [CategoryModel]()
     @Published var itemsModel = [ItemModel]()
+    @Published var quantity: Int = 0
     
     private let getCategoriesUseCase = GetCategoriesUseCase()
     private let getItemUseCase = GetItemsUseCase()
