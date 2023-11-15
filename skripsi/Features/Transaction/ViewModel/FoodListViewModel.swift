@@ -12,10 +12,62 @@ class FoodListViewModel: ObservableObject {
     
     @Published var categoriesModel = [CategoryModel]()
     @Published var itemsModel = [ItemModel]()
+    @Published var transactionModel = [TransactionModel]()
     @Published var quantity: Int = 0
+    @Published var transactionLoading = false
     
     private let getCategoriesUseCase = GetCategoriesUseCase()
     private let getItemUseCase = GetItemsUseCase()
+    private let addItemTransactionUseCase = AddItemTransactionUseCase()
+    private let getItemTransactionUseCase = GetItemTransactionUseCase()
+    
+    func AddItemTransaction(transactionId: String, itemId: [String], orderNumber: String, quantity: Int, amount: Double, totalPrice: Double, cashier: String) {
+        Task {
+            DispatchQueue.main.sync {
+                self.transactionLoading = true
+            }
+            
+            let result = await addItemTransactionUseCase.execute(params: AddItemTransactionUseCase.Param(transactionId: transactionId, itemId: itemId, orderNumber: orderNumber, quantity: quantity, amount: amount, totalPrice: totalPrice, cashier: cashier))
+            switch result {
+            case .success:
+                DispatchQueue.main.sync {
+                    self.getItemTransaction(itemId: itemId)
+                    self.transactionLoading = false
+                }
+                break
+            case .failure(let error):
+                print("Error: \(error)")
+                DispatchQueue.main.sync {
+                    self.transactionLoading = false
+                }
+                break
+            }
+        }
+    }
+    
+    func getItemTransaction(itemId: [String]) {
+        Task {
+            DispatchQueue.main.sync {
+                self.transactionLoading = true
+            }
+            
+            let result = await getItemTransactionUseCase.execute(params: GetItemTransactionUseCase.Param(itemId: itemId))
+            switch result {
+            case .success(let itemTransaction):
+                DispatchQueue.main.sync {
+                    self.transactionModel = itemTransaction
+                    self.transactionLoading = false
+                }
+                break
+            case .failure(let error):
+                print("Error: \(error)")
+                DispatchQueue.main.sync {
+                    self.transactionLoading = false
+                }
+                break
+            }
+        }
+    }
     
     func getCategories() {
         Task {
