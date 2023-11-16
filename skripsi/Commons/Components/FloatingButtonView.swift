@@ -10,7 +10,7 @@ import SwiftUI
 struct FloatingButtonView: View {
     
     let color: Color
-    let image: String
+    let image: String?
     let text1: String
     let text2: String?
     let action: () -> Void
@@ -25,19 +25,21 @@ struct FloatingButtonView: View {
                 
                 Text(text1)
                 
-                if let text2 {
+                if let text2 = text2 {
                     Spacer()
                     
                     Text(text2)
-                    
-                    Image(systemName: image)
+                }
+                
+                if let imageName = image {
+                    Image(systemName: imageName)
                         .resizable()
                         .frame(width: 25, height: 25)
                 }
             }
             .font(.headline)
             .padding()
-            .frame(width: sizeWidth, height: sizeHeight)
+            .frame(width: sizeWidth, height: sizeHeight, alignment: .center)
             .foregroundStyle(Color.text.white)
             .background(Color.primaryColor100)
             .cornerRadius(8)

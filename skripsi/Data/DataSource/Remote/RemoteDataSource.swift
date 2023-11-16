@@ -59,7 +59,7 @@ class RemoteDataSource {
         return collectionName.document(transactionId)
     }
     
-    func fetchTransactions(items: [String]? = nil) async throws -> [TransactionResponse] {
+    func fetchTransactions(items: [String]? = nil, sort: SortType = .date) async throws -> [TransactionResponse] {
         var filters = [Filter]()
         if let items = items {
             let itemRefs = items.map { item in
@@ -68,8 +68,14 @@ class RemoteDataSource {
             filters.append(Filter.whereField("item", in: itemRefs))
         }
         
-        let transactionDocReff = db.collection(TransactionResponse.collectionName)
+        var transactionDocReff = db.collection(TransactionResponse.collectionName)
             .whereFilter(Filter.andFilter(filters))
+        
+        if sort == .cashier {
+            transactionDocReff = transactionDocReff.order(by: "Cashier", descending: true)
+        } else if sort == .orderName {
+            transactionDocReff = transactionDocReff.order(by: "Order Name", descending: true)
+        }
         
         let snapshots = try await transactionDocReff.getDocuments()
         return try snapshots.documents.map { snapshots in
@@ -121,4 +127,16 @@ class RemoteDataSource {
         }
         return true
     }
+    
+    func deleteItemTransaction(transactionId: String) async throws -> Bool {
+        try await db.collection(TransactionResponse.collectionName)
+            .document(transactionId)
+            .delete()
+        
+        return true
+    }
+}
+
+enum SortType {
+    case date, cashier, orderName
 }

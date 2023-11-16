@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ITransactionRepository {
-    func getTransactions(items: [String]?) async throws -> [TransactionModel]
+    func getTransactions(items: [String]?, sort: SortType) async throws -> [TransactionModel]
     func getTransaction(id: String) async throws -> TransactionModel?
 }
 
@@ -31,15 +31,22 @@ class TransactionRepository: ITransactionRepository {
         }
     }
     
-func addItemTransaction(transactionId: String, itemId: [String], orderNumber: String, quantity: Int, amount: Double, totalPrice: Double, cashier: String) async throws -> Bool {
+    func addItemTransaction(transactionId: String, itemId: [String], orderNumber: String, quantity: Int, amount: Double, totalPrice: Double, cashier: String) async throws -> Bool {
         
-    let results = try await remoteDataSource.addItemTransaction(transactionId: transactionId, itemIds: itemId, orderNumber: orderNumber, quantity: quantity, amount: amount, totalPrice: totalPrice, cashier: cashier)
+        let results = try await remoteDataSource.addItemTransaction(transactionId: transactionId, itemIds: itemId, orderNumber: orderNumber, quantity: quantity, amount: amount, totalPrice: totalPrice, cashier: cashier)
+        
         return results
     }
     
-    func getTransactions(items: [String]?) async throws -> [TransactionModel] {
+    func deleteItemTransaction(transactionId: String) async throws -> Bool {
+        let result = try await remoteDataSource.deleteItemTransaction(transactionId: transactionId)
+        
+        return result
+    }
+    
+    func getTransactions(items: [String]?, sort: SortType) async throws -> [TransactionModel] {
         do {
-            let response = try await remoteDataSource.fetchTransactions(items: items)
+            let response = try await remoteDataSource.fetchTransactions(items: items, sort: sort)
             
             var transactions = [TransactionModel]()
             

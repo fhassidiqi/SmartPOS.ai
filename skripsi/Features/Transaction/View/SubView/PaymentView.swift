@@ -15,7 +15,7 @@ struct PaymentView: View {
     @StateObject private var vm = FoodListViewModel()
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Color.background.primary
                 .ignoresSafeArea()
             
@@ -53,6 +53,10 @@ struct PaymentView: View {
                 }
                 .background(Color.background.base)
             }
+            
+            FloatingButtonView(color: Color.primaryColor100, image: nil, text1: "Proceed", text2: nil) {
+                router.navigateToRoot()
+            }
         }
         .toolbar {
             CustomToolbar(title: "Pay", leadingTitle: "Food List") {
@@ -63,9 +67,6 @@ struct PaymentView: View {
         .toolbarBackground(.visible, for: .automatic)
         .navigationBarBackButtonHidden()
         .toolbarBackground(Color.primary100, for: .automatic)
-//        .floatingActionButton(color: Color.primaryColor100, text1: "Proceed", text2: nil, image: "", viewModel: vm, action: {
-//            router.navigate(to: .scanQR)
-//        })
     }
 }
 

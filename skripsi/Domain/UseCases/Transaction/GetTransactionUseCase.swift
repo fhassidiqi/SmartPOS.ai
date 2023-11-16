@@ -14,7 +14,7 @@ class GetTransactionUseCase: BaseUseCase {
     
     func execute(params: Params) async -> Result<[TransactionModel], Error> {
         do {
-            let result = try await repository.getTransactions(items: params.items)
+            let result = try await repository.getTransactions(items: params.items, sort: params.sort)
             return .success(result)
         } catch {
             return .failure(error)
@@ -23,5 +23,6 @@ class GetTransactionUseCase: BaseUseCase {
     
     struct Param {
         var items: [String]? = nil
+        var sort: SortType = .date
     }
 }
