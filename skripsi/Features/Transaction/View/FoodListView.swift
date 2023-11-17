@@ -66,7 +66,7 @@ struct FoodListView: View {
             
             if vm.quantity == 0 {
                 
-                FloatingButtonView(color: Color.primary100, image: "chevron.right.circle.fill", text1: "Item", text2: "Rp. 40.000") {
+                FloatingButtonView(color: Color.primary100, image: "chevron.right.circle.fill", text1: "1 Item", text2: "Rp. 40.000") {
                     router.navigate(to: .pay)
                 }
             }

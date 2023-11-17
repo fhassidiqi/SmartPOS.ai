@@ -16,8 +16,9 @@ struct TransactionResponse: Codable {
     var orderNumber: String
     var date: Timestamp
     var item: [DocumentReference]
-    var quantity: Int
+    var subTotal: Int
     var totalPrice: Int
-    var amount: Int
+    var tax: Int
     var cashier: String
+    var totalPriceBeforeTax: Int
 }

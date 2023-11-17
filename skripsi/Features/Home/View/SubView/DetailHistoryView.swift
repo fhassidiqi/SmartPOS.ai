@@ -21,7 +21,7 @@ struct DetailHistoryView: View {
                     .font(.headline)
                     .padding(.top, 25)
                 
-                Text("\(transactionModel.amount)")
+                Text("\(transactionModel.totalPrice)")
                     .font(.title)
                     .fontWeight(.semibold)
                 
@@ -60,14 +60,24 @@ struct DetailHistoryView: View {
                         Spacer()
                         Spacer()
                         
-                        Text("\(transactionModel.quantity)")
+                        Text("\(item.quantity)")
                         Spacer()
                         
-                        Text("\(item.price)")
+                        Text("Rp. \(transactionModel.subTotal)")
                         Spacer()
                         
-                        Text("\(transactionModel.totalPrice)")
+                        Text("Rp. \(transactionModel.totalPriceBeforeTax)")
                     }
+                    .padding(.vertical, 8)
+                }
+
+                
+                HStack {
+                    Text("Tax 10%")
+                    
+                    Spacer()
+                    
+                    Text("Rp. \(transactionModel.tax)")
                 }
                 
                 Spacer()
@@ -94,5 +104,5 @@ struct DetailHistoryView: View {
 }
 
 #Preview {
-    DetailHistoryView(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, discount: 1)], quantity: 2, totalPrice: 80000, amount: 80000, cashier: "Falah"))
+    DetailHistoryView(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, discount: 1, quantity: 1, totalOmzetPerItem: 1, totalPricePerItem: 1, totalProfitPerItem: 1)], subTotal: 2, totalPrice: 88000, tax: 8000, cashier: "Falah", totalPriceBeforeTax: 80000))
 }

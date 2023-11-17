@@ -30,4 +30,9 @@ extension Color {
         static let green = Color("Text-green")
         static let black = Color("Text-black")
     }
+    
+    struct button {
+        static let active = Color("Button-active")
+        static let inactive = Color("Button-inactive")
+    }
 }

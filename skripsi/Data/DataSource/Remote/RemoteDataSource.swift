@@ -100,33 +100,35 @@ class RemoteDataSource {
         }
     }
     
-    func addItemTransaction(transactionId: String, itemIds: [String], orderNumber: String, quantity: Int, amount: Double, totalPrice: Double, cashier: String) async throws -> Bool {
+    func addItemTransaction(transactionId: String, itemIds: [String], orderNumber: String, tax: Double, subTotal: Int, totalPrice: Double, cashier: String) async throws -> Bool {
         let newTransactionRef = db.collection(TransactionResponse.collectionName).document()
-        
+
+        var subTotal = 0
+
         for itemId in itemIds {
             let item = db.collection(ItemResponse.collectionName).document(itemId)
-            let newTransactionReference = db.collection(TransactionResponse.collectionName).document()
-            let transactionDocument = try await db.collection(TransactionResponse.collectionName)
-                .whereField("item", isEqualTo: item)
-                .getDocuments()
+            let itemDocument = try await item.getDocument()
             
-            if transactionDocument.isEmpty {
-                try await newTransactionReference
-                    .setData([
-                        "orderNumber": orderNumber,
-                        "item": [item],
-                        "quantity": quantity,
-                        "date": Timestamp(),
-                        "amount": amount,
-                        "totalPrice": totalPrice,
-                        "cashier": cashier,
-                    ], merge: true)
-            } else {
-                return false
+            if let price = itemDocument.data()?["totalPricePerItem"] as? Int {
+                subTotal += price
             }
         }
+        
+        let itemRefs = itemIds.map { db.collection(ItemResponse.collectionName).document($0) }
+        
+        try await newTransactionRef.setData([
+            "orderNumber": orderNumber,
+            "items": itemRefs,
+            "subTotal": subTotal,
+            "date": Timestamp(),
+            "tax": tax,
+            "totalPrice": totalPrice,
+            "cashier": cashier,
+        ], merge: true)
+
         return true
     }
+
     
     func deleteItemTransaction(transactionId: String) async throws -> Bool {
         try await db.collection(TransactionResponse.collectionName)

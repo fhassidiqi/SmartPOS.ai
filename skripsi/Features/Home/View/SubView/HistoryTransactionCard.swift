@@ -24,7 +24,7 @@ struct HistoryTransactionCard: View {
             }
             Spacer()
             
-            Text("\(transactionModel.amount)")
+            Text("\(transactionModel.totalPrice)")
             
             Image(systemName: "chevron.right")
         }
@@ -42,5 +42,5 @@ struct HistoryTransactionCard: View {
 }
 
 #Preview {
-    HistoryTransactionCard(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, discount: 1)], quantity: 2, totalPrice: 80000, amount: 80000, cashier: "Falah"))
+    HistoryTransactionCard(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, discount: 1, quantity: 1, totalOmzetPerItem: 1, totalPricePerItem: 1, totalProfitPerItem: 1)], subTotal: 2, totalPrice: 80000, tax: 8000, cashier: "Falah", totalPriceBeforeTax: 80000))
 }

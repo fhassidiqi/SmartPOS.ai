@@ -15,7 +15,7 @@ class AddItemTransactionUseCase: BaseUseCase {
     
     func execute(params: Param) async -> Result<Bool, Error> {
         do {
-            let result = try await repository.addItemTransaction(transactionId: params.transactionId, itemId: params.itemId, orderNumber: params.orderNumber, quantity: params.quantity, amount: params.amount, totalPrice: params.totalPrice, cashier: params.cashier)
+            let result = try await repository.addItemTransaction(transactionId: params.transactionId, itemId: params.itemId, orderNumber: params.orderNumber, subTotal: params.quantity, tax: params.amount, totalPrice: params.totalPrice, cashier: params.cashier)
             return .success(result)
         } catch {
             return .failure(error)

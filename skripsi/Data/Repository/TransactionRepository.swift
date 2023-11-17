@@ -23,17 +23,17 @@ class TransactionRepository: ITransactionRepository {
             for item in response.item {
                 let itemResponse = try await remoteDataSource.fetchItem(reference: item.self)
                 let category = try await remoteDataSource.fetchCategory(reference: itemResponse.category)
-                let item = ItemModel(id: itemResponse.id.orEmpty(), name: itemResponse.name, imageUrl: itemResponse.imageUrl, description: itemResponse.description, category: category.name, omzet: itemResponse.omzet, profit: itemResponse.profit, price: itemResponse.price, discount: itemResponse.discount)
+                let item = ItemModel(id: itemResponse.id.orEmpty(), name: itemResponse.name, imageUrl: itemResponse.imageUrl, description: itemResponse.description, category: category.name, omzet: itemResponse.omzet, profit: itemResponse.profit, price: itemResponse.price, discount: itemResponse.discount, quantity: itemResponse.quantity, totalOmzetPerItem: itemResponse.totalOmzetPerItem, totalPricePerItem: itemResponse.totalPricePerItem, totalProfitPerItem: itemResponse.totalProfitPerItem)
             }
-            return TransactionModel(id: response.id, orderNumber: response.orderNumber, date: response.date.dateValue(), item: items, quantity: response.quantity, totalPrice: response.totalPrice, amount: response.amount, cashier: response.cashier)
+            return TransactionModel(id: response.id, orderNumber: response.orderNumber, date: response.date.dateValue(), item: items, subTotal: response.subTotal, totalPrice: response.totalPrice, tax: response.tax, cashier: response.cashier, totalPriceBeforeTax: response.totalPriceBeforeTax)
         } else {
             return nil
         }
     }
     
-    func addItemTransaction(transactionId: String, itemId: [String], orderNumber: String, quantity: Int, amount: Double, totalPrice: Double, cashier: String) async throws -> Bool {
+    func addItemTransaction(transactionId: String, itemId: [String], orderNumber: String, subTotal: Int, tax: Double, totalPrice: Double, cashier: String) async throws -> Bool {
         
-        let results = try await remoteDataSource.addItemTransaction(transactionId: transactionId, itemIds: itemId, orderNumber: orderNumber, quantity: quantity, amount: amount, totalPrice: totalPrice, cashier: cashier)
+        let results = try await remoteDataSource.addItemTransaction(transactionId: transactionId, itemIds: itemId, orderNumber: orderNumber, tax: tax, subTotal: subTotal, totalPrice: totalPrice, cashier: cashier)
         
         return results
     }
@@ -67,7 +67,11 @@ class TransactionRepository: ITransactionRepository {
                             omzet: itemResponse.omzet,
                             profit: itemResponse.profit,
                             price: itemResponse.price,
-                            discount: itemResponse.discount
+                            discount: itemResponse.discount,
+                            quantity: itemResponse.quantity,
+                            totalOmzetPerItem: itemResponse.totalOmzetPerItem,
+                            totalPricePerItem: itemResponse.totalPricePerItem,
+                            totalProfitPerItem: itemResponse.totalProfitPerItem
                         )
                         items.append(itemModel)
                     } catch {
@@ -81,10 +85,11 @@ class TransactionRepository: ITransactionRepository {
                         orderNumber: transactionData.orderNumber,
                         date: transactionData.date.dateValue(),
                         item: items,
-                        quantity: transactionData.quantity,
+                        subTotal: transactionData.subTotal,
                         totalPrice: transactionData.totalPrice,
-                        amount: transactionData.amount,
-                        cashier: transactionData.cashier
+                        tax: transactionData.tax,
+                        cashier: transactionData.cashier,
+                        totalPriceBeforeTax: transactionData.totalPriceBeforeTax
                     )
                 )
             }

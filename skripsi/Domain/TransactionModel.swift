@@ -14,9 +14,9 @@ struct TransactionModel: Identifiable, Hashable {
     let orderNumber: String
     let date: Date
     let item: [ItemModel]
-    var quantity: Int
+    var subTotal: Int
     let totalPrice: Int
-    let amount: Int
+    let tax: Int
     let cashier: String
-    
+    let totalPriceBeforeTax: Int
 }
