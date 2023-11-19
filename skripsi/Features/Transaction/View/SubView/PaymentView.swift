@@ -13,6 +13,7 @@ struct PaymentView: View {
     private let payment = [129000, 12900, 129000, 129000, 0]
     @EnvironmentObject private var router: Router
     @StateObject private var vm = FoodListViewModel()
+    @State private var isActive = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -54,7 +55,7 @@ struct PaymentView: View {
                 .background(Color.background.base)
             }
             
-            FloatingButtonView(color: Color.primaryColor100, image: nil, text1: "Proceed", text2: nil) {
+            FloatingButtonView(color: !isActive ? Color.button.active : Color.button.inactive, image: nil, text1: "Proceed", text2: nil) {
                 router.navigateToRoot()
             }
         }

@@ -47,12 +47,12 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    Button(action: {
+                    Button {
                         
-                    }, label: {
+                    } label: {
                         Image(systemName: "line.3.horizontal.decrease")
                             .foregroundColor(Color.text.primary100)
-                    })
+                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()

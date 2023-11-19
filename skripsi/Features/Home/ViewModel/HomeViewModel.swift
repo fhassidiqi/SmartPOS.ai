@@ -12,11 +12,26 @@ class HomeViewModel: ObservableObject {
     @Published var itemLoading = false
     
     private let getTransactionUseCase = GetTransactionUseCase()
+    private let getItemTransactionUseCase = GetItemTransactionUseCase()
     private let deleteItemTransactionUseCase = DeleteItemTransactionUseCase()
     
     func getTransactions() {
         Task {
             let result = await getTransactionUseCase.execute(params: GetTransactionUseCase.Params())
+            switch result {
+            case .success(let transaction):
+                DispatchQueue.main.sync {
+                    self.transactionModel = transaction
+                }
+            case .failure(let error):
+                print("Error fetching transaction: \(error)")
+            }
+        }
+    }
+    
+    func getItemTransaction(itemId: [String]?, sort: SortType = .date) {
+        Task {
+            let result = await getItemTransactionUseCase.execute(params: GetItemTransactionUseCase.Param(itemId: itemId ?? [""], sort: sort))
             switch result {
             case .success(let transaction):
                 DispatchQueue.main.sync {
