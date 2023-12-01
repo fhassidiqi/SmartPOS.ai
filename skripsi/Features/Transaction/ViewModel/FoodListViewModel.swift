@@ -45,6 +45,10 @@ class FoodListViewModel: ObservableObject {
         }
     }
     
+    func printItemTransaction() {
+        
+    }
+    
     func getItemTransaction(itemId: [String]) {
         Task {
             DispatchQueue.main.sync {

@@ -19,7 +19,7 @@ class TransactionRepository: ITransactionRepository {
     
     func getItemTransaction(itemId: String) async throws -> TransactionModel? {
         if let response = try await remoteDataSource.getItemTransaction(itemID: itemId) {
-            var items = [ItemModel]()
+            let items = [ItemModel]()
             for item in response.item {
                 let itemResponse = try await remoteDataSource.fetchItem(reference: item.self)
                 let category = try await remoteDataSource.fetchCategory(reference: itemResponse.category)

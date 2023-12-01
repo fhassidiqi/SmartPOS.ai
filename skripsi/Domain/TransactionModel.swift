@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 struct TransactionModel: Identifiable, Hashable {
     let id: String?

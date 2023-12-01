@@ -55,9 +55,9 @@ struct PaymentView: View {
                 .background(Color.background.base)
             }
             
-            FloatingButtonView(color: !isActive ? Color.button.active : Color.button.inactive, image: nil, text1: "Proceed", text2: nil) {
-                router.navigateToRoot()
-            }
+//            FloatingButtonView(color: !isActive ? Color.button.active : Color.button.inactive, image: nil, text1: "Proceed", text2: nil) {
+//                router.navigateToRoot()
+//            }
         }
         .toolbar {
             CustomToolbar(title: "Pay", leadingTitle: "Food List") {

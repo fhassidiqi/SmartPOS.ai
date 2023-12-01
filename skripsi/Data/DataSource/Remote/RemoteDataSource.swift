@@ -11,6 +11,7 @@ import Combine
 import FirebaseFirestoreSwift
 
 class RemoteDataSource {
+    
     static let shared = RemoteDataSource()
     private let db = Firestore.firestore()
     

@@ -57,15 +57,25 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
                 
-                
-                ForEach(vm.transactionModel, id: \.self) { transaction in
-                    Button {
-                        router.navigateToDetailTransaction(transaction: transaction)
-                    } label: {
-                        HistoryTransactionCard(transactionModel: transaction)
+                ScrollView(.vertical) {
+                    LazyVStack(spacing: 10) {
+                        ForEach(vm.transactionModel, id: \.self) { transaction in
+                            SwipeAction(cornerRadius: 15, direction: .trailing) {
+                                HistoryView(transaction)
+                            } actions: {
+                                Action(tint: .red, icon: "trash.fill") {
+                                    // MARK: Create delete transaction
+                                    withAnimation(.easeInOut) {
+                                        print("Delete")
+                                    }
+                                    
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
                     }
                 }
-                .padding(.horizontal)
+                .scrollIndicators(.hidden)
                 
                 Spacer()
             }
@@ -73,6 +83,41 @@ struct HomeView: View {
         .onAppear {
             vm.getTransactions()
         }
+    }
+    
+    @ViewBuilder
+    func HistoryView(_ transactionModel: TransactionModel) -> some View {
+        Button {
+            router.navigateToDetailTransaction(transaction: transactionModel)
+        } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(transactionModel.orderNumber)
+                        .font(.subheadline).bold()
+                    
+                    
+                    Text(formatDate(transactionModel.date))
+                        .font(.caption2)
+                        .foregroundStyle(Color.text.primary30)
+                }
+                Spacer()
+                
+                Text("\(transactionModel.totalPrice)")
+                
+                Image(systemName: "chevron.right")
+            }
+            .foregroundStyle(Color.text.primary100)
+            .padding()
+            .background(Color.background.base)
+            .cornerRadius(8)
+        }
+    }
+    
+    func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
     }
 }
 

@@ -64,14 +64,13 @@ struct FoodListView: View {
                 .background(Color.background.base)
             }
             
-            if vm.quantity == 0 {
-                
-                FloatingButtonView(color: Color.primary100, image: "chevron.right.circle.fill", text1: "1 Item", text2: "Rp. 40.000") {
+            if vm.quantity > 0 {
+                FloatingButtonView(color: Color.primary100, image: "chevron.right.circle.fill", text1: "Item", text2: "Rp. 40.000", quantity: vm.quantity) {
                     router.navigate(to: .pay)
                 }
+                
             }
         }
-        
         .onAppear {
             if vm.categoriesModel.isEmpty {
                 vm.getCategories()
