@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct ItemResponse: Codable {
-    static let collectionName = "item"
+    static let collectionName = "items"
     
     @DocumentID var id: String?
     var name: String
@@ -21,8 +21,4 @@ struct ItemResponse: Codable {
     var omzet: Int
     var profit: Int
     var discount: Int?
-    var quantity: Int
-    var totalOmzetPerItem: Int
-    var totalProfitPerItem: Int
-    var totalPricePerItem: Int
 }

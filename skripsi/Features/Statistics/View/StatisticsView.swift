@@ -12,6 +12,7 @@ struct StatisticsView: View {
     @State private var selectedDate = Date()
     @State private var isPickerPresented = false
     @State private var settingsDetent = PresentationDetent.medium
+    @StateObject var vm = StatisticViewModel()
     
     var body: some View {
         NavigationStack {
@@ -44,12 +45,18 @@ struct StatisticsView: View {
                     .foregroundColor(Color.text.primary100)
                     
                     HStack(spacing: 16) {
-                        ForEach(0..<2) { item in
-                            OmzetCardView()
-                        }
+                        let currentMonthRevenue = vm.totalRevenue(forMonth: selectedDate)
+                        let previousMonthRevenue = vm.totalRevenue(forMonth: Calendar.current.date(byAdding: .month, value: -1, to: selectedDate) ?? Date())
+                        
+                        RevenueCardView(title: "Omzet", value: currentMonthRevenue, previousMonthValue: previousMonthRevenue)
+                        
+                        let currentMonthProfit = vm.totalProfit(forMonth: selectedDate)
+                        let previousMonthProfit = vm.totalProfit(forMonth: Calendar.current.date(byAdding: .month, value: -1, to: selectedDate) ?? Date())
+                        
+                        RevenueCardView(title: "Profit", value: currentMonthProfit, previousMonthValue: previousMonthProfit)
                     }
                     
-                    RevenueCardView()
+                    ChartView()
                         .cornerRadius(20)
                     
                     Spacer()
@@ -71,6 +78,9 @@ struct StatisticsView: View {
         .sheet(isPresented: $isPickerPresented) {
             MonthYearPickerView(selectedDate: $selectedDate, isPickerPresented: $isPickerPresented)
                 .presentationDetents([.medium, .large], selection: $settingsDetent)
+        }
+        .onAppear {
+            vm.getTransactions()
         }
     }
     
@@ -99,18 +109,18 @@ struct MonthYearPickerView: View {
     var body: some View {
         NavigationStack {
             DatePicker("", selection: $selectedDateTemp, in: ...Date(), displayedComponents: .date)
-            .datePickerStyle(WheelDatePickerStyle())
-            .labelsHidden()
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        selectedDate = selectedDateTemp
-                        isPickerPresented = false
-                    }, label: {
-                        Text("Save")
-                    })
+                .datePickerStyle(WheelDatePickerStyle())
+                .labelsHidden()
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            selectedDate = selectedDateTemp
+                            isPickerPresented = false
+                        }, label: {
+                            Text("Save")
+                        })
+                    }
                 }
-            }
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  RevenueCardView.swift
+//  ChartView.swift
 //  skripsi
 //
 //  Created by Falah Hasbi Assidiqi on 21/10/23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Charts
 
-struct RevenueCardView: View {
+struct ChartView: View {
     
     @State private var startDate = Date()
     @State private var endDate = Date()
@@ -41,7 +41,7 @@ struct RevenueCardView: View {
 }
 
 #Preview {
-    RevenueCardView()
+    ChartView()
 }
 
 struct ViewMonth: Identifiable {
@@ -51,7 +51,7 @@ struct ViewMonth: Identifiable {
     let profit: Int
 }
 
-extension RevenueCardView {
+extension ChartView {
     private var titleAndDate: some View {
         HStack {
             Text("REVENUE")

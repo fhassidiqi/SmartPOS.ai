@@ -11,6 +11,7 @@ struct HomeView: View {
     
     @StateObject private var vm = HomeViewModel()
     @EnvironmentObject var router: Router
+    @State private var sortOption: SortType = .date
     
     var body: some View {
         ZStack {
@@ -22,7 +23,7 @@ struct HomeView: View {
                         .font(.title2)
                     
                     VStack(alignment: .leading, spacing: 5) {
-                        Text("Rp. 243.000")
+                        Text("\(vm.todayIncome)")
                             .font(.largeTitle).bold()
                         
                         Text("Updated **2 mins ago**")
@@ -48,7 +49,15 @@ struct HomeView: View {
                     Spacer()
                     
                     Button {
-                        
+                        withAnimation {
+                            switch sortOption {
+                            case .cashier: sortOption = .orderNumber
+                            case .orderNumber: sortOption = .date
+                            case .date: sortOption = .cashier
+                            }
+                            
+                            vm.sortTransactions(by: sortOption)
+                        }
                     } label: {
                         Image(systemName: "line.3.horizontal.decrease")
                             .foregroundColor(Color.text.primary100)
@@ -58,7 +67,7 @@ struct HomeView: View {
                 .padding()
                 
                 ScrollView(.vertical) {
-                    LazyVStack(spacing: 10) {
+                    LazyVStack(spacing: 8) {
                         ForEach(vm.transactionModel, id: \.self) { transaction in
                             SwipeAction(cornerRadius: 15, direction: .trailing) {
                                 HistoryView(transaction)
@@ -102,7 +111,7 @@ struct HomeView: View {
                 }
                 Spacer()
                 
-                Text("\(transactionModel.totalPrice)")
+                Text("\(transactionModel.totalTransaction)")
                 
                 Image(systemName: "chevron.right")
             }

@@ -11,10 +11,17 @@ struct TransactionModel: Identifiable, Hashable {
     let id: String?
     let orderNumber: String
     let date: Date
-    let item: [ItemModel]
-    var subTotal: Int
-    let totalPrice: Int
-    let tax: Int
+    let items: [ItemTransactionModel]
     let cashier: String
-    let totalPriceBeforeTax: Int
+    let totalTransactionBeforeTax: Int
+    let tax: Int
+    let totalTransaction: Int
+}
+
+struct ItemTransactionModel: Hashable {
+    let item: ItemModel
+    let quantity: Int
+    let totalPricePerItem: Int
+    let totalProfitPerITem: Int
+    let totalOmzetPerItem: Int
 }

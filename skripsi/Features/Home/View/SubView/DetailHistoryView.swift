@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailHistoryView: View {
     
     var transactionModel: TransactionModel
+    var itemTransactionModel: ItemTransactionModel?
     @EnvironmentObject private var router: Router
     
     var body: some View {
@@ -18,9 +19,9 @@ struct DetailHistoryView: View {
                 .edgesIgnoringSafeArea(.top)
             VStack(spacing: 5) {
                 
-                titleSection("Total Belanja", content: Text("\(transactionModel.totalPrice)")
-                        .font(.title)
-                        .fontWeight(.semibold)
+                titleSection("Total Belanja", content: Text("\(transactionModel.totalTransaction)")
+                    .font(.title)
+                    .fontWeight(.semibold)
                 )
                 
                 Divider()
@@ -30,10 +31,10 @@ struct DetailHistoryView: View {
                 orderInformation("Order Date", text: formatDate(transactionModel.date))
                 
                 Divider()
-                    .padding(.vertical)
+                    .padding([.vertical, .bottom])
                 
-                ForEach(transactionModel.item) { item in
-                    itemRow(item)
+                ForEach(transactionModel.items, id: \.item.id) { itemTransaction in
+                    itemInformation(itemTransaction)
                 }
                 
                 
@@ -42,8 +43,9 @@ struct DetailHistoryView: View {
                     
                     Spacer()
                     
-                    Text("Rp. \(transactionModel.tax)")
+                    Text("\(transactionModel.tax)")
                 }
+                .font(.subheadline)
                 
                 Spacer()
             }
@@ -60,10 +62,6 @@ struct DetailHistoryView: View {
         .toolbarBackground(Color.primary100, for: .automatic)
     }
     
-}
-
-#Preview {
-    DetailHistoryView(transactionModel: TransactionModel(id: "1", orderNumber: "Order Number", date: Date.now, item: [ItemModel(id: "1", name: "Item Name", imageUrl: "imageUrl", description: "Description", category: "Category", omzet: 1, profit: 1, price: 1, discount: 1, quantity: 1, totalOmzetPerItem: 1, totalPricePerItem: 1, totalProfitPerItem: 1)], subTotal: 2, totalPrice: 88000, tax: 8000, cashier: "Falah", totalPriceBeforeTax: 80000))
 }
 
 extension DetailHistoryView {
@@ -85,21 +83,32 @@ extension DetailHistoryView {
         .font(.subheadline)
     }
     
-    private func itemRow(_ item: ItemModel) -> some View {
+    private func itemInformation(_ itemTransactionModel: ItemTransactionModel) -> some View {
+        
         HStack {
-            Text(item.name)
-            Spacer()
+            
+            Text("\(itemTransactionModel.item.name)")
+                .frame(maxWidth: 160, alignment: .leading)
+            
             Spacer()
             
-            Text("\(item.quantity)")
+            Text("\(itemTransactionModel.quantity)")
+                .frame(maxWidth: 30, alignment: .center)
+            
             Spacer()
             
-            Text("Rp. \(item.price)")
+            Text("\(itemTransactionModel.item.price)")
+                .frame(maxWidth: 70, alignment: .trailing)
+            
             Spacer()
             
-            Text("Rp. \(transactionModel.totalPriceBeforeTax)")
+            Text("\(itemTransactionModel.totalPricePerItem)")
+                .frame(maxWidth: 80, alignment: .trailing)
+                
         }
-        .padding(.bottom, 8)
+        .foregroundStyle(Color.text.primary100)
+        .font(.subheadline)
+        .padding(.bottom, 10)
     }
     
     private func formatDate(_ date: Date) -> String {
@@ -108,4 +117,6 @@ extension DetailHistoryView {
         dateFormatter.timeStyle = .short
         return dateFormatter.string(from: date)
     }
+    
+    
 }

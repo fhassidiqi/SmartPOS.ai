@@ -56,7 +56,7 @@ class RemoteDataSource {
     }
     
     func transactionDocument(transactionId: String) -> DocumentReference {
-        let collectionName = db.collection("transaction")
+        let collectionName = db.collection("transactions")
         return collectionName.document(transactionId)
     }
     
@@ -66,7 +66,7 @@ class RemoteDataSource {
             let itemRefs = items.map { item in
                 db.collection(ItemResponse.collectionName).document(item)
             }
-            filters.append(Filter.whereField("item", in: itemRefs))
+            filters.append(Filter.whereField("items", in: itemRefs))
         }
         
         var transactionDocReff = db.collection(TransactionResponse.collectionName)
@@ -74,8 +74,8 @@ class RemoteDataSource {
         
         if sort == .cashier {
             transactionDocReff = transactionDocReff.order(by: "Cashier", descending: true)
-        } else if sort == .orderName {
-            transactionDocReff = transactionDocReff.order(by: "Order Name", descending: true)
+        } else if sort == .orderNumber {
+            transactionDocReff = transactionDocReff.order(by: "Order Number", descending: true)
         }
         
         let snapshots = try await transactionDocReff.getDocuments()
@@ -87,51 +87,8 @@ class RemoteDataSource {
     func fetchTransaction(reference: DocumentReference) async throws -> TransactionResponse {
         return try await reference.getDocument(as: TransactionResponse.self)
     }
-    // TODO: Create add transaction and edit
-    
-    func getItemTransaction(itemID: String) async throws -> TransactionResponse? {
-        let itemReference = db.collection(ItemResponse.collectionName).document(itemID)
-        let itemTransactionReference = db.collection(TransactionResponse.collectionName)
-            .whereField("item", isEqualTo: itemReference)
-        let snapshot = try await itemTransactionReference.getDocuments()
-        if snapshot.documents.count > 0 {
-            return try snapshot.documents[0].data(as: TransactionResponse.self)
-        } else {
-            return nil
-        }
-    }
-    
-    func addItemTransaction(transactionId: String, itemIds: [String], orderNumber: String, tax: Double, subTotal: Int, totalPrice: Double, cashier: String) async throws -> Bool {
-        let newTransactionRef = db.collection(TransactionResponse.collectionName).document()
 
-        var subTotal = 0
-
-        for itemId in itemIds {
-            let item = db.collection(ItemResponse.collectionName).document(itemId)
-            let itemDocument = try await item.getDocument()
-            
-            if let price = itemDocument.data()?["totalPricePerItem"] as? Int {
-                subTotal += price
-            }
-        }
-        
-        let itemRefs = itemIds.map { db.collection(ItemResponse.collectionName).document($0) }
-        
-        try await newTransactionRef.setData([
-            "orderNumber": orderNumber,
-            "items": itemRefs,
-            "subTotal": subTotal,
-            "date": Timestamp(),
-            "tax": tax,
-            "totalPrice": totalPrice,
-            "cashier": cashier,
-        ], merge: true)
-
-        return true
-    }
-
-    
-    func deleteItemTransaction(transactionId: String) async throws -> Bool {
+    func deleteTransaction(transactionId: String) async throws -> Bool {
         try await db.collection(TransactionResponse.collectionName)
             .document(transactionId)
             .delete()
@@ -140,6 +97,3 @@ class RemoteDataSource {
     }
 }
 
-enum SortType {
-    case date, cashier, orderName
-}

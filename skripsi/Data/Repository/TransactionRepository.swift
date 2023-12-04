@@ -17,87 +17,33 @@ class TransactionRepository: ITransactionRepository {
     private let remoteDataSource = RemoteDataSource.shared
     static let shared = TransactionRepository()
     
-    func getItemTransaction(itemId: String) async throws -> TransactionModel? {
-        if let response = try await remoteDataSource.getItemTransaction(itemID: itemId) {
-            let items = [ItemModel]()
-            for item in response.item {
-                let itemResponse = try await remoteDataSource.fetchItem(reference: item.self)
-                let category = try await remoteDataSource.fetchCategory(reference: itemResponse.category)
-                let item = ItemModel(id: itemResponse.id.orEmpty(), name: itemResponse.name, imageUrl: itemResponse.imageUrl, description: itemResponse.description, category: category.name, omzet: itemResponse.omzet, profit: itemResponse.profit, price: itemResponse.price, discount: itemResponse.discount, quantity: itemResponse.quantity, totalOmzetPerItem: itemResponse.totalOmzetPerItem, totalPricePerItem: itemResponse.totalPricePerItem, totalProfitPerItem: itemResponse.totalProfitPerItem)
+    func getTransactions(items: [String]?, sort: SortType) async throws -> [TransactionModel] {
+        
+        let response = try await remoteDataSource.fetchTransactions(items: items, sort: sort)
+        
+        var transactions = [TransactionModel]()
+        for transaction in response {
+            
+            var itemTransactions = [ItemTransactionModel]()
+            for itemTransaction in transaction.items {
+                let category = try await remoteDataSource.fetchCategory(reference: itemTransaction.item)
+                let itemResponse = try await remoteDataSource.fetchItem(reference: itemTransaction.item)
+                
+                let item = ItemModel(id: itemResponse.id.orEmpty(), name: itemResponse.name, imageUrl: itemResponse.imageUrl, description: itemResponse.description, category: category.name, omzet: itemResponse.omzet, profit: itemResponse.profit, price: itemResponse.price, discount: itemResponse.discount)
+                
+                itemTransactions.append(ItemTransactionModel(item: item, quantity: itemTransaction.quantity, totalPricePerItem: itemTransaction.totalPricePerItem, totalProfitPerITem: itemTransaction.totalProfitPerItem, totalOmzetPerItem: itemTransaction.totalOmzetPerItem))
             }
-            return TransactionModel(id: response.id, orderNumber: response.orderNumber, date: response.date.dateValue(), item: items, subTotal: response.subTotal, totalPrice: response.totalPrice, tax: response.tax, cashier: response.cashier, totalPriceBeforeTax: response.totalPriceBeforeTax)
-        } else {
-            return nil
+            
+            transactions.append(TransactionModel(id: transaction.id.orEmpty(), orderNumber: transaction.orderNumber, date: transaction.date.dateValue(), items: itemTransactions, cashier: transaction.cashier, totalTransactionBeforeTax: transaction.totalTransactionBeforeTax, tax: transaction.tax, totalTransaction: transaction.totalTransaction))
         }
+        
+        return transactions
     }
     
-    func addItemTransaction(transactionId: String, itemId: [String], orderNumber: String, subTotal: Int, tax: Double, totalPrice: Double, cashier: String) async throws -> Bool {
-        
-        let results = try await remoteDataSource.addItemTransaction(transactionId: transactionId, itemIds: itemId, orderNumber: orderNumber, tax: tax, subTotal: subTotal, totalPrice: totalPrice, cashier: cashier)
-        
-        return results
-    }
-    
-    func deleteItemTransaction(transactionId: String) async throws -> Bool {
-        let result = try await remoteDataSource.deleteItemTransaction(transactionId: transactionId)
+    func deleteTransaction(transactionId: String) async throws -> Bool {
+        let result = try await remoteDataSource.deleteTransaction(transactionId: transactionId)
         
         return result
-    }
-    
-    func getTransactions(items: [String]?, sort: SortType) async throws -> [TransactionModel] {
-        do {
-            let response = try await remoteDataSource.fetchTransactions(items: items, sort: sort)
-            
-            var transactions = [TransactionModel]()
-            
-            for transactionData in response {
-                
-                var items = [ItemModel]()
-                for itemResponse in transactionData.item {
-                    do {
-                        let itemResponse = try await remoteDataSource.fetchItem(reference: itemResponse)
-                        let category = try await remoteDataSource.fetchCategory(reference: itemResponse.category)
-                        
-                        let itemModel = ItemModel(
-                            id: itemResponse.id.orEmpty(),
-                            name: itemResponse.name,
-                            imageUrl: itemResponse.imageUrl,
-                            description: itemResponse.description,
-                            category: category.name,
-                            omzet: itemResponse.omzet,
-                            profit: itemResponse.profit,
-                            price: itemResponse.price,
-                            discount: itemResponse.discount,
-                            quantity: itemResponse.quantity,
-                            totalOmzetPerItem: itemResponse.totalOmzetPerItem,
-                            totalPricePerItem: itemResponse.totalPricePerItem,
-                            totalProfitPerItem: itemResponse.totalProfitPerItem
-                        )
-                        items.append(itemModel)
-                    } catch {
-                        print("Error fetching item for reference: \(itemResponse.path), \(error)")
-                    }
-                }
-                
-                transactions.append(
-                    TransactionModel(
-                        id: transactionData.id.orEmpty(),
-                        orderNumber: transactionData.orderNumber,
-                        date: transactionData.date.dateValue(),
-                        item: items,
-                        subTotal: transactionData.subTotal,
-                        totalPrice: transactionData.totalPrice,
-                        tax: transactionData.tax,
-                        cashier: transactionData.cashier,
-                        totalPriceBeforeTax: transactionData.totalPriceBeforeTax
-                    )
-                )
-            }
-            return transactions
-        } catch {
-            print("Error get Transaction: \(error)")
-            throw error
-        }
     }
     
     func getTransaction(id: String) async throws -> TransactionModel? {

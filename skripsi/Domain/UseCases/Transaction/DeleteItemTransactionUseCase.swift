@@ -7,7 +7,8 @@
 
 import Foundation
 
-class DeleteItemTransactionUseCase: BaseUseCase {
+class DeleteTransactionUseCase: BaseUseCase {
+    
     typealias Params = Param
     typealias Response = Bool
     
@@ -15,7 +16,7 @@ class DeleteItemTransactionUseCase: BaseUseCase {
     
     func execute(params: Param) async -> Result<Bool, Error> {
         do {
-            let result = try await repository.deleteItemTransaction(transactionId: params.transactionId)
+            let result = try await repository.deleteTransaction(transactionId: params.transactionId)
             return .success(result)
         } catch {
             return .failure(error)

@@ -8,6 +8,7 @@
 import Foundation
 
 class GetTransactionUseCase: BaseUseCase {
+    
     private let repository = TransactionRepository.shared
     typealias Params = GetTransactionUseCase.Param
     typealias Response = [TransactionModel]

@@ -22,6 +22,6 @@ class GetItemsUseCase: BaseUseCase {
     }
     
     struct Param {
-        var categories: [String]? = nil // Category IDs from users
+        var categories: [String]? = nil
     }
 }

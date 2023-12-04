@@ -10,15 +10,22 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct TransactionResponse: Codable {
-    static let collectionName = "transaction"
+    static let collectionName = "transactions"
     
     @DocumentID var id: String?
     var orderNumber: String
     var date: Timestamp
-    var item: [DocumentReference]
-    var subTotal: Int
-    var totalPrice: Int
-    var tax: Int
+    var items: [ItemTransactionResponse]
     var cashier: String
-    var totalPriceBeforeTax: Int
+    var tax: Int
+    var totalTransactionBeforeTax: Int
+    var totalTransaction: Int
+}
+
+struct ItemTransactionResponse: Codable {
+    var item: DocumentReference
+    var quantity: Int
+    var totalPricePerItem: Int
+    var totalProfitPerItem: Int
+    var totalOmzetPerItem: Int
 }
