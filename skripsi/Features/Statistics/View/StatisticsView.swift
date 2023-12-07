@@ -10,6 +10,8 @@ import SwiftUI
 struct StatisticsView: View {
     
     @State private var selectedDate = Date()
+    @State private var selectedDateRange1 = Date()
+    @State private var selectedDateRange2 = Date()
     @State private var isPickerPresented = false
     @State private var settingsDetent = PresentationDetent.medium
     @StateObject var vm = StatisticViewModel()
@@ -45,18 +47,12 @@ struct StatisticsView: View {
                     .foregroundColor(Color.text.primary100)
                     
                     HStack(spacing: 16) {
-                        let currentMonthRevenue = vm.totalRevenue(forMonth: selectedDate)
-                        let previousMonthRevenue = vm.totalRevenue(forMonth: Calendar.current.date(byAdding: .month, value: -1, to: selectedDate) ?? Date())
+                        RevenueCardView(title: "Omzet", currentValue: vm.omzetInMonth, previousValue: vm.omzetPreviousMonth, percentageChange: vm.omzetPercentage)
                         
-                        RevenueCardView(title: "Omzet", value: currentMonthRevenue, previousMonthValue: previousMonthRevenue)
-                        
-                        let currentMonthProfit = vm.totalProfit(forMonth: selectedDate)
-                        let previousMonthProfit = vm.totalProfit(forMonth: Calendar.current.date(byAdding: .month, value: -1, to: selectedDate) ?? Date())
-                        
-                        RevenueCardView(title: "Profit", value: currentMonthProfit, previousMonthValue: previousMonthProfit)
+                        RevenueCardView(title: "Profit", currentValue: vm.profitInMonth, previousValue: vm.profitPreviousMonth, percentageChange: vm.profitPercentage)
                     }
                     
-                    ChartView()
+                    ChartView(selectedDateRange1: selectedDateRange1, selectedDateRange2: selectedDateRange2)
                         .cornerRadius(20)
                     
                     Spacer()
@@ -76,11 +72,18 @@ struct StatisticsView: View {
             .toolbarBackground(Color.primary100, for: .automatic)
         }
         .sheet(isPresented: $isPickerPresented) {
-            MonthYearPickerView(selectedDate: $selectedDate, isPickerPresented: $isPickerPresented)
+            MonthYearPickerView(selectedDate: $selectedDate, isPickerPresented: $isPickerPresented) {
+                Task {
+                    await vm.updateData(for: selectedDate)
+                }
+            }
                 .presentationDetents([.medium, .large], selection: $settingsDetent)
         }
         .onAppear {
-            vm.getTransactions()
+            Task {
+                await vm.calculateTotalOmzet(forMonth: selectedDate)
+                await vm.calculateTotalProfit(forMonth: selectedDate)
+            }
         }
     }
     
@@ -99,11 +102,13 @@ struct MonthYearPickerView: View {
     @Binding var selectedDate: Date
     @Binding var isPickerPresented: Bool
     @State private var selectedDateTemp: Date
+    var onSave: () -> Void
     
-    init(selectedDate: Binding<Date>, isPickerPresented: Binding<Bool>) {
+    init(selectedDate: Binding<Date>, isPickerPresented: Binding<Bool>, onSave: @escaping () -> Void) {
         self._selectedDate = selectedDate
         self._isPickerPresented = isPickerPresented
         self._selectedDateTemp = State(initialValue: selectedDate.wrappedValue)
+        self.onSave = onSave
     }
     
     var body: some View {
@@ -116,6 +121,7 @@ struct MonthYearPickerView: View {
                         Button(action: {
                             selectedDate = selectedDateTemp
                             isPickerPresented = false
+                            onSave()
                         }, label: {
                             Text("Save")
                         })

@@ -14,7 +14,7 @@ class DeleteTransactionUseCase: BaseUseCase {
     
     private let repository = TransactionRepository.shared
     
-    func execute(params: Param) async -> Result<Bool, Error> {
+    func execute(params: Params) async -> Result<Bool, Error> {
         do {
             let result = try await repository.deleteTransaction(transactionId: params.transactionId)
             return .success(result)

@@ -14,13 +14,16 @@
 		4C0C08D72B066F6000207617 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C08D62B066F6000207617 /* Logger.swift */; };
 		4C0D6F312AE2D5C600C74BF7 /* ItemPayCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F302AE2D5C600C74BF7 /* ItemPayCardView.swift */; };
 		4C0D6F332AE3424A00C74BF7 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F322AE3424A00C74BF7 /* RoundedCornerShape.swift */; };
-		4C0D6F352AE348E700C74BF7 /* OmzetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F342AE348E700C74BF7 /* OmzetCardView.swift */; };
-		4C0D6F372AE3DD4A00C74BF7 /* RevenueCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F362AE3DD4A00C74BF7 /* RevenueCardView.swift */; };
+		4C0D6F352AE348E700C74BF7 /* RevenueCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F342AE348E700C74BF7 /* RevenueCardView.swift */; };
+		4C0D6F372AE3DD4A00C74BF7 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F362AE3DD4A00C74BF7 /* ChartView.swift */; };
 		4C0D6F392AE422F800C74BF7 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F382AE422F800C74BF7 /* Date+Ext.swift */; };
 		4C2149182B0D062E004C4A15 /* CustomSwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2149172B0D062E004C4A15 /* CustomSwipeAction.swift */; };
 		4C25362D2AE4EC7200DACB6E /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25362C2AE4EC7200DACB6E /* ScanView.swift */; };
 		4C583EB92B0092540066C4E4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C583EB82B0092540066C4E4 /* Router.swift */; };
 		4C591F762B1E183600B82C9C /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C591F752B1E183600B82C9C /* StatisticViewModel.swift */; };
+		4C67122E2B21F6710038933D /* TotalOmzetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */; };
+		4C6712302B21F9AD0038933D /* TotalProfitUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67122F2B21F9AD0038933D /* TotalProfitUseCase.swift */; };
+		4C6712322B220A2A0038933D /* TotalOmzetPerSemesterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6712312B220A2A0038933D /* TotalOmzetPerSemesterUseCase.swift */; };
 		4C6A28942ADA960A0097FAB1 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28932ADA960A0097FAB1 /* UserDefault.swift */; };
 		4C6A28962ADA962D0097FAB1 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28952ADA962D0097FAB1 /* SettingsManager.swift */; };
 		4C6A28982ADA964F0097FAB1 /* BaseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28972ADA964F0097FAB1 /* BaseUseCase.swift */; };
@@ -74,13 +77,16 @@
 		4C0C08D62B066F6000207617 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		4C0D6F302AE2D5C600C74BF7 /* ItemPayCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPayCardView.swift; sourceTree = "<group>"; };
 		4C0D6F322AE3424A00C74BF7 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
-		4C0D6F342AE348E700C74BF7 /* OmzetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmzetCardView.swift; sourceTree = "<group>"; };
-		4C0D6F362AE3DD4A00C74BF7 /* RevenueCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCardView.swift; sourceTree = "<group>"; };
+		4C0D6F342AE348E700C74BF7 /* RevenueCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCardView.swift; sourceTree = "<group>"; };
+		4C0D6F362AE3DD4A00C74BF7 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		4C0D6F382AE422F800C74BF7 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		4C2149172B0D062E004C4A15 /* CustomSwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwipeAction.swift; sourceTree = "<group>"; };
 		4C25362C2AE4EC7200DACB6E /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		4C583EB82B0092540066C4E4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4C591F752B1E183600B82C9C /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
+		4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalOmzetUseCase.swift; sourceTree = "<group>"; };
+		4C67122F2B21F9AD0038933D /* TotalProfitUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalProfitUseCase.swift; sourceTree = "<group>"; };
+		4C6712312B220A2A0038933D /* TotalOmzetPerSemesterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalOmzetPerSemesterUseCase.swift; sourceTree = "<group>"; };
 		4C6A28932ADA960A0097FAB1 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		4C6A28952ADA962D0097FAB1 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		4C6A28972ADA964F0097FAB1 /* BaseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUseCase.swift; sourceTree = "<group>"; };
@@ -468,6 +474,9 @@
 			children = (
 				4C8E6D922AFE5FB200D853C6 /* GetTransactionUseCase.swift */,
 				4C0C08D42B05D4FC00207617 /* DeleteItemTransactionUseCase.swift */,
+				4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */,
+				4C67122F2B21F9AD0038933D /* TotalProfitUseCase.swift */,
+				4C6712312B220A2A0038933D /* TotalOmzetPerSemesterUseCase.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -475,8 +484,8 @@
 		4C98BEDA2AE5476100482D25 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
-				4C0D6F342AE348E700C74BF7 /* OmzetCardView.swift */,
-				4C0D6F362AE3DD4A00C74BF7 /* RevenueCardView.swift */,
+				4C0D6F342AE348E700C74BF7 /* RevenueCardView.swift */,
+				4C0D6F362AE3DD4A00C74BF7 /* ChartView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -620,7 +629,7 @@
 				4C98BF022AE921BB00482D25 /* FoodListViewModel.swift in Sources */,
 				4C6A28B32ADBA64D0097FAB1 /* HistoryTransactionCard.swift in Sources */,
 				4C0C08D52B05D4FC00207617 /* DeleteItemTransactionUseCase.swift in Sources */,
-				4C0D6F352AE348E700C74BF7 /* OmzetCardView.swift in Sources */,
+				4C0D6F352AE348E700C74BF7 /* RevenueCardView.swift in Sources */,
 				4C6A28962ADA962D0097FAB1 /* SettingsManager.swift in Sources */,
 				4C6A28AD2ADA9A720097FAB1 /* HomeViewModel.swift in Sources */,
 				4C0C08D72B066F6000207617 /* Logger.swift in Sources */,
@@ -634,8 +643,10 @@
 				4C98BEFD2AE6BE6600482D25 /* GetCategoriesUseCase.swift in Sources */,
 				4C98BEEF2AE6A7B600482D25 /* RemoteDataSource.swift in Sources */,
 				4C731E9B2ADA8B6300B60760 /* ContentView.swift in Sources */,
+				4C6712302B21F9AD0038933D /* TotalProfitUseCase.swift in Sources */,
 				4C98BEE72AE6A1D000482D25 /* CategoryModel.swift in Sources */,
 				4C0D6F312AE2D5C600C74BF7 /* ItemPayCardView.swift in Sources */,
+				4C67122E2B21F6710038933D /* TotalOmzetUseCase.swift in Sources */,
 				4C731E992ADA8B6300B60760 /* skripsiApp.swift in Sources */,
 				4C0D6F332AE3424A00C74BF7 /* RoundedCornerShape.swift in Sources */,
 				4C6A28B62ADC1D8A0097FAB1 /* DetailHistoryView.swift in Sources */,
@@ -654,13 +665,14 @@
 				4C98BEE92AE6A29C00482D25 /* TransactionModel.swift in Sources */,
 				4C8E6D8E2AFE157300D853C6 /* TransactionResponse.swift in Sources */,
 				4C8E6D932AFE5FB200D853C6 /* GetTransactionUseCase.swift in Sources */,
+				4C6712322B220A2A0038933D /* TotalOmzetPerSemesterUseCase.swift in Sources */,
 				4C98BEFA2AE6BAE200482D25 /* ItemRepository.swift in Sources */,
 				4C6A28B12ADA9A830097FAB1 /* HomeView.swift in Sources */,
 				4C6A289A2ADA96640097FAB1 /* Optional+Ext.swift in Sources */,
 				4C8E6D902AFE290F00D853C6 /* TransactionRepository.swift in Sources */,
 				4C98BEF82AE6BA1200482D25 /* CategoryRepository.swift in Sources */,
 				4C6A28A12ADA98500097FAB1 /* ShimmerModifier.swift in Sources */,
-				4C0D6F372AE3DD4A00C74BF7 /* RevenueCardView.swift in Sources */,
+				4C0D6F372AE3DD4A00C74BF7 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,6 @@ struct ItemTransactionModel: Hashable {
     let item: ItemModel
     let quantity: Int
     let totalPricePerItem: Int
-    let totalProfitPerITem: Int
+    let totalProfitPerItem: Int
     let totalOmzetPerItem: Int
 }

@@ -97,3 +97,6 @@ class RemoteDataSource {
     }
 }
 
+enum ErrorType: Error {
+    case invalidDate
+}

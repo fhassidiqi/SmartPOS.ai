@@ -31,7 +31,7 @@ class TransactionRepository: ITransactionRepository {
                 
                 let item = ItemModel(id: itemResponse.id.orEmpty(), name: itemResponse.name, imageUrl: itemResponse.imageUrl, description: itemResponse.description, category: category.name, omzet: itemResponse.omzet, profit: itemResponse.profit, price: itemResponse.price, discount: itemResponse.discount)
                 
-                itemTransactions.append(ItemTransactionModel(item: item, quantity: itemTransaction.quantity, totalPricePerItem: itemTransaction.totalPricePerItem, totalProfitPerITem: itemTransaction.totalProfitPerItem, totalOmzetPerItem: itemTransaction.totalOmzetPerItem))
+                itemTransactions.append(ItemTransactionModel(item: item, quantity: itemTransaction.quantity, totalPricePerItem: itemTransaction.totalPricePerItem, totalProfitPerItem: itemTransaction.totalProfitPerItem, totalOmzetPerItem: itemTransaction.totalOmzetPerItem))
             }
             
             transactions.append(TransactionModel(id: transaction.id.orEmpty(), orderNumber: transaction.orderNumber, date: transaction.date.dateValue(), items: itemTransactions, cashier: transaction.cashier, totalTransactionBeforeTax: transaction.totalTransactionBeforeTax, tax: transaction.tax, totalTransaction: transaction.totalTransaction))
