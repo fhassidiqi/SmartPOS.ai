@@ -23,7 +23,6 @@
 		4C591F762B1E183600B82C9C /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C591F752B1E183600B82C9C /* StatisticViewModel.swift */; };
 		4C67122E2B21F6710038933D /* TotalOmzetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */; };
 		4C6712302B21F9AD0038933D /* TotalProfitUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67122F2B21F9AD0038933D /* TotalProfitUseCase.swift */; };
-		4C6712322B220A2A0038933D /* TotalOmzetPerSemesterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6712312B220A2A0038933D /* TotalOmzetPerSemesterUseCase.swift */; };
 		4C6A28942ADA960A0097FAB1 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28932ADA960A0097FAB1 /* UserDefault.swift */; };
 		4C6A28962ADA962D0097FAB1 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28952ADA962D0097FAB1 /* SettingsManager.swift */; };
 		4C6A28982ADA964F0097FAB1 /* BaseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28972ADA964F0097FAB1 /* BaseUseCase.swift */; };
@@ -86,7 +85,6 @@
 		4C591F752B1E183600B82C9C /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
 		4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalOmzetUseCase.swift; sourceTree = "<group>"; };
 		4C67122F2B21F9AD0038933D /* TotalProfitUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalProfitUseCase.swift; sourceTree = "<group>"; };
-		4C6712312B220A2A0038933D /* TotalOmzetPerSemesterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalOmzetPerSemesterUseCase.swift; sourceTree = "<group>"; };
 		4C6A28932ADA960A0097FAB1 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		4C6A28952ADA962D0097FAB1 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		4C6A28972ADA964F0097FAB1 /* BaseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUseCase.swift; sourceTree = "<group>"; };
@@ -476,7 +474,6 @@
 				4C0C08D42B05D4FC00207617 /* DeleteItemTransactionUseCase.swift */,
 				4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */,
 				4C67122F2B21F9AD0038933D /* TotalProfitUseCase.swift */,
-				4C6712312B220A2A0038933D /* TotalOmzetPerSemesterUseCase.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -665,7 +662,6 @@
 				4C98BEE92AE6A29C00482D25 /* TransactionModel.swift in Sources */,
 				4C8E6D8E2AFE157300D853C6 /* TransactionResponse.swift in Sources */,
 				4C8E6D932AFE5FB200D853C6 /* GetTransactionUseCase.swift in Sources */,
-				4C6712322B220A2A0038933D /* TotalOmzetPerSemesterUseCase.swift in Sources */,
 				4C98BEFA2AE6BAE200482D25 /* ItemRepository.swift in Sources */,
 				4C6A28B12ADA9A830097FAB1 /* HomeView.swift in Sources */,
 				4C6A289A2ADA96640097FAB1 /* Optional+Ext.swift in Sources */,

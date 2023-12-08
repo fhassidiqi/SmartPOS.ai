@@ -10,55 +10,51 @@ import Charts
 
 struct ChartView: View {
     
-    @State var selectedDateRange1: Date
-    @State var selectedDateRange2: Date
     @StateObject private var vm = StatisticViewModel()
-    let yAxisLabel: [Int] = [0, 100000, 200000, 300000, 400000, 500000]
+    let transactionModel: [TransactionModel]
+    
+    @State var revenueChart: RevenueType = .omzet
+    
+    var xAxisValues: [String] {
+        transactionModel
+            .sorted(by: { $0.date < $1.date })
+            .map { $0.date.formatToMonth }
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
+            
             HStack {
                 Text("REVENUE")
                     .font(.headline).bold()
                     .foregroundStyle(Color.text.primary100)
                 
                 Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Text(formattedDate(selectedDateRange1, selectedDateRange2))
-                        .font(.footnote)
-                    
-                    Image(systemName: "arrowtriangle.down.fill")
-                        .resizable()
-                        .frame(width: 15, height: 10)
-                }
+                // TODO: Create Picker
                 
             }
             .foregroundStyle(Color.text.primary30)
             
             HStack(spacing: 16) {
-                HStack(spacing: 5) {
-                    Circle()
-                        .frame(width: 10, height: 10)
-                        .foregroundStyle(Color.secondary100)
-                    
-                    Text("Omzet")
-                        .font(.footnote)
+                Picker("Revenue Type", selection: $revenueChart) {
+                    Text("Omzet").tag(RevenueType.omzet)
+                    Text("Profit").tag(RevenueType.profit)
                 }
-                HStack(spacing: 5) {
-                    Circle()
-                        .frame(width: 10, height: 10)
-                        .foregroundStyle(Color.tertiaryColor)
-                    
-                    Text("Profit")
-                        .font(.footnote)
-                }
+                .pickerStyle(.segmented)
             }
             
-            Chart {
-                RuleMark(y: .value("Target", 300000))
+            Chart(transactionModel.sorted(by: { $0.date < $1.date })) { transactionModel in
+                ForEach(transactionModel.items, id: \.self) { transaction in
+                    BarMark(
+                        x: .value("Month", transactionModel.date.formatToMonth),
+                        y: .value(revenueChart == .omzet ? "Omzet" : "Profit",
+                                  revenueChart == .omzet ? transaction.totalOmzetPerItem : transaction.totalProfitPerItem),
+                        width: 10
+                    )
+                    .foregroundStyle(revenueChart == .omzet ? Color.secondaryColor : Color.tertiaryColor)
+                }
+                
+                RuleMark(y: .value("Target", revenueChart == .omzet ? 300000 : 100000))
                     .foregroundStyle(Color.mint)
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                     .annotation(alignment: .leading) {
@@ -66,40 +62,22 @@ struct ChartView: View {
                             .font(.caption)
                             .foregroundStyle(Color.text.primary100)
                     }
-                
-                ForEach(vm.monthlyOmzetTotals.sorted(by: { $0.key < $1.key }), id: \.key) { month, omzet in
-                    // "Omzet" bar
-                    BarMark(x: .value("Month", month, unit: .month),
-                            y: .value("Revenue", omzet), width: 10)
-                    .foregroundStyle(Color.secondaryColor)
-                }
             }
             .frame(height: 180)
-            .chartYScale(domain: 0...500000)
-            .chartXAxis {
-                AxisMarks(values: vm.monthlyOmzetTotals.keys.sorted()) { month in
-                    AxisValueLabel(format: .dateTime.month(.abbreviated), centered: true)
-                }
-            }
+            .chartYScale(domain: 0...400000)
             .chartYAxis {
-                AxisMarks(position: .leading, values: yAxisLabel)
+                AxisMarks(position: .leading, values: [0, 100000, 200000, 300000, 400000])
+            }
+            .chartXAxis {
+                AxisMarks(position: .bottom, values: xAxisValues)
             }
         }
         .padding()
         .background(Color.background.base)
-        .onAppear {
-            Task {
-                await vm.calculateTotalOmzetForMonths(dateRange: selectedDateRange1...selectedDateRange2)
-            }
-        }
     }
 }
 
-extension ChartView {
-    
-    func formattedDate(_ startDate: Date, _ endDate: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM yyyy"
-        return "\(dateFormatter.string(from: startDate)) - \(dateFormatter.string(from: endDate))"
-    }
+enum RevenueType {
+    case omzet
+    case profit
 }

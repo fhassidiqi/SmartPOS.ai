@@ -52,7 +52,7 @@ struct StatisticsView: View {
                         RevenueCardView(title: "Profit", currentValue: vm.profitInMonth, previousValue: vm.profitPreviousMonth, percentageChange: vm.profitPercentage)
                     }
                     
-                    ChartView(selectedDateRange1: selectedDateRange1, selectedDateRange2: selectedDateRange2)
+                    ChartView(transactionModel: vm.transactionModel)
                         .cornerRadius(20)
                     
                     Spacer()

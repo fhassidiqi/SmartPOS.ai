@@ -48,8 +48,7 @@ class FoodListViewModel: ObservableObject {
                 }
             case .failure(let error):
                 print("Error fetching items: \(error.localizedDescription)")
-            }
-            
+            }   
         }
     }
 }

@@ -15,24 +15,9 @@ extension Date {
         return Calendar.current.date(from: components)!
     }
     
-    func getMonthAndYear() -> (month: Int, year: Int) {
-        let calendar = Calendar.current
-        let currentMonth = calendar.component(.month, from: self)
-        let currentYear = calendar.component(.year, from: self)
-        return (month: currentMonth, year: currentYear)
-    }
-    
-    func getPreviousMonthAndYear() -> (month: Int, year: Int) {
-        let calendar = Calendar.current
-        let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: self)!
-        let previousMonth = calendar.component(.month, from: oneMonthAgo)
-        let previousYear = calendar.component(.year, from: oneMonthAgo)
-        return (month: previousMonth, year: previousYear)
-    }
-    
-    func formatMonthAsString(_ month: Int) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM"
-        return dateFormatter.monthSymbols[month - 1]
+    var formatToMonth: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM"
+        return formatter.string(from: self)
     }
 }

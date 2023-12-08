@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol ITransactionRepository {
     func getTransactions(items: [String]?, sort: SortType) async throws -> [TransactionModel]

@@ -16,12 +16,9 @@ class StatisticViewModel: ObservableObject {
     @Published var omzetPreviousMonth = 0
     @Published var profitPreviousMonth = 0
     
-    @Published var monthlyOmzetTotals: [String: Int] = [:]
-    
     @Published var fetchingData = false
     @Published var transactionModel = [TransactionModel]()
     
-    private let totalOmzetPerSemesterUseCase = TotalOmzetLastSixMonthUseCase()
     private let totalOmzetUseCase = TotalOmzetUseCase()
     private let totalProfitUseCase = TotalProfitUseCase()
     private let getTransactionUseCase = GetTransactionUseCase()
@@ -49,12 +46,6 @@ class StatisticViewModel: ObservableObject {
             await calculateTotalOmzet(forMonth: date)
             await calculateTotalProfit(forMonth: date)
             
-        }
-    }
-    
-    func updateChartData(for date: Date) async {
-        Task {
-            await calculateTotalOmzetForMonths(date: date)
         }
     }
     
@@ -109,30 +100,6 @@ class StatisticViewModel: ObservableObject {
                     self.fetchingData = false
                 }
                 break
-            }
-        }
-    }
-    
-    func calculateTotalOmzetForMonths(date: Date) async {
-        Task {
-            DispatchQueue.main.sync {
-                self.fetchingData = true
-            }
-            
-            let params = TotalOmzetLastSixMonthUseCase.Param(date: date, transactions: transactionModel)
-            let result = totalOmzetPerSemesterUseCase.execute(params: params)
-            
-            switch result {
-            case .success(let monthlyTotals):
-                DispatchQueue.main.sync {
-                    self.monthlyOmzetTotals = monthlyTotals
-                    self.fetchingData = false
-                }
-            case .failure(let error):
-                print("Error: \(error)")
-                DispatchQueue.main.sync {
-                    self.fetchingData = false
-                }
             }
         }
     }
