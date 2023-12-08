@@ -10,10 +10,9 @@ import Charts
 
 struct ChartView: View {
     
-    @StateObject private var vm = StatisticViewModel()
     let transactionModel: [TransactionModel]
-    
     @State var revenueChart: RevenueType = .omzet
+    @StateObject private var vm = StatisticViewModel()
     
     var xAxisValues: [String] {
         transactionModel

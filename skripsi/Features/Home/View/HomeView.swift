@@ -96,29 +96,39 @@ struct HomeView: View {
     
     @ViewBuilder
     func HistoryView(_ transactionModel: TransactionModel) -> some View {
+        
         Button {
             router.navigateToDetailTransaction(transaction: transactionModel)
         } label: {
-            HStack {
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(transactionModel.orderNumber)
-                        .font(.subheadline).bold()
+            if vm.fetchingTransaction {
+                Rectangle()
+                    .foregroundStyle(Color.text.primary100)
+                    .padding()
+                    .background(Color.background.base)
+                    .cornerRadius(8)
+                    .shimmer()
+            } else {
+                HStack {
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(transactionModel.orderNumber)
+                            .font(.subheadline).bold()
+                        
+                        
+                        Text(formatDate(transactionModel.date))
+                            .font(.caption2)
+                            .foregroundStyle(Color.text.primary30)
+                    }
+                    Spacer()
                     
+                    Text("\(transactionModel.totalTransaction)")
                     
-                    Text(formatDate(transactionModel.date))
-                        .font(.caption2)
-                        .foregroundStyle(Color.text.primary30)
+                    Image(systemName: "chevron.right")
                 }
-                Spacer()
-                
-                Text("\(transactionModel.totalTransaction)")
-                
-                Image(systemName: "chevron.right")
+                .foregroundStyle(Color.text.primary100)
+                .padding()
+                .background(Color.background.base)
+                .cornerRadius(8)
             }
-            .foregroundStyle(Color.text.primary100)
-            .padding()
-            .background(Color.background.base)
-            .cornerRadius(8)
         }
     }
     

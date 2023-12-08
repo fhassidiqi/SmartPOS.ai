@@ -10,8 +10,6 @@ import SwiftUI
 struct StatisticsView: View {
     
     @State private var selectedDate = Date()
-    @State private var selectedDateRange1 = Date()
-    @State private var selectedDateRange2 = Date()
     @State private var isPickerPresented = false
     @State private var settingsDetent = PresentationDetent.medium
     @StateObject var vm = StatisticViewModel()
@@ -47,9 +45,24 @@ struct StatisticsView: View {
                     .foregroundColor(Color.text.primary100)
                     
                     HStack(spacing: 16) {
-                        RevenueCardView(title: "Omzet", currentValue: vm.omzetInMonth, previousValue: vm.omzetPreviousMonth, percentageChange: vm.omzetPercentage)
-                        
-                        RevenueCardView(title: "Profit", currentValue: vm.profitInMonth, previousValue: vm.profitPreviousMonth, percentageChange: vm.profitPercentage)
+                        if vm.fetchingOmzetData && vm.fetchingProfitData {
+                            ForEach(0..<2) { _ in
+                                Rectangle()
+                                    .frame(width: 140, height: 100)
+                                    .padding()
+                                    .foregroundColor(.black.opacity(0.2))
+                                    .cornerRadius(20)
+                                    .shimmer()
+                            }
+                        } else {
+                            ForEach(["Omzet", "Profit"], id: \.self) { title in
+                                if title == "Omzet" {
+                                    RevenueCardView(title: title, currentValue: vm.omzetInMonth, previousValue: vm.omzetPreviousMonth, percentageChange: vm.omzetPercentage)
+                                } else {
+                                    RevenueCardView(title: title, currentValue: vm.profitInMonth, previousValue: vm.profitPreviousMonth, percentageChange: vm.profitPercentage)
+                                }
+                            }
+                        }
                     }
                     
                     ChartView(transactionModel: vm.transactionModel)
@@ -71,19 +84,20 @@ struct StatisticsView: View {
             .toolbarBackground(.visible, for: .automatic)
             .toolbarBackground(Color.primary100, for: .automatic)
         }
+        .onAppear {
+            Task {
+                await vm.updateData(for: selectedDate)
+                await vm.calculateTotalOmzet(forMonth: selectedDate)
+                await vm.calculateTotalProfit(forMonth: selectedDate)
+            }
+        }
         .sheet(isPresented: $isPickerPresented) {
             MonthYearPickerView(selectedDate: $selectedDate, isPickerPresented: $isPickerPresented) {
                 Task {
                     await vm.updateData(for: selectedDate)
                 }
             }
-                .presentationDetents([.medium, .large], selection: $settingsDetent)
-        }
-        .onAppear {
-            Task {
-                await vm.calculateTotalOmzet(forMonth: selectedDate)
-                await vm.calculateTotalProfit(forMonth: selectedDate)
-            }
+            .presentationDetents([.medium, .large], selection: $settingsDetent)
         }
     }
     

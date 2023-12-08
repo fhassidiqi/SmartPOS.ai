@@ -9,9 +9,10 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     
-    @Published var itemLoading = false
+//    @Published var itemLoading = false
     @Published var transactionModel = [TransactionModel]()
     @Published var currentSortingOption: SortType = .date
+    @Published var fetchingTransaction = false
     
     private let getTransactionUseCase = GetTransactionUseCase()
     private let deleteItemTransactionUseCase = DeleteTransactionUseCase()
@@ -26,32 +27,45 @@ class HomeViewModel: ObservableObject {
     
     func getTransactions() {
         Task {
+            DispatchQueue.main.sync {
+                self.fetchingTransaction = true
+            }
+            
             let result = await getTransactionUseCase.execute(params: GetTransactionUseCase.Params())
             switch result {
             case .success(let transaction):
                 DispatchQueue.main.sync {
                     self.transactionModel = transaction
+                    self.fetchingTransaction = false
                 }
+                break
             case .failure(let error):
                 print("Error fetching transaction: \(error)")
+                DispatchQueue.main.sync {
+                    self.fetchingTransaction = false
+                }
+                break
             }
         }
     }
     
     func deleteTransaction(transactionId: String) {
         Task {
+            DispatchQueue.main.sync {
+                self.fetchingTransaction = true
+            }
             let result = await deleteItemTransactionUseCase.execute(params: DeleteTransactionUseCase.Param(transactionId: transactionId))
             switch result {
             case .success :
                 DispatchQueue.main.sync {
                     self.getTransactions()
-                    self.itemLoading = false
+                    self.fetchingTransaction = false
                 }
                 break
             case .failure(let error):
                 print("Error \(error)")
                 DispatchQueue.main.sync {
-                    self.itemLoading = false
+                    self.fetchingTransaction = false
                 }
                 break
             }

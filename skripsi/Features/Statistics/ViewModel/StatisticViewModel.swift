@@ -16,7 +16,8 @@ class StatisticViewModel: ObservableObject {
     @Published var omzetPreviousMonth = 0
     @Published var profitPreviousMonth = 0
     
-    @Published var fetchingData = false
+    @Published var fetchingOmzetData: Bool = false
+    @Published var fetchingProfitData: Bool = false
     @Published var transactionModel = [TransactionModel]()
     
     private let totalOmzetUseCase = TotalOmzetUseCase()
@@ -52,7 +53,7 @@ class StatisticViewModel: ObservableObject {
     func calculateTotalOmzet(forMonth date: Date) async {
         Task {
             DispatchQueue.main.sync {
-                self.fetchingData = true
+                self.fetchingOmzetData = true
             }
             
             let params = TotalOmzetUseCase.Params(date: date, transactions: transactionModel)
@@ -64,13 +65,13 @@ class StatisticViewModel: ObservableObject {
                     self.omzetInMonth = currentMonth
                     self.omzetPreviousMonth = previousMonth
                     self.omzetPercentage = percentageChange
-                    self.fetchingData = false
+                    self.fetchingOmzetData = false
                 }
                 break
             case .failure(let error):
                 print("Error: \(error)")
                 DispatchQueue.main.sync {
-                    self.fetchingData = false
+                    self.fetchingOmzetData = false
                 }
                 break
             }
@@ -80,7 +81,7 @@ class StatisticViewModel: ObservableObject {
     func calculateTotalProfit(forMonth date: Date) async {
         Task {
             DispatchQueue.main.sync {
-                self.fetchingData = true
+                self.fetchingProfitData = true
             }
             
             let params = TotalProfitUseCase.Params(date: date, transactions: transactionModel)
@@ -92,12 +93,13 @@ class StatisticViewModel: ObservableObject {
                     self.profitInMonth = currentMonth
                     self.profitPreviousMonth = previousMonth
                     self.profitPercentage = percentageChange
+                    self.fetchingProfitData = false
                 }
                 break
             case .failure(let error):
                 print("Error: \(error)")
                 DispatchQueue.main.sync {
-                    self.fetchingData = false
+                    self.fetchingProfitData = false
                 }
                 break
             }
