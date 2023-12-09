@@ -7,116 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "49E8E50D-B84D-4392-A5BB-1DFA60D3D3DD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "skripsi/Data/DataSource/Remote/RemoteDataSource.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "fetchCategories()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "24D15AD8-A99B-486D-96A5-6B4609ED320E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "skripsi/Data/DataSource/Remote/RemoteDataSource.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "fetchCategory(reference:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "24D15AD8-A99B-486D-96A5-6B4609ED320E - 71e4cc711fd5dfd4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for skripsi.RemoteDataSource.fetchCategory(reference: __C.FIRDocumentReference) async throws -&gt; skripsi.CategoryResponse"
-                  moduleName = "skripsi"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fhassidiqi/ADA23/skripsi/skripsi/Data/DataSource/Remote/RemoteDataSource.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  uuid = "24D15AD8-A99B-486D-96A5-6B4609ED320E - d8b3262bd8ec8826"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for skripsi.RemoteDataSource.fetchCategory(reference: __C.FIRDocumentReference) async throws -&gt; skripsi.CategoryResponse"
-                  moduleName = "skripsi"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fhassidiqi/ADA23/skripsi/skripsi/Data/DataSource/Remote/RemoteDataSource.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  uuid = "24D15AD8-A99B-486D-96A5-6B4609ED320E - 1709b494603f03d2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for skripsi.RemoteDataSource.fetchCategory(reference: __C.FIRDocumentReference) async throws -&gt; skripsi.CategoryResponse"
-                  moduleName = "skripsi"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fhassidiqi/ADA23/skripsi/skripsi/Data/DataSource/Remote/RemoteDataSource.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  uuid = "24D15AD8-A99B-486D-96A5-6B4609ED320E - e407e886272ba5d3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for skripsi.RemoteDataSource.fetchCategory(reference: __C.FIRDocumentReference) async throws -&gt; skripsi.CategoryResponse"
-                  moduleName = "skripsi"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fhassidiqi/ADA23/skripsi/skripsi/Data/DataSource/Remote/RemoteDataSource.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "50E28DD7-C9FB-42F0-9361-2085887BF6DF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "skripsi/Data/DataSource/Remote/RemoteDataSource.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "fetchCategory(reference:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A98304D5-2724-430B-B811-D8C760E00981"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -223,22 +113,6 @@
             startingLineNumber = "21"
             endingLineNumber = "21"
             landmarkName = "execute(params:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "94C9A21F-CD16-4207-8179-05BB5F8C72CD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "skripsi/Data/DataSource/Remote/RemoteDataSource.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "fetchCategories()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

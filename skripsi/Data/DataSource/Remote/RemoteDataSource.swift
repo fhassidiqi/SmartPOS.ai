@@ -44,7 +44,7 @@ class RemoteDataSource {
         
         let itemDocumentRefference = db.collection(ItemResponse.collectionName)
             .whereFilter(Filter.andFilter(filters))
-    
+        
         let snapshots = try await itemDocumentRefference.getDocuments()
         return try snapshots.documents.map { snapshots in
             try snapshots.data(as: ItemResponse.self)
@@ -87,7 +87,27 @@ class RemoteDataSource {
     func fetchTransaction(reference: DocumentReference) async throws -> TransactionResponse {
         return try await reference.getDocument(as: TransactionResponse.self)
     }
-
+    
+    func addTransaction(itemTransaction: [ItemTransactionModel], transaction: TransactionModel) async throws -> Bool {
+        
+        let itemRefs = itemTransaction.map { itemId in
+            db.collection(ItemResponse.collectionName).document(itemId.item.id.orEmpty())
+        }
+        let newTransactionReference = db.collection(TransactionResponse.collectionName).document()
+        
+        try await newTransactionReference.setData([
+            "cashier": transaction.cashier,
+            "orderNumber": transaction.orderNumber,
+            "date": transaction.date,
+            "items": itemRefs,
+            "tax": transaction.tax,
+            "totalTransaction": transaction.totalTransaction,
+            "totalTransactionBeforeTax": transaction.totalTransactionBeforeTax
+        ])
+        
+        return true
+    }
+    
     func deleteTransaction(transactionId: String) async throws -> Bool {
         try await db.collection(TransactionResponse.collectionName)
             .document(transactionId)

@@ -11,6 +11,8 @@ import Combine
 protocol ITransactionRepository {
     func getTransactions(items: [String]?, sort: SortType) async throws -> [TransactionModel]
     func getTransaction(id: String) async throws -> TransactionModel?
+    func addTransaction(itemTransaction: [ItemTransactionModel], transaction: TransactionModel) async throws -> Bool
+    func deleteTransaction(transactionId: String) async throws -> Bool
 }
 
 class TransactionRepository: ITransactionRepository {
@@ -39,6 +41,11 @@ class TransactionRepository: ITransactionRepository {
         }
         
         return transactions
+    }
+    
+    func addTransaction(itemTransaction: [ItemTransactionModel], transaction: TransactionModel) async throws -> Bool {
+        let result = try await remoteDataSource.addTransaction(itemTransaction: itemTransaction, transaction: transaction)
+        return result
     }
     
     func deleteTransaction(transactionId: String) async throws -> Bool {

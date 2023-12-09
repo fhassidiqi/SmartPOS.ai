@@ -10,7 +10,9 @@ import SwiftUI
 struct ItemFoodCardView: View {
     
     var itemModel: ItemModel
+    var itemTransactionModel: ItemTransactionModel
     @StateObject private var vm = FoodListViewModel()
+    var onAddButtonTapped: () -> Void
     
     var body: some View {
         HStack(spacing: 16) {
@@ -22,18 +24,18 @@ struct ItemFoodCardView: View {
                 Text(itemModel.description)
                     .font(.caption)
                 
-                if vm.quantity > 1 {
-                    Text("\(itemModel.price * vm.quantity)")
+                if itemTransactionModel.quantity > 1 {
+                    Text("\(itemTransactionModel.item.price * itemTransactionModel.quantity)")
                         .font(.caption)
                 } else {
-                    Text("\(itemModel.price)")
+                    Text("\(itemTransactionModel.item.price)")
                         .font(.caption)
                 }
                 
-                if vm.quantity == 0 {
+                if itemTransactionModel.quantity == 0 {
                     Button {
-                        vm.quantity += 1
-                        print(vm.quantity)
+                        onAddButtonTapped()
+                        vm.incrementQuantity(for: itemModel)
                     } label: {
                         Text("Add")
                             .font(.caption)
@@ -55,12 +57,11 @@ struct ItemFoodCardView: View {
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.primary100)
                             .onTapGesture {
-                                // TODO: quantity berkurang
-                                vm.quantity -= 1
-                                print(vm.quantity)
+                                vm.decrementQuantity(for: itemModel)
+                                print(itemTransactionModel.quantity)
                             }
                         
-                        Text("\(vm.quantity)")
+                        Text("\(itemTransactionModel.quantity)")
                             .font(.caption).bold()
                             .foregroundStyle(Color.text.black)
                             .padding(6)
@@ -71,8 +72,8 @@ struct ItemFoodCardView: View {
                             .foregroundStyle(Color.primary100)
                             .onTapGesture {
                                 // TODO: quantity nambah
-                                vm.quantity += 1
-                                print(vm.quantity)
+                                vm.incrementQuantity(for: itemModel)
+                                print(itemTransactionModel.quantity)
                             }
                     }
                 }

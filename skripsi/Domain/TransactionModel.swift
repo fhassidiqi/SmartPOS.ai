@@ -20,7 +20,7 @@ struct TransactionModel: Identifiable, Hashable {
 
 struct ItemTransactionModel: Hashable {
     let item: ItemModel
-    let quantity: Int
+    var quantity: Int
     let totalPricePerItem: Int
     let totalProfitPerItem: Int
     let totalOmzetPerItem: Int

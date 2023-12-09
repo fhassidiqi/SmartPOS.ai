@@ -55,7 +55,13 @@ struct FoodListView: View {
                     ForEach(vm.itemsModel.filter { item in
                         selectedCategory == nil || item.category == selectedCategory?.name
                     }) { item in
-                        ItemFoodCardView(itemModel: item)
+                        let itemTransactionModel = vm.selectedItems.first { selectedItem in
+                            selectedItem.item.id == item.id
+                        }
+                        ItemFoodCardView(itemModel: item, itemTransactionModel: itemTransactionModel ?? ItemTransactionModel(item: item, quantity: 0, totalPricePerItem: 0, totalProfitPerItem: 0, totalOmzetPerItem: 0)) {
+                            vm.selectedItems.append(ItemTransactionModel(item: item, quantity: 1, totalPricePerItem: item.price, totalProfitPerItem: item.profit, totalOmzetPerItem: item.omzet))
+                        }
+                        
                         Divider()
                     }
                 }
@@ -64,11 +70,11 @@ struct FoodListView: View {
                 .background(Color.background.base)
             }
             
-            if vm.quantity > 0 {
-                FloatingButtonView(color: Color.primary100, image: "chevron.right.circle.fill", text1: "Item", text2: "Rp. 40.000", quantity: vm.quantity) {
+            if vm.selectedItems.contains(where: { $0.quantity > 0 }) {
+                FloatingButtonView(color: Color.primary100, image: "chevron.right.circle.fill", text1: "Item", text2: "Rp. 40.000", quantity: vm.selectedItems.reduce(0) { $0 + $1.quantity }) {
+                    vm.addTransaction(date: Date())
                     router.navigate(to: .pay)
                 }
-                
             }
         }
         .onAppear {

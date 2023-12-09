@@ -1,5 +1,5 @@
 //
-//  DeleteItemTransactionUseCase.swift
+//  DeleteTransactionUseCase.swift
 //  skripsi
 //
 //  Created by Falah Hasbi Assidiqi on 16/11/23.
@@ -9,10 +9,9 @@ import Foundation
 
 class DeleteTransactionUseCase: BaseUseCase {
     
+    private let repository = TransactionRepository.shared
     typealias Params = Param
     typealias Response = Bool
-    
-    private let repository = TransactionRepository.shared
     
     func execute(params: Params) async -> Result<Bool, Error> {
         do {
