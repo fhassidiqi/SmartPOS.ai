@@ -15,7 +15,7 @@ class AddTransactionUseCase: BaseUseCase {
     
     func execute(params: Param) async -> Result<Bool, Error> {
         do {
-            let result = try await repository.addTransaction(itemTransaction: params.items, transaction: params.transaction)
+            let result = try await repository.addTransaction(itemTransaction: params.items, transaction: params.transaction, transactionId: params.transactionId.orEmpty())
             return .success(result)
         } catch {
             return .failure(error)
@@ -23,6 +23,7 @@ class AddTransactionUseCase: BaseUseCase {
     }
     
     struct Param {
+        let transactionId: String?
         let items: [ItemTransactionModel]
         let transaction: TransactionModel
     }

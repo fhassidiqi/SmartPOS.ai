@@ -55,9 +55,9 @@ class RemoteDataSource {
         return try await reference.getDocument(as: ItemResponse.self)
     }
     
-    func transactionDocument(transactionId: String) -> DocumentReference {
+    func transactionDocument(transactionId: String?) -> DocumentReference {
         let collectionName = db.collection("transactions")
-        return collectionName.document(transactionId)
+        return collectionName.document(transactionId.orEmpty())
     }
     
     func fetchTransactions(items: [String]? = nil, sort: SortType = .date) async throws -> [TransactionResponse] {
@@ -88,24 +88,38 @@ class RemoteDataSource {
         return try await reference.getDocument(as: TransactionResponse.self)
     }
     
-    func addTransaction(itemTransaction: [ItemTransactionModel], transaction: TransactionModel) async throws -> Bool {
+    func addTransaction(itemTransaction: [ItemTransactionModel], transaction: TransactionModel, transactionId: String?) async throws -> Bool {
         
-        let itemRefs = itemTransaction.map { itemId in
-            db.collection(ItemResponse.collectionName).document(itemId.item.id.orEmpty())
+        guard let transactionId = transactionId, !transactionId.isEmpty else {
+            throw ErrorType.idNotFound
         }
-        let newTransactionReference = db.collection(TransactionResponse.collectionName).document()
         
-        try await newTransactionReference.setData([
-            "cashier": transaction.cashier,
-            "orderNumber": transaction.orderNumber,
-            "date": transaction.date,
-            "items": itemRefs,
-            "tax": transaction.tax,
-            "totalTransaction": transaction.totalTransaction,
-            "totalTransactionBeforeTax": transaction.totalTransactionBeforeTax
-        ])
+        let items = itemTransaction.map { itemId in
+            
+            let itemRef = db.collection(ItemResponse.collectionName).document()
+            
+            return [
+                "item": db.collection(ItemResponse.collectionName).document(itemId.item.id.orEmpty()),
+                "quantity": itemId.quantity,
+                "totalPricePerItem": itemId.item.price * itemId.quantity,
+                "totalProfitPerItem": itemId.item.profit * itemId.quantity,
+                "totalOmzetPerItem": itemId.item.omzet * itemId.quantity
+            ]
+        }
+        
+        try await transactionDocument(transactionId: transactionId)
+            .setData([
+                "cashier": transaction.cashier,
+                "orderNumber": transaction.orderNumber,
+                "date": transaction.date,
+                "items": items,
+                "tax": transaction.tax,
+                "totalTransaction": transaction.totalTransaction,
+                "totalTransactionBeforeTax": transaction.totalTransactionBeforeTax
+            ], merge: true)
         
         return true
+        
     }
     
     func deleteTransaction(transactionId: String) async throws -> Bool {
@@ -118,5 +132,5 @@ class RemoteDataSource {
 }
 
 enum ErrorType: Error {
-    case invalidDate
+    case invalidDate, invalidData, idNotFound
 }

@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class FoodListViewModel: ObservableObject {
     
@@ -55,24 +57,28 @@ class FoodListViewModel: ObservableObject {
         }
     }
     
-    func addTransaction(transactionId: String? = nil, date: Date) {
+    func addTransaction(date: Date) {
         Task {
+            let transactionId = Firestore.firestore().collection("transactions").document().documentID
             let orderNumber = generateOrderNumber(date: date)
             let tax = Int(Double(selectedItems.reduce(0) { $0 + $1.totalPricePerItem }) * 0.1)
             let totalTransaction = selectedItems.reduce(0) { $0 + $1.totalPricePerItem } + tax
+            let items = selectedItems.map { ItemTransactionModel(item: $0.item, quantity: $0.quantity, totalPricePerItem: $0.item.price * $0.quantity, totalProfitPerItem: $0.item.profit * $0.quantity, totalOmzetPerItem: $0.item.omzet * $0.quantity) }
             
             let transaction = TransactionModel(
-                id: transactionId.orEmpty(),
+                id: transactionId,
                 orderNumber: orderNumber,
                 date: date,
-                items: selectedItems,
+                items: items,
                 cashier: "Falah Hasbi Assidiqi", // Default untuk sementara
                 totalTransactionBeforeTax: selectedItems.reduce(0) { $0 + $1.totalPricePerItem },
                 tax: tax,
                 totalTransaction: totalTransaction
             )
             
-            let result = await addTransactionUseCase.execute(params: AddTransactionUseCase.Param(items: transaction.items, transaction: transaction))
+            print("Transaction: \(transaction)")
+            
+            let result = await addTransactionUseCase.execute(params: AddTransactionUseCase.Param(transactionId: transactionId, items: transaction.items, transaction: transaction))
             switch result {
             case .success(let success):
                 print("Success: \(success)")
@@ -99,14 +105,34 @@ class FoodListViewModel: ObservableObject {
     }
     
     func incrementQuantity(for item: ItemModel) {
-        if let index = itemTransactionModel.enumerated().first(where: { $0.element.item.id == item.id })?.offset {
-            itemTransactionModel[index].quantity += 1
+        itemTransactionModel = itemTransactionModel.map { itemTransaction -> ItemTransactionModel in
+            if itemTransaction.item.id == item.id {
+                var mutableItemTransaction = itemTransaction
+                mutableItemTransaction.quantity += 1
+                return mutableItemTransaction
+            } else {
+                return itemTransaction
+            }
         }
     }
     
     func decrementQuantity(for item: ItemModel) {
-        if let index = itemTransactionModel.enumerated().first(where: { $0.element.item.id == item.id && $0.element.quantity > 0 })?.offset {
-            itemTransactionModel[index].quantity -= 1
-        }
+        itemTransactionModel = itemTransactionModel.map { itemTransaction -> ItemTransactionModel in
+            if itemTransaction.item.id == item.id {
+                var mutableItemTransaction = itemTransaction
+                if mutableItemTransaction.quantity > 0 {
+                    mutableItemTransaction.quantity -= 1
+                }
+                if mutableItemTransaction.quantity <= 0 {
+                    return itemTransaction
+                } else {
+                    return mutableItemTransaction
+                }
+            } else {
+                return itemTransaction
+            }
+        }.compactMap { $0 }
     }
+
+    
 }

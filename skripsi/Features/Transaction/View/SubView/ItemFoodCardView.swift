@@ -11,7 +11,7 @@ struct ItemFoodCardView: View {
     
     var itemModel: ItemModel
     var itemTransactionModel: ItemTransactionModel
-    @StateObject private var vm = FoodListViewModel()
+    @EnvironmentObject var vm: FoodListViewModel
     var onAddButtonTapped: () -> Void
     
     var body: some View {
@@ -34,8 +34,10 @@ struct ItemFoodCardView: View {
                 
                 if itemTransactionModel.quantity == 0 {
                     Button {
-                        onAddButtonTapped()
                         vm.incrementQuantity(for: itemModel)
+                        print(itemTransactionModel.quantity)
+                        onAddButtonTapped()
+                        
                     } label: {
                         Text("Add")
                             .font(.caption)
@@ -52,29 +54,30 @@ struct ItemFoodCardView: View {
                     }
                 } else {
                     HStack {
-                        Image(systemName: "minus.circle")
-                            .font(.caption)
-                            .fontWeight(.semibold)
-                            .foregroundStyle(Color.primary100)
-                            .onTapGesture {
-                                vm.decrementQuantity(for: itemModel)
-                                print(itemTransactionModel.quantity)
-                            }
+                        Button {
+                            vm.decrementQuantity(for: itemModel)
+                            print(itemTransactionModel.quantity)
+                        } label: {
+                            Image(systemName: "minus.circle")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.primary100)
+                        }
                         
                         Text("\(itemTransactionModel.quantity)")
                             .font(.caption).bold()
                             .foregroundStyle(Color.text.black)
                             .padding(6)
                         
-                        Image(systemName: "plus.circle")
-                            .font(.caption)
-                            .fontWeight(.semibold)
-                            .foregroundStyle(Color.primary100)
-                            .onTapGesture {
-                                // TODO: quantity nambah
-                                vm.incrementQuantity(for: itemModel)
-                                print(itemTransactionModel.quantity)
-                            }
+                        Button {
+                            vm.incrementQuantity(for: itemModel)
+                            print(itemTransactionModel.quantity)
+                        } label: {
+                            Image(systemName: "plus.circle")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.primary100)
+                        }
                     }
                 }
             }

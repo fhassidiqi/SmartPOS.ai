@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 extension Date {
     static func from(year: Int, month: Int, day: Int) -> Date {
@@ -19,5 +21,9 @@ extension Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM"
         return formatter.string(from: self)
+    }
+    
+    func toTimeStamp() -> Timestamp {
+        return Timestamp(date: self)
     }
 }

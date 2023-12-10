@@ -73,9 +73,8 @@ struct HomeView: View {
                                 HistoryView(transaction)
                             } actions: {
                                 Action(tint: .red, icon: "trash.fill") {
-                                    // MARK: Create delete transaction
                                     withAnimation(.easeInOut) {
-                                        print("Delete")
+                                        vm.deleteTransaction(transactionId: transaction.id.orEmpty())
                                     }
                                     
                                 }
