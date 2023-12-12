@@ -63,7 +63,15 @@ class FoodListViewModel: ObservableObject {
             let orderNumber = generateOrderNumber(date: date)
             let tax = Int(Double(selectedItems.reduce(0) { $0 + $1.totalPricePerItem }) * 0.1)
             let totalTransaction = selectedItems.reduce(0) { $0 + $1.totalPricePerItem } + tax
-            let items = selectedItems.map { ItemTransactionModel(item: $0.item, quantity: $0.quantity, totalPricePerItem: $0.item.price * $0.quantity, totalProfitPerItem: $0.item.profit * $0.quantity, totalOmzetPerItem: $0.item.omzet * $0.quantity) }
+            let items = selectedItems.map {
+                ItemTransactionModel(
+                    item: $0.item,
+                    quantity: $0.quantity,
+                    totalPricePerItem: $0.item.price * $0.quantity,
+                    totalProfitPerItem: $0.item.profit * $0.quantity,
+                    totalOmzetPerItem: $0.item.omzet * $0.quantity
+                )
+            }
             
             let transaction = TransactionModel(
                 id: transactionId,
@@ -75,8 +83,6 @@ class FoodListViewModel: ObservableObject {
                 tax: tax,
                 totalTransaction: totalTransaction
             )
-            
-            print("Transaction: \(transaction)")
             
             let result = await addTransactionUseCase.execute(params: AddTransactionUseCase.Param(transactionId: transactionId, items: transaction.items, transaction: transaction))
             switch result {

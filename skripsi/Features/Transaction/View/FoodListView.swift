@@ -58,8 +58,12 @@ struct FoodListView: View {
                         let itemTransactionModel = vm.selectedItems.first { selectedItem in
                             selectedItem.item.id == item.id
                         }
-                        ItemFoodCardView(itemModel: item, itemTransactionModel: itemTransactionModel ?? ItemTransactionModel(item: item, quantity: 0, totalPricePerItem: 0, totalProfitPerItem: 0, totalOmzetPerItem: 0)) {
-                            vm.selectedItems.append(ItemTransactionModel(item: item, quantity: 1, totalPricePerItem: item.price, totalProfitPerItem: item.profit, totalOmzetPerItem: item.omzet))
+                        ItemFoodCardView(itemModel: item, itemTransactionModel: itemTransactionModel ?? ItemTransactionModel(item: item, quantity: 0, totalPricePerItem: 0, totalProfitPerItem: 0, totalOmzetPerItem: 0)) { updatedItemTransaction in
+                            if let index = vm.selectedItems.firstIndex(where: { $0.item.id == updatedItemTransaction.item.id }) {
+                                vm.selectedItems[index] = updatedItemTransaction
+                            } else {
+                                vm.selectedItems.append(updatedItemTransaction)
+                            }
                         }
                         
                         Divider()

@@ -8,18 +8,25 @@
 import SwiftUI
 
 struct ItemPayCardView: View {
+    
+    var itemModel: ItemModel
+    var itemTransactionModel: ItemTransactionModel
+    @Binding var selectedItems: [ItemTransactionModel]
+    @StateObject private var vm = FoodListViewModel()
+    var updateSelectedItem: (ItemTransactionModel) -> Void
+    
     var body: some View {
         HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Bottegea’s Fried Rice")
+                Text(itemModel.name)
                     .font(.headline)
                 
-                Text("Rp. 129.000")
+                Text("Rp. \(itemModel.price)")
                     .font(.footnote)
                 
                 HStack(spacing: 16) {
                     Button(action: {
-                        
+                        updateSelectedItem(vm.decrementQuantity(for: itemModel))
                     }, label: {
                         Image(systemName: "minus.circle")
                             .resizable()
@@ -48,6 +55,6 @@ struct ItemPayCardView: View {
     }
 }
 
-#Preview {
-    ItemPayCardView()
-}
+//#Preview {
+//    ItemPayCardView()
+//}

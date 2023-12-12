@@ -11,8 +11,18 @@ struct ItemFoodCardView: View {
     
     var itemModel: ItemModel
     var itemTransactionModel: ItemTransactionModel
-    @EnvironmentObject var vm: FoodListViewModel
-    var onAddButtonTapped: () -> Void
+    @StateObject private var vm = FoodListViewModel()
+    var onAddButtonTapped: (ItemTransactionModel) -> Void
+    
+    private func createUpdatedItemTransaction(withQuantity quantity: Int) -> ItemTransactionModel {
+        return ItemTransactionModel(
+            item: itemTransactionModel.item,
+            quantity: quantity,
+            totalPricePerItem: itemModel.price * quantity,
+            totalProfitPerItem: itemModel.profit * quantity,
+            totalOmzetPerItem: itemModel.omzet * quantity
+        )
+    }
     
     var body: some View {
         HStack(spacing: 16) {
@@ -36,7 +46,8 @@ struct ItemFoodCardView: View {
                     Button {
                         vm.incrementQuantity(for: itemModel)
                         print(itemTransactionModel.quantity)
-                        onAddButtonTapped()
+                        let updatedItemTransaction = createUpdatedItemTransaction(withQuantity: itemTransactionModel.quantity + 1)
+                        onAddButtonTapped(updatedItemTransaction)
                         
                     } label: {
                         Text("Add")
@@ -57,6 +68,8 @@ struct ItemFoodCardView: View {
                         Button {
                             vm.decrementQuantity(for: itemModel)
                             print(itemTransactionModel.quantity)
+                            let updatedItemTransaction = createUpdatedItemTransaction(withQuantity: itemTransactionModel.quantity - 1)
+                            onAddButtonTapped(updatedItemTransaction)
                         } label: {
                             Image(systemName: "minus.circle")
                                 .font(.caption)
@@ -72,6 +85,8 @@ struct ItemFoodCardView: View {
                         Button {
                             vm.incrementQuantity(for: itemModel)
                             print(itemTransactionModel.quantity)
+                            let updatedItemTransaction = createUpdatedItemTransaction(withQuantity: itemTransactionModel.quantity + 1)
+                            onAddButtonTapped(updatedItemTransaction)
                         } label: {
                             Image(systemName: "plus.circle")
                                 .font(.caption)

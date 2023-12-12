@@ -96,8 +96,6 @@ class RemoteDataSource {
         
         let items = itemTransaction.map { itemId in
             
-            let itemRef = db.collection(ItemResponse.collectionName).document()
-            
             return [
                 "item": db.collection(ItemResponse.collectionName).document(itemId.item.id.orEmpty()),
                 "quantity": itemId.quantity,
