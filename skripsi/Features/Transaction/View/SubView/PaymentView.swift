@@ -9,10 +9,8 @@ import SwiftUI
 
 struct PaymentView: View {
     
-    private let paymentType = ["Sub Total", "Tax(10%)", "Total", "Cash", "Return"]
-    private let payment = [129000, 12900, 129000, 129000, 0]
     @EnvironmentObject private var router: Router
-    @StateObject private var vm = FoodListViewModel()
+    var itemTransaction: [ItemTransactionModel]
     @State private var isActive = false
     
     var body: some View {
@@ -21,43 +19,8 @@ struct PaymentView: View {
                 .ignoresSafeArea()
             
             ScrollView {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Item")
-                        .font(.headline)
-                        .padding()
-                    
-                    Divider()
-                    
-                    ItemPayCardView()
-                        .padding()
-                    
-                    Divider()
-                        .padding([.horizontal, .bottom])
-                }
-                .background(Color.background.base)
-                
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Payment Summary")
-                        .font(.headline)
-                        .padding()
-                    
-                    Divider()
-                    
-                    ForEach(0..<paymentType.count, id: \.self) { item in
-                        PaymentSummaryView(paymentType: paymentType[item], payment: payment[item])
-                            .padding()
-                        
-                        Divider()
-                            .padding(.horizontal)
-                            
-                    }
-                }
-                .background(Color.background.base)
+                itemSection
             }
-            
-//            FloatingButtonView(color: !isActive ? Color.button.active : Color.button.inactive, image: nil, text1: "Proceed", text2: nil) {
-//                router.navigateToRoot()
-//            }
         }
         .toolbar {
             CustomToolbar(title: "Pay", leadingTitle: "Food List") {
@@ -69,10 +32,47 @@ struct PaymentView: View {
         .navigationBarBackButtonHidden()
         .toolbarBackground(Color.primary100, for: .automatic)
     }
-}
-
-#Preview {
-    PaymentView()
+    
+    private var itemSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Item")
+                .font(.headline)
+                .padding()
+            
+            Divider()
+            
+            ForEach(itemTransaction, id: \.item) { selectedItem in
+                ItemFoodCardView(itemModel: selectedItem.item, itemTransactionModel: selectedItem, onAddButtonTapped: { updatedItemTransaction in
+                    return
+                    
+                })
+                    .padding()
+                
+                Divider()
+                    .padding([.horizontal, .bottom])
+            }
+        }
+        .background(Color.background.base)
+    }
+    
+//    private var paymentSummarySection: some View {
+//        VStack(alignment: .leading, spacing: 0) {
+//            Text("Payment Summary")
+//                .font(.headline)
+//                .padding()
+//            
+//            Divider()
+//            
+//            ForEach(vm.selectedItems, id: \.item) { selectedItem in
+//                PaymentSummaryView(paymentType: selectedItem.item.name, payment: selectedItem.totalPricePerItem)
+//                    .padding()
+//                
+//                Divider()
+//                    .padding(.horizontal)
+//            }
+//        }
+//        .background(Color.background.base)
+//    }
 }
 
 struct PaymentSummaryView: View {
@@ -81,16 +81,16 @@ struct PaymentSummaryView: View {
     var payment: Int
     
     var body: some View {
-            VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    Text(paymentType)
-                    
-                    Spacer()
-                    
-                    Text("Rp. \(payment)")
-                }
-                .font(.callout)
-                .foregroundStyle(Color.text.primary100)
+        VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                Text(paymentType)
+                
+                Spacer()
+                
+                Text("Rp. \(payment)")
             }
+            .font(.callout)
+            .foregroundStyle(Color.text.primary100)
         }
+    }
 }

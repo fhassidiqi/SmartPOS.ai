@@ -27,15 +27,15 @@ struct skripsiApp: App {
                 ContentView()
                     .navigationDestination(for: Router.Destination.self) { destination in
                         switch destination {
-                        case .pay:
-                            PaymentView()
-                                .environmentObject(router)
                         case .scanQR:
                             ScanView()
                         }
                     }
                     .navigationDestination(for: TransactionModel.self) { transaction in
                         DetailHistoryView(transactionModel: transaction)
+                    }
+                    .navigationDestination(for: [ItemTransactionModel].self) { itemTransaction in
+                        PaymentView()
                     }
             }
             .environmentObject(router)

@@ -75,9 +75,16 @@ struct FoodListView: View {
             }
             
             if vm.selectedItems.contains(where: { $0.quantity > 0 }) {
-                FloatingButtonView(color: Color.primary100, image: "chevron.right.circle.fill", text1: "Item", text2: "Rp. 40.000", quantity: vm.selectedItems.reduce(0) { $0 + $1.quantity }) {
+                FloatingButtonView(
+                    color: Color.primary100,
+                    image: "chevron.right.circle.fill",
+                    text1: "Item",
+                    text2: "Rp. \(vm.selectedItems.reduce(0) { $0 + $1.totalPricePerItem })",
+                    quantity: vm.selectedItems.reduce(0) { $0 + $1.quantity }
+                ) {
                     vm.addTransaction(date: Date())
-                    router.navigate(to: .pay)
+                    router.navigateToPayment(transaction: vm.selectedItems)
+                    print(vm.selectedItems)
                 }
             }
         }

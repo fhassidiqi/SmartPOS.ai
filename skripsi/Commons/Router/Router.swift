@@ -11,7 +11,6 @@ import SwiftUI
 final class Router: ObservableObject {
     
     public enum Destination: Codable, Hashable {
-        case pay
         case scanQR
     }
     
@@ -30,6 +29,10 @@ final class Router: ObservableObject {
     }
     
     func navigateToDetailTransaction(transaction: TransactionModel) {
+        navPath.append(transaction)
+    }
+    
+    func navigateToPayment(transaction: [ItemTransactionModel]) {
         navPath.append(transaction)
     }
 }

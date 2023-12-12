@@ -16,10 +16,20 @@ class FoodListViewModel: ObservableObject {
     @Published var itemsModel = [ItemModel]()
     @Published var transactionModel = [TransactionModel]()
     @Published var itemTransactionModel = [ItemTransactionModel]()
-    @Published var quantity: Int = 0
     @Published var transactionLoading = false
     @Published var selectedItems = [ItemTransactionModel]()
+    @Published var currentTransaction = TransactionModel(
+        id: nil,
+        orderNumber: "",
+        date: Date(),
+        items: [],
+        cashier: "",
+        totalTransactionBeforeTax: 0,
+        tax: 0,
+        totalTransaction: 0
+    )
     
+    private let getTransactionUseCase = GetTransactionUseCase()
     private let getCategoriesUseCase = GetCategoriesUseCase()
     private let getItemUseCase = GetItemsUseCase()
     private let addTransactionUseCase = AddTransactionUseCase()
@@ -96,15 +106,14 @@ class FoodListViewModel: ObservableObject {
     
     private func generateOrderNumber(date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "ddMMyyyy"
+        dateFormatter.dateFormat = "ddMMyyHHmm"
         let dateString = dateFormatter.string(from: date)
-        
-        let transactionSequence = String(transactionModel.count + 1)
-        
-        let orderNumber = "\(dateString)\(transactionSequence)"
-        
+
+        let orderNumber = "\(dateString)"
+
         return orderNumber
     }
+
     
     func itemTransactionModel(for item: ItemModel) -> ItemTransactionModel? {
         return itemTransactionModel.first { $0.item.id == item.id }

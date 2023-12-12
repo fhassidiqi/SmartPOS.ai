@@ -9,35 +9,33 @@ import SwiftUI
 
 struct ItemPayCardView: View {
     
-    var itemModel: ItemModel
-    var itemTransactionModel: ItemTransactionModel
-    @Binding var selectedItems: [ItemTransactionModel]
-    @StateObject private var vm = FoodListViewModel()
-    var updateSelectedItem: (ItemTransactionModel) -> Void
+    var selectedItems: ItemTransactionModel
+    @ObservedObject private var vm = FoodListViewModel()
     
     var body: some View {
         HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 8) {
-                Text(itemModel.name)
+                
+                Text(selectedItems.item.name)
                     .font(.headline)
                 
-                Text("Rp. \(itemModel.price)")
+                Text("Rp. \(selectedItems.item.price)")
                     .font(.footnote)
                 
                 HStack(spacing: 16) {
                     Button(action: {
-                        updateSelectedItem(vm.decrementQuantity(for: itemModel))
+                        vm.decrementQuantity(for: selectedItems.item)
                     }, label: {
                         Image(systemName: "minus.circle")
                             .resizable()
                             .frame(width: 25, height: 25)
                     })
                     
-                    Text("1")
+                    Text("\(selectedItems.quantity)")
                         .font(.headline)
                     
                     Button(action: {
-                        
+                        vm.incrementQuantity(for: selectedItems.item)
                     }, label: {
                         Image(systemName: "plus.circle")
                             .resizable()
@@ -45,16 +43,30 @@ struct ItemPayCardView: View {
                     })
                 }
                 .padding(.top, 10)
+                
+                
+                Spacer()
+                
+                AsyncImage(url: URL(string: selectedItems.item.imageUrl)) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 100, height: 100)
+                    case .empty:
+                        ProgressView()
+                    case .failure(_):
+                        Image(systemName: "photo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
             }
-            
-            Spacer()
-            
-            Image("makan2")
-            
         }
+        
     }
 }
-
-//#Preview {
-//    ItemPayCardView()
-//}

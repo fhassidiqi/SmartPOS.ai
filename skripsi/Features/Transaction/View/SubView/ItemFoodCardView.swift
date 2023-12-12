@@ -45,7 +45,7 @@ struct ItemFoodCardView: View {
                 if itemTransactionModel.quantity == 0 {
                     Button {
                         vm.incrementQuantity(for: itemModel)
-                        print(itemTransactionModel.quantity)
+
                         let updatedItemTransaction = createUpdatedItemTransaction(withQuantity: itemTransactionModel.quantity + 1)
                         onAddButtonTapped(updatedItemTransaction)
                         
@@ -61,13 +61,12 @@ struct ItemFoodCardView: View {
                                     .inset(by: 0.5)
                                     .strokeBorder(Color.primary100, lineWidth: 1)
                             )
-                        
                     }
                 } else {
                     HStack {
                         Button {
                             vm.decrementQuantity(for: itemModel)
-                            print(itemTransactionModel.quantity)
+                            
                             let updatedItemTransaction = createUpdatedItemTransaction(withQuantity: itemTransactionModel.quantity - 1)
                             onAddButtonTapped(updatedItemTransaction)
                         } label: {
@@ -84,7 +83,7 @@ struct ItemFoodCardView: View {
                         
                         Button {
                             vm.incrementQuantity(for: itemModel)
-                            print(itemTransactionModel.quantity)
+                            
                             let updatedItemTransaction = createUpdatedItemTransaction(withQuantity: itemTransactionModel.quantity + 1)
                             onAddButtonTapped(updatedItemTransaction)
                         } label: {
