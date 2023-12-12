@@ -20,6 +20,7 @@ struct skripsiApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @ObservedObject private var router = Router()
+    @StateObject private var vm = FoodListViewModel()
     
     var body: some Scene {
         WindowGroup {
@@ -36,9 +37,11 @@ struct skripsiApp: App {
                     }
                     .navigationDestination(for: [ItemTransactionModel].self) { itemTransaction in
                         PaymentView()
+                            .environmentObject(vm)
                     }
             }
             .environmentObject(router)
+            .environmentObject(vm)
         }
     }
 }

@@ -12,7 +12,7 @@ struct ItemFoodCardView: View {
     var itemModel: ItemModel
     var itemTransactionModel: ItemTransactionModel
     @StateObject private var vm = FoodListViewModel()
-    var onAddButtonTapped: (ItemTransactionModel) -> Void
+    var onAddButtonTapped: (ItemTransactionModel) -> Void?
     
     private func createUpdatedItemTransaction(withQuantity quantity: Int) -> ItemTransactionModel {
         return ItemTransactionModel(

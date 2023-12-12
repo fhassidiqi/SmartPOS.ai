@@ -10,7 +10,7 @@ import SwiftUI
 struct FoodListView: View {
     
     @State private var selectedCategory: CategoryModel? = nil
-    @ObservedObject private var vm = FoodListViewModel()
+    @EnvironmentObject var vm: FoodListViewModel
     @EnvironmentObject var router: Router
     
     var body: some View {
@@ -82,7 +82,6 @@ struct FoodListView: View {
                     text2: "Rp. \(vm.selectedItems.reduce(0) { $0 + $1.totalPricePerItem })",
                     quantity: vm.selectedItems.reduce(0) { $0 + $1.quantity }
                 ) {
-                    vm.addTransaction(date: Date())
                     router.navigateToPayment(transaction: vm.selectedItems)
                     print(vm.selectedItems)
                 }

@@ -13,7 +13,7 @@ struct FloatingButtonView: View {
     let image: String?
     let text1: String
     let text2: String?
-    var quantity: Int
+    var quantity: Int?
     let action: () -> Void
     
     private let sizeWidth: CGFloat = 358
@@ -24,12 +24,14 @@ struct FloatingButtonView: View {
         Button(action: action){
             HStack {
                 
-                Text("\(quantity) \(text1)")
-                
-                if let text2 = text2 {
+                if let text2 = (text2 != nil) && quantity != 0 ? text2 : nil {
+                    Text("\(quantity ?? 0) \(text1)")
+                    
                     Spacer()
                     
                     Text(text2)
+                } else {
+                    Text("\(text1)")
                 }
                 
                 if let imageName = image {
