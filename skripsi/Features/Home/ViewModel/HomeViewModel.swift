@@ -9,10 +9,9 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     
-//    @Published var itemLoading = false
-    @Published var transactionModel = [TransactionModel]()
-    @Published var currentSortingOption: SortType = .date
     @Published var fetchingTransaction = false
+    @Published var currentSortingOption: SortType = .date
+    @Published var transactionModel = [TransactionModel]()
     
     private let getTransactionUseCase = GetTransactionUseCase()
     private let deleteItemTransactionUseCase = DeleteTransactionUseCase()

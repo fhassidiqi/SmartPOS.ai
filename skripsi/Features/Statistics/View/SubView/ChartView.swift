@@ -53,7 +53,7 @@ struct ChartView: View {
                     .foregroundStyle(revenueChart == .omzet ? Color.secondaryColor : Color.tertiaryColor)
                 }
                 
-                RuleMark(y: .value("Target", revenueChart == .omzet ? 300000 : 100000))
+                RuleMark(y: .value("Target", revenueChart == .omzet ? 700000 : 400000))
                     .foregroundStyle(Color.mint)
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                     .annotation(alignment: .leading) {
@@ -63,9 +63,9 @@ struct ChartView: View {
                     }
             }
             .frame(height: 180)
-            .chartYScale(domain: 0...400000)
+            .chartYScale(domain: 0...1000000)
             .chartYAxis {
-                AxisMarks(position: .leading, values: [0, 100000, 200000, 300000, 400000])
+                AxisMarks(position: .leading, values: [0, 250000, 500000, 750000, 1000000])
             }
             .chartXAxis {
                 AxisMarks(position: .bottom, values: xAxisValues)

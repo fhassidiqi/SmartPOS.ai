@@ -12,6 +12,7 @@ final class Router: ObservableObject {
     
     public enum Destination: Codable, Hashable {
         case scanQR
+        case FoodListView
     }
     
     @Published var navPath = NavigationPath()

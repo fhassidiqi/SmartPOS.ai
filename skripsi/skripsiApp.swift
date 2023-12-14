@@ -28,6 +28,8 @@ struct skripsiApp: App {
                 ContentView()
                     .navigationDestination(for: Router.Destination.self) { destination in
                         switch destination {
+                        case .FoodListView:
+                            FoodListView()
                         case .scanQR:
                             ScanView()
                         }

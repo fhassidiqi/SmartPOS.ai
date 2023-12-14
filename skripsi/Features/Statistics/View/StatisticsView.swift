@@ -12,7 +12,7 @@ struct StatisticsView: View {
     @State private var selectedDate = Date()
     @State private var isPickerPresented = false
     @State private var settingsDetent = PresentationDetent.medium
-    @StateObject var vm = StatisticViewModel()
+    @ObservedObject var vm: StatisticViewModel
     
     var body: some View {
         NavigationStack {
@@ -108,9 +108,9 @@ struct StatisticsView: View {
     }
 }
 
-#Preview {
-    StatisticsView()
-}
+//#Preview {
+//    StatisticsView(vm: .)
+//}
 
 struct MonthYearPickerView: View {
     @Binding var selectedDate: Date

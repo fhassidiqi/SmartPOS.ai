@@ -46,7 +46,6 @@ class StatisticViewModel: ObservableObject {
             await getTransactions()
             await calculateTotalOmzet(forMonth: date)
             await calculateTotalProfit(forMonth: date)
-            
         }
     }
     

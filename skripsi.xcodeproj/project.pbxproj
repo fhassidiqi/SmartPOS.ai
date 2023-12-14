@@ -12,7 +12,6 @@
 		4C0C08CF2B029BC100207617 /* FloatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C08CE2B029BC100207617 /* FloatingButtonView.swift */; };
 		4C0C08D52B05D4FC00207617 /* DeleteTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C08D42B05D4FC00207617 /* DeleteTransactionUseCase.swift */; };
 		4C0C08D72B066F6000207617 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C08D62B066F6000207617 /* Logger.swift */; };
-		4C0D6F312AE2D5C600C74BF7 /* ItemPayCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F302AE2D5C600C74BF7 /* ItemPayCardView.swift */; };
 		4C0D6F332AE3424A00C74BF7 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F322AE3424A00C74BF7 /* RoundedCornerShape.swift */; };
 		4C0D6F352AE348E700C74BF7 /* RevenueCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F342AE348E700C74BF7 /* RevenueCardView.swift */; };
 		4C0D6F372AE3DD4A00C74BF7 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F362AE3DD4A00C74BF7 /* ChartView.swift */; };
@@ -69,13 +68,25 @@
 		4CF1D18A2AE2C194007B72DE /* ItemFoodCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4C92716E2B2B0821009409ED /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4C05035F2B00CCE40042BDEA /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		4C0503612B010D960042BDEA /* CustomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolbar.swift; sourceTree = "<group>"; };
 		4C0C08CE2B029BC100207617 /* FloatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtonView.swift; sourceTree = "<group>"; };
 		4C0C08D42B05D4FC00207617 /* DeleteTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTransactionUseCase.swift; sourceTree = "<group>"; };
 		4C0C08D62B066F6000207617 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		4C0D6F302AE2D5C600C74BF7 /* ItemPayCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPayCardView.swift; sourceTree = "<group>"; };
 		4C0D6F322AE3424A00C74BF7 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
 		4C0D6F342AE348E700C74BF7 /* RevenueCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCardView.swift; sourceTree = "<group>"; };
 		4C0D6F362AE3DD4A00C74BF7 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -147,7 +158,6 @@
 		4C0D6F2D2AE2D3AF00C74BF7 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
-				4C0D6F302AE2D5C600C74BF7 /* ItemPayCardView.swift */,
 				4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */,
 				4C25362C2AE4EC7200DACB6E /* ScanView.swift */,
 				4C05035F2B00CCE40042BDEA /* PaymentView.swift */,
@@ -549,6 +559,7 @@
 				4C731E912ADA8B6300B60760 /* Sources */,
 				4C731E922ADA8B6300B60760 /* Frameworks */,
 				4C731E932ADA8B6300B60760 /* Resources */,
+				4C92716E2B2B0821009409ED /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -646,7 +657,6 @@
 				4C731E9B2ADA8B6300B60760 /* ContentView.swift in Sources */,
 				4C6712302B21F9AD0038933D /* TotalProfitUseCase.swift in Sources */,
 				4C98BEE72AE6A1D000482D25 /* CategoryModel.swift in Sources */,
-				4C0D6F312AE2D5C600C74BF7 /* ItemPayCardView.swift in Sources */,
 				4C7B94312B24051100179A1F /* AddTransactionUseCase.swift in Sources */,
 				4C67122E2B21F6710038933D /* TotalOmzetUseCase.swift in Sources */,
 				4C731E992ADA8B6300B60760 /* skripsiApp.swift in Sources */,
@@ -739,6 +749,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -795,6 +806,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};

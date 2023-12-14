@@ -11,6 +11,7 @@ struct ContentView: View {
     
     @EnvironmentObject var router: Router
     @State private var selectedTab = "transaction"
+    @StateObject private var vm = StatisticViewModel()
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -37,7 +38,7 @@ struct ContentView: View {
                 }
                 .tag("transaction")
             
-            StatisticsView()
+            StatisticsView(vm: vm)
                 .environmentObject(router)
                 .tabItem {
                     Label {

@@ -12,26 +12,14 @@ import FirebaseFirestoreSwift
 
 class FoodListViewModel: ObservableObject {
     
-    @Published var categoriesModel = [CategoryModel]()
     @Published var itemsModel = [ItemModel]()
+    @Published var categoriesModel = [CategoryModel]()
     @Published var transactionModel = [TransactionModel]()
-    @Published var itemTransactionModel = [ItemTransactionModel]()
-    @Published var transactionLoading = false
     @Published var selectedItems = [ItemTransactionModel]()
-    @Published var currentTransaction = TransactionModel(
-        id: nil,
-        orderNumber: "",
-        date: Date(),
-        items: [],
-        cashier: "",
-        totalTransactionBeforeTax: 0,
-        tax: 0,
-        totalTransaction: 0
-    )
+    @Published var itemTransactionModel = [ItemTransactionModel]()
     
-    private let getTransactionUseCase = GetTransactionUseCase()
-    private let getCategoriesUseCase = GetCategoriesUseCase()
     private let getItemUseCase = GetItemsUseCase()
+    private let getCategoriesUseCase = GetCategoriesUseCase()
     private let addTransactionUseCase = AddTransactionUseCase()
     
     func getCategories() {
@@ -94,6 +82,8 @@ class FoodListViewModel: ObservableObject {
                 totalTransaction: totalTransaction
             )
             
+            self.selectedItems = []
+            
             let result = await addTransactionUseCase.execute(params: AddTransactionUseCase.Param(transactionId: transactionId, items: transaction.items, transaction: transaction))
             switch result {
             case .success(let success):
@@ -112,11 +102,6 @@ class FoodListViewModel: ObservableObject {
         let orderNumber = "\(dateString)"
 
         return orderNumber
-    }
-
-    
-    func itemTransactionModel(for item: ItemModel) -> ItemTransactionModel? {
-        return itemTransactionModel.first { $0.item.id == item.id }
     }
     
     func incrementQuantity(for item: ItemModel) {
@@ -148,6 +133,4 @@ class FoodListViewModel: ObservableObject {
             }
         }.compactMap { $0 }
     }
-
-    
 }
