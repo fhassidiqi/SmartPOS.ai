@@ -23,7 +23,28 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    var formatDateMedium: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: self)
+    }
+    
+    var formatDateShort: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: self)
+    }
+    
     func toTimeStamp() -> Timestamp {
         return Timestamp(date: self)
+    }
+    
+    func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
     }
 }

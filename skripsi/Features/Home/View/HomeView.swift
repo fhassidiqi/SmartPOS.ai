@@ -112,8 +112,7 @@ struct HomeView: View {
                         Text(transactionModel.orderNumber)
                             .font(.subheadline).bold()
                         
-                        
-                        Text(formatDate(transactionModel.date))
+                        Text(transactionModel.date.formatDateMedium)
                             .font(.caption2)
                             .foregroundStyle(Color.text.primary30)
                     }
@@ -129,13 +128,6 @@ struct HomeView: View {
                 .cornerRadius(8)
             }
         }
-    }
-    
-    func formatDate(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        return dateFormatter.string(from: date)
     }
 }
 

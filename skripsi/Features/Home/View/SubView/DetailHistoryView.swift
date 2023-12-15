@@ -28,7 +28,7 @@ struct DetailHistoryView: View {
                     .padding(.vertical)
                 
                 orderInformation("Order Number", text: transactionModel.orderNumber)
-                orderInformation("Order Date", text: formatDate(transactionModel.date))
+                orderInformation("Order Date", text: transactionModel.date.formatDateShort)
                 
                 Divider()
                     .padding([.vertical, .bottom])
@@ -110,13 +110,4 @@ extension DetailHistoryView {
         .font(.subheadline)
         .padding(.bottom, 10)
     }
-    
-    private func formatDate(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
-        return dateFormatter.string(from: date)
-    }
-    
-    
 }
