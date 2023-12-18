@@ -27,7 +27,7 @@ class FoodListViewModel: ObservableObject {
             let result = await getCategoriesUseCase.execute(params: GetCategoriesUseCase.Param())
             switch result {
             case .success(let categories):
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.categoriesModel = categories
                 }
             case .failure(let error):
@@ -46,7 +46,7 @@ class FoodListViewModel: ObservableObject {
             let result = await getItemUseCase.execute(params: GetItemsUseCase.Param(categories: categories))
             switch result {
             case .success(let items):
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.itemsModel = items
                 }
             case .failure(let error):
@@ -94,14 +94,14 @@ class FoodListViewModel: ObservableObject {
         }
     }
     
-    private func generateOrderNumber(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "ddMMyyHHmm"
-        let dateString = dateFormatter.string(from: date)
-
-        let orderNumber = "\(dateString)"
-
-        return orderNumber
+    func createUpdatedItemTransaction(for item: ItemModel, withQuantity quantity: Int) -> ItemTransactionModel {
+        return ItemTransactionModel(
+            item: item,
+            quantity: quantity,
+            totalPricePerItem: item.price * quantity,
+            totalProfitPerItem: item.profit * quantity,
+            totalOmzetPerItem: item.omzet * quantity
+        )
     }
     
     func incrementQuantity(for item: ItemModel) {
@@ -132,5 +132,15 @@ class FoodListViewModel: ObservableObject {
                 return itemTransaction
             }
         }.compactMap { $0 }
+    }
+    
+    private func generateOrderNumber(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddMMyyHHmm"
+        let dateString = dateFormatter.string(from: date)
+        
+        let orderNumber = "\(dateString)"
+        
+        return orderNumber
     }
 }

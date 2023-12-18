@@ -26,7 +26,7 @@ struct FoodListView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(0..<2) { promo in
-                                PromoCardView()
+                                PromoCardView() // static
                                     .frame(width: 230, height: 280)
                                     .padding(.horizontal)
                                     .background(Color.background.base)
@@ -79,7 +79,7 @@ struct FoodListView: View {
                     color: Color.primary100,
                     image: "chevron.right.circle.fill",
                     text1: "Item",
-                    text2: "Rp. \(vm.selectedItems.reduce(0) { $0 + $1.totalPricePerItem })",
+                    text2: "\(vm.selectedItems.reduce(0) { $0 + $1.totalPricePerItem }.formattedAsRupiah)",
                     quantity: vm.selectedItems.reduce(0) { $0 + $1.quantity }
                 ) {
                     router.navigateToPayment(transaction: vm.selectedItems)

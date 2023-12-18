@@ -8,15 +8,13 @@
 import Foundation
 
 extension Int {
-    func formatAsCurrency() -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        numberFormatter.minimumFractionDigits = 0
-        numberFormatter.maximumFractionDigits = 0
-
-        // Assuming the currency is IDR (Indonesian Rupiah)
-        numberFormatter.currencyCode = "IDR"
-
-        return numberFormatter.string(from: NSNumber(value: self)) ?? ""
+    var formattedAsRupiah: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = "Rp."
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 0
+        
+        return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
     }
 }

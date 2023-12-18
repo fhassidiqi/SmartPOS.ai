@@ -33,7 +33,7 @@ struct StatisticsView: View {
                             Button {
                                 isPickerPresented.toggle()
                             } label: {
-                                Text(formattedDate(selectedDate))
+                                Text(selectedDate.formatMonthAndYear)
                                     .font(.footnote)
                                 
                                 Image(systemName: "arrowtriangle.down.fill")
@@ -100,17 +100,7 @@ struct StatisticsView: View {
             .presentationDetents([.medium, .large], selection: $settingsDetent)
         }
     }
-    
-    func formattedDate(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM yyyy"
-        return dateFormatter.string(from: date)
-    }
 }
-
-//#Preview {
-//    StatisticsView(vm: .)
-//}
 
 struct MonthYearPickerView: View {
     @Binding var selectedDate: Date

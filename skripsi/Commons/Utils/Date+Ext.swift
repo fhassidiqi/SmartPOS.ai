@@ -23,6 +23,12 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    var formatMonthAndYear: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        return formatter.string(from: self)
+    }
+    
     var formatDateMedium: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium

@@ -23,21 +23,19 @@ struct FloatingButtonView: View {
     var body: some View {
         Button(action: action){
             HStack {
-                
-                if let text2 = (text2 != nil) && quantity != 0 ? text2 : nil {
+                if let text2 = (text2 != nil && quantity != 0) ? text2 : nil,
+                    let imageName = (image != nil) ? image! : nil {
                     Text("\(quantity ?? 0) \(text1)")
                     
                     Spacer()
                     
                     Text(text2)
-                } else {
-                    Text("\(text1)")
-                }
-                
-                if let imageName = image {
+                    
                     Image(systemName: imageName)
                         .resizable()
                         .frame(width: 25, height: 25)
+                } else {
+                    Text("\(text1)")
                 }
             }
             .font(.headline)

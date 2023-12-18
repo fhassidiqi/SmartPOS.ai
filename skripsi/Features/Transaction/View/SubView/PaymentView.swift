@@ -11,8 +11,9 @@ struct PaymentView: View {
     
     @EnvironmentObject private var router: Router
     @EnvironmentObject var vm: FoodListViewModel
-    var payment: Int? = 50000
+    @State private var manualAmount: String = ""
     @State private var isActive = false
+    @State private var paymentType: PaymentType = .manual
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -21,11 +22,10 @@ struct PaymentView: View {
             
             ScrollView {
                 itemSection
-                    .padding(.bottom, 8)
                 paymentSummarySection
             }
             
-            if payment != 0 {
+            if !manualAmount.isEmpty && Double(manualAmount) ?? 0 >= Double(totalWithTax()) {
                 FloatingButtonView(
                     color: Color.primary100,
                     image: "",
@@ -82,24 +82,25 @@ struct PaymentView: View {
             
             Divider()
             
-            paymentInfo(title: "Total", value: "\(formattedPrice(totalPrice()))")
-            paymentInfo(title: "Tax 10%", value: "\(formattedPrice(calculateTax()))")
-            paymentInfo(title: "Total", value: "\(formattedPrice(totalWithTax()))").bold()
-            paymentInfo(title: "Cash", value: "\(formattedPrice(payment ?? 0))")
-            paymentInfo(title: "Change", value: "\(formattedPrice(calculateChange()))")
+            paymentInfo(title: "Total", value: "\(totalPrice().formattedAsRupiah)")
+            paymentInfo(title: "Tax 10%", value: "\(calculateTax().formattedAsRupiah)")
+            paymentInfo(title: "Total", value: "\(totalWithTax().formattedAsRupiah)").bold()
+            selectedPaymentType()
+            paymentInfo(title: "Change", value: "\(calculateChange().formattedAsRupiah)")
         }
         .background(Color.background.base)
     }
     
     private func paymentInfo(title: String, value: String) -> some View {
         VStack {
-            HStack {
+            HStack(spacing: 0) {
                 Text(title)
                 Spacer()
-                Text(value).font(.callout)
-                
+                Text(value)
+                    .font(.callout)
             }
-            .padding()
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
             .background(Color.background.base)
             
             Divider()
@@ -107,14 +108,47 @@ struct PaymentView: View {
         }
     }
     
-    private func formattedPrice(_ amount: Int) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencySymbol = "Rp."
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 0
-        
-        return formatter.string(from: NSNumber(value: amount)) ?? "\(amount)"
+    private func selectedPaymentType() -> some View {
+        VStack {
+            HStack {
+                Picker("Choose Payment", selection: $paymentType) {
+                    ForEach(PaymentType.allCases) { type in
+                        Text(type.rawValue)
+                            .tag(type)
+                    }
+                }
+                .background(Color.primary20)
+                .cornerRadius(16)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 16)
+                        .inset(by: 0.5)
+                        .stroke(Color.primary100)
+                }
+                .onChange(of: paymentType, perform: handlePaymentTypeSelection)
+                
+                Spacer()
+                
+                ZStack(alignment: .leading) {
+                    Text("Rp.")
+                        .font(.callout)
+                        .foregroundColor(.primary)
+                        .padding(.leading, 8)
+                        .opacity(manualAmount.isEmpty ? 0 : 1)
+                    
+                    TextField("Enter Amount", text: $manualAmount)
+                        .font(.callout)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.trailing)
+                }
+                .frame(width: 100)
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
+            .background(Color.background.base)
+            
+            Divider()
+                .padding(.horizontal)
+        }
     }
     
     private func totalPrice() -> Int {
@@ -130,17 +164,28 @@ struct PaymentView: View {
     }
     
     private func calculateChange() -> Int {
-        let totalPrice = Double(totalPrice()) * 1.1
-        return Int(Double(payment ?? 0) - totalPrice)
+        let totalPrice = Double(totalWithTax())
+        guard let enteredAmount = Double(manualAmount) else {
+            return 0
+        }
+        return Int(enteredAmount - totalPrice)
     }
     
-    private func createUpdatedItemTransaction(withQuantity quantity: Int) -> ItemTransactionModel {
-        return ItemTransactionModel(
-            item: vm.selectedItems[0].item,
-            quantity: quantity,
-            totalPricePerItem: vm.selectedItems[0].item.price * quantity,
-            totalProfitPerItem: vm.selectedItems[0].item.profit * quantity,
-            totalOmzetPerItem: vm.selectedItems[0].item.omzet * quantity
-        )
+    private func handlePaymentTypeSelection(_ selectedPaymentType: PaymentType) {
+        switch selectedPaymentType {
+        case .manual:
+            break
+        case .cash:
+            router.navigate(to: .scanQR)
+        case .qr:
+            router.navigate(to: .cameraView)
+        }
     }
+}
+
+enum PaymentType: String, CaseIterable, Identifiable {
+    case manual = "Payment"
+    case cash = "Cash"
+    case qr = "QR"
+    var id: PaymentType { self }
 }

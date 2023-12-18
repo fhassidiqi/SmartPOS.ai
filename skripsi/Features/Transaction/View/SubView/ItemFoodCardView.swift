@@ -35,9 +35,7 @@ struct ItemFoodCardView: View {
                 if itemTransactionModel.quantity == 0 {
                     Button {
                         vm.incrementQuantity(for: itemModel)
-
-                        let updatedItemTransaction = createUpdatedItemTransaction(withQuantity: itemTransactionModel.quantity + 1)
-                        onAddButtonTapped(updatedItemTransaction)
+                        onAddButtonTapped(vm.createUpdatedItemTransaction(for: itemModel, withQuantity: itemTransactionModel.quantity + 1))
                         
                     } label: {
                         Text("Add")
@@ -56,7 +54,7 @@ struct ItemFoodCardView: View {
                     HStack {
                         Button {
                             vm.decrementQuantity(for: itemModel)
-                            onAddButtonTapped(createUpdatedItemTransaction(withQuantity: itemTransactionModel.quantity - 1))
+                            onAddButtonTapped(vm.createUpdatedItemTransaction(for: itemModel, withQuantity: itemTransactionModel.quantity - 1))
                         } label: {
                             Image(systemName: "minus.circle")
                                 .font(.caption)
@@ -71,7 +69,7 @@ struct ItemFoodCardView: View {
                         
                         Button {
                             vm.incrementQuantity(for: itemModel)
-                            onAddButtonTapped(createUpdatedItemTransaction(withQuantity: itemTransactionModel.quantity + 1))
+                            onAddButtonTapped(vm.createUpdatedItemTransaction(for: itemModel, withQuantity: itemTransactionModel.quantity + 1))
                         } label: {
                             Image(systemName: "plus.circle")
                                 .font(.caption)
@@ -103,14 +101,5 @@ struct ItemFoodCardView: View {
                 }
             }
         }
-    }
-    private func createUpdatedItemTransaction(withQuantity quantity: Int) -> ItemTransactionModel {
-        return ItemTransactionModel(
-            item: itemTransactionModel.item,
-            quantity: quantity,
-            totalPricePerItem: itemModel.price * quantity,
-            totalProfitPerItem: itemModel.profit * quantity,
-            totalOmzetPerItem: itemModel.omzet * quantity
-        )
     }
 }
