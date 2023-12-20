@@ -34,6 +34,7 @@ struct skripsiApp: App {
                             FoodListView()
                         case .scanQR:
                             ScanQRView()
+                                .environmentObject(vm)
                         }
                     }
                     .navigationDestination(for: TransactionModel.self) { transaction in

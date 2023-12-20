@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 
 class FoodListViewModel: ObservableObject {
     
+    @Published var payment: String = ""
     @Published var itemsModel = [ItemModel]()
     @Published var categoriesModel = [CategoryModel]()
     @Published var transactionModel = [TransactionModel]()
@@ -27,7 +28,7 @@ class FoodListViewModel: ObservableObject {
             let result = await getCategoriesUseCase.execute(params: GetCategoriesUseCase.Param())
             switch result {
             case .success(let categories):
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     self.categoriesModel = categories
                 }
             case .failure(let error):
@@ -46,7 +47,7 @@ class FoodListViewModel: ObservableObject {
             let result = await getItemUseCase.execute(params: GetItemsUseCase.Param(categories: categories))
             switch result {
             case .success(let items):
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     self.itemsModel = items
                 }
             case .failure(let error):
@@ -134,6 +135,23 @@ class FoodListViewModel: ObservableObject {
         }.compactMap { $0 }
     }
     
+    func calculateTotalPrice() -> Int {
+        return selectedItems.reduce(0) { $0 + $1.totalPricePerItem }
+    }
+    
+    func calculateTax() -> Int {
+        return Int(Double(calculateTotalPrice()) * 0.1)
+    }
+    
+    func calculateTotalWithTax() -> Int {
+        return Int(Double(calculateTotalPrice()) * 1.1)
+    }
+    
+    func calculateChange(enteredAmount: Double) -> Int {
+        let totalPrice = Double(calculateTotalWithTax())
+        return Int(enteredAmount - totalPrice)
+    }
+    
     private func generateOrderNumber(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "ddMMyyHHmm"
@@ -143,4 +161,5 @@ class FoodListViewModel: ObservableObject {
         
         return orderNumber
     }
+    
 }

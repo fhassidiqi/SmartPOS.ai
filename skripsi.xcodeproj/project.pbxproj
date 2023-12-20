@@ -28,6 +28,11 @@
 		4C3AE54D2B32D38E00C36EEB /* TodayRevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE54C2B32D38E00C36EEB /* TodayRevenueView.swift */; };
 		4C3AE54F2B32D4A100C36EEB /* MonthlyRevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE54E2B32D4A100C36EEB /* MonthlyRevenueView.swift */; };
 		4C3AE5522B32DAC200C36EEB /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9271532B284F91009409ED /* Int+Ext.swift */; };
+		4C3AE5542B3327AC00C36EEB /* WatchHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5532B3327AC00C36EEB /* WatchHomeViewModel.swift */; };
+		4C3AE5552B33281B00C36EEB /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE82AE6A29C00482D25 /* TransactionModel.swift */; };
+		4C3AE5562B33282000C36EEB /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEEA2AE6A2E300482D25 /* ItemModel.swift */; };
+		4C3AE5572B33282300C36EEB /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE62AE6A1D000482D25 /* CategoryModel.swift */; };
+		4C3AE5592B332F4A00C36EEB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5582B332F4A00C36EEB /* ImagePicker.swift */; };
 		4C583EB92B0092540066C4E4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C583EB82B0092540066C4E4 /* Router.swift */; };
 		4C591F762B1E183600B82C9C /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C591F752B1E183600B82C9C /* StatisticViewModel.swift */; };
 		4C67122E2B21F6710038933D /* TotalOmzetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */; };
@@ -124,6 +129,8 @@
 		4C3AE54A2B32D31800C36EEB /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		4C3AE54C2B32D38E00C36EEB /* TodayRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRevenueView.swift; sourceTree = "<group>"; };
 		4C3AE54E2B32D4A100C36EEB /* MonthlyRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRevenueView.swift; sourceTree = "<group>"; };
+		4C3AE5532B3327AC00C36EEB /* WatchHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHomeViewModel.swift; sourceTree = "<group>"; };
+		4C3AE5582B332F4A00C36EEB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4C583EB82B0092540066C4E4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4C591F752B1E183600B82C9C /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
 		4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalOmzetUseCase.swift; sourceTree = "<group>"; };
@@ -203,6 +210,7 @@
 				4C25362C2AE4EC7200DACB6E /* ScanQRView.swift */,
 				4C9753F32B2EFFB6008BF421 /* CameraView.swift */,
 				4C05035F2B00CCE40042BDEA /* PaymentView.swift */,
+				4C3AE5582B332F4A00C36EEB /* ImagePicker.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -233,6 +241,7 @@
 				4C3AE5512B32D9CA00C36EEB /* Components */,
 				4C3AE5502B32D9BE00C36EEB /* MonthlyRevenue */,
 				4C3AE5492B32D2F200C36EEB /* TodayRevenue */,
+				4C3AE5532B3327AC00C36EEB /* WatchHomeViewModel.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -765,13 +774,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C3AE5562B33282000C36EEB /* ItemModel.swift in Sources */,
+				4C3AE5552B33281B00C36EEB /* TransactionModel.swift in Sources */,
 				4C3AE53B2B32C32100C36EEB /* ContentView.swift in Sources */,
 				4C3AE5392B32C32100C36EEB /* skripsi_watchApp.swift in Sources */,
 				4C3AE54B2B32D31800C36EEB /* ReportView.swift in Sources */,
 				4C3AE54D2B32D38E00C36EEB /* TodayRevenueView.swift in Sources */,
 				4C3AE5522B32DAC200C36EEB /* Int+Ext.swift in Sources */,
+				4C3AE5572B33282300C36EEB /* CategoryModel.swift in Sources */,
 				4C3AE5472B32C36500C36EEB /* Colors+Ext.swift in Sources */,
 				4C3AE54F2B32D4A100C36EEB /* MonthlyRevenueView.swift in Sources */,
+				4C3AE5542B3327AC00C36EEB /* WatchHomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +819,7 @@
 				4C7B94312B24051100179A1F /* AddTransactionUseCase.swift in Sources */,
 				4C67122E2B21F6710038933D /* TotalOmzetUseCase.swift in Sources */,
 				4C731E992ADA8B6300B60760 /* skripsiApp.swift in Sources */,
+				4C3AE5592B332F4A00C36EEB /* ImagePicker.swift in Sources */,
 				4C0D6F332AE3424A00C74BF7 /* RoundedCornerShape.swift in Sources */,
 				4C6A28B62ADC1D8A0097FAB1 /* DetailHistoryView.swift in Sources */,
 				4C0503622B010D960042BDEA /* CustomToolbar.swift in Sources */,

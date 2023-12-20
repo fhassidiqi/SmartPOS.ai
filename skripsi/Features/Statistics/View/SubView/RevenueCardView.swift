@@ -31,15 +31,17 @@ struct RevenueCardView: View {
             .font(.caption)
             .fontWeight(.semibold)
             
-            Text("Rp. \(currentValue)")
+            Text("\(currentValue.formattedAsRupiah)")
                 .font(.headline)
             
-            Text("Compared to (Rp. \(previousValue) in last month)")
+            Text("Compared to (\(previousValue.formattedAsRupiah) in last month)")
                 .font(.caption2)
                 .foregroundStyle(Color.text.primary30)
         }
-        .frame(width: 140, height: 100)
-        .padding()
+        .frame(maxWidth: .infinity)
+        .frame(height: 100)
+        .padding(.horizontal)
+        .padding(.vertical, 8)
         .background(Color.background.base)
         .cornerRadius(20)
     }

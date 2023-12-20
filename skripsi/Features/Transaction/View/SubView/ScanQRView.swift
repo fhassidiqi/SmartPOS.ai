@@ -10,6 +10,7 @@ import SwiftUI
 struct ScanQRView: View {
     
     @EnvironmentObject private var router: Router
+    @EnvironmentObject var vm: FoodListViewModel
     
     var body: some View {
         ZStack {
@@ -19,7 +20,10 @@ struct ScanQRView: View {
             VStack {
                 Image("QR")
                     .resizable()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 400)
+                
+                Spacer()
                 
                 FloatingButtonView (
                     color: Color.primary100,
@@ -28,6 +32,7 @@ struct ScanQRView: View {
                     text2: "",
                     quantity: 0
                 ) {
+                    vm.payment = "\(vm.calculateTotalWithTax())"
                     router.navigateBack()
                 }
             }
@@ -42,8 +47,4 @@ struct ScanQRView: View {
         .navigationBarBackButtonHidden()
         .toolbarBackground(Color.primary100, for: .automatic)
     }
-}
-
-#Preview {
-    ScanQRView()
 }

@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct TodayRevenueView: View {
+    
     @State private var selectedTab = 0
+    @StateObject private var vm = WatchHomeViewModel()
     
     var body: some View {
         NavigationStack {

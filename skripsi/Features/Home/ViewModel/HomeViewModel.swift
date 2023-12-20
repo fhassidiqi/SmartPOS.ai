@@ -111,14 +111,15 @@ extension HomeViewModel: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         guard let request = message["request"] as? String else {
             print("Invalid request")
             return
         }
-        
+
         switch request {
         case "getTodayIncome":
+            let todayIncome = self.todayIncome
             let todayIncomeData = ["todayIncome": "\(todayIncome)"]
             session.sendMessage(todayIncomeData, replyHandler: nil, errorHandler: nil)
             break

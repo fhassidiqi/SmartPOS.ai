@@ -11,7 +11,6 @@ struct PaymentView: View {
     
     @EnvironmentObject private var router: Router
     @EnvironmentObject var vm: FoodListViewModel
-    @State private var manualAmount: String = ""
     @State private var isActive = false
     @State private var paymentType: PaymentType = .manual
     
@@ -25,7 +24,7 @@ struct PaymentView: View {
                 paymentSummarySection
             }
             
-            if !manualAmount.isEmpty && Double(manualAmount) ?? 0 >= Double(totalWithTax()) {
+            if !vm.payment.isEmpty && Double(vm.payment) ?? 0 >= Double(vm.calculateTotalWithTax()) {
                 FloatingButtonView(
                     color: Color.primary100,
                     image: "",
@@ -82,11 +81,11 @@ struct PaymentView: View {
             
             Divider()
             
-            paymentInfo(title: "Total", value: "\(totalPrice().formattedAsRupiah)")
-            paymentInfo(title: "Tax 10%", value: "\(calculateTax().formattedAsRupiah)")
-            paymentInfo(title: "Total", value: "\(totalWithTax().formattedAsRupiah)").bold()
+            paymentInfo(title: "Total", value: "\(vm.calculateTotalPrice().formattedAsRupiah)")
+            paymentInfo(title: "Tax 10%", value: "\(vm.calculateTax().formattedAsRupiah)")
+            paymentInfo(title: "Total", value: "\(vm.calculateTotalWithTax().formattedAsRupiah)").bold()
             selectedPaymentType()
-            paymentInfo(title: "Change", value: "\(calculateChange().formattedAsRupiah)")
+            paymentInfo(title: "Change", value: "\(vm.calculateChange(enteredAmount: Double(vm.payment) ?? 0 ).formattedAsRupiah)")
         }
         .background(Color.background.base)
     }
@@ -129,16 +128,19 @@ struct PaymentView: View {
                 Spacer()
                 
                 ZStack(alignment: .leading) {
-                    Text("Rp.")
-                        .font(.callout)
-                        .foregroundColor(.primary)
-                        .padding(.leading, 8)
-                        .opacity(manualAmount.isEmpty ? 0 : 1)
                     
-                    TextField("Enter Amount", text: $manualAmount)
-                        .font(.callout)
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.trailing)
+                    TextField("Enter Amount", text: Binding(
+                        get: {
+                            return vm.payment.isEmpty ? "" : Int(vm.payment)?.formattedAsRupiah ?? vm.payment
+                        },
+                        set: { newValue in
+                            let rawValue = newValue.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                            vm.payment = rawValue
+                        }
+                    ))
+                    .font(.callout)
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.trailing)
                 }
                 .frame(width: 100)
             }
@@ -151,34 +153,14 @@ struct PaymentView: View {
         }
     }
     
-    private func totalPrice() -> Int {
-        vm.selectedItems.reduce(0) { $0 + $1.totalPricePerItem }
-    }
-    
-    private func calculateTax() -> Int {
-        Int(Double(totalPrice()) * 0.1)
-    }
-    
-    private func totalWithTax() -> Int {
-        Int(Double(totalPrice()) * 1.1)
-    }
-    
-    private func calculateChange() -> Int {
-        let totalPrice = Double(totalWithTax())
-        guard let enteredAmount = Double(manualAmount) else {
-            return 0
-        }
-        return Int(enteredAmount - totalPrice)
-    }
-    
     private func handlePaymentTypeSelection(_ selectedPaymentType: PaymentType) {
         switch selectedPaymentType {
         case .manual:
             break
         case .cash:
-            router.navigate(to: .scanQR)
-        case .qr:
             router.navigate(to: .cameraView)
+        case .qr:
+            router.navigate(to: .scanQR)
         }
     }
 }
