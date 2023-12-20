@@ -17,6 +17,17 @@
 		4C0D6F372AE3DD4A00C74BF7 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F362AE3DD4A00C74BF7 /* ChartView.swift */; };
 		4C0D6F392AE422F800C74BF7 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F382AE422F800C74BF7 /* Date+Ext.swift */; };
 		4C25362D2AE4EC7200DACB6E /* ScanQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25362C2AE4EC7200DACB6E /* ScanQRView.swift */; };
+		4C3AE5102B327E9F00C36EEB /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C3AE50F2B327E9F00C36EEB /* WatchConnectivity.framework */; };
+		4C3AE5392B32C32100C36EEB /* skripsi_watchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5382B32C32100C36EEB /* skripsi_watchApp.swift */; };
+		4C3AE53B2B32C32100C36EEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE53A2B32C32100C36EEB /* ContentView.swift */; };
+		4C3AE53D2B32C32300C36EEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AE53C2B32C32300C36EEB /* Assets.xcassets */; };
+		4C3AE5402B32C32300C36EEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AE53F2B32C32300C36EEB /* Preview Assets.xcassets */; };
+		4C3AE5432B32C32300C36EEB /* skripsi-watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4C3AE5362B32C32100C36EEB /* skripsi-watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4C3AE5472B32C36500C36EEB /* Colors+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A289B2ADA967C0097FAB1 /* Colors+Ext.swift */; };
+		4C3AE54B2B32D31800C36EEB /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE54A2B32D31800C36EEB /* ReportView.swift */; };
+		4C3AE54D2B32D38E00C36EEB /* TodayRevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE54C2B32D38E00C36EEB /* TodayRevenueView.swift */; };
+		4C3AE54F2B32D4A100C36EEB /* MonthlyRevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE54E2B32D4A100C36EEB /* MonthlyRevenueView.swift */; };
+		4C3AE5522B32DAC200C36EEB /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9271532B284F91009409ED /* Int+Ext.swift */; };
 		4C583EB92B0092540066C4E4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C583EB82B0092540066C4E4 /* Router.swift */; };
 		4C591F762B1E183600B82C9C /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C591F752B1E183600B82C9C /* StatisticViewModel.swift */; };
 		4C67122E2B21F6710038933D /* TotalOmzetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */; };
@@ -43,9 +54,8 @@
 		4C8E6D8E2AFE157300D853C6 /* TransactionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E6D8D2AFE157300D853C6 /* TransactionResponse.swift */; };
 		4C8E6D902AFE290F00D853C6 /* TransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E6D8F2AFE290F00D853C6 /* TransactionRepository.swift */; };
 		4C8E6D932AFE5FB200D853C6 /* GetTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E6D922AFE5FB200D853C6 /* GetTransactionUseCase.swift */; };
-		4C9271542B284F91009409ED /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9271532B284F91009409ED /* Double+Ext.swift */; };
+		4C9271542B284F91009409ED /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9271532B284F91009409ED /* Int+Ext.swift */; };
 		4C9753EE2B2C2DD9008BF421 /* SwipeActionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9753ED2B2C2DD9008BF421 /* SwipeActionModifier.swift */; };
-		4C9753F02B2D1254008BF421 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9753EF2B2D1254008BF421 /* String+Ext.swift */; };
 		4C9753F42B2EFFB6008BF421 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9753F32B2EFFB6008BF421 /* CameraView.swift */; };
 		4C98BEE52AE5737700482D25 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 4C98BEE42AE5737700482D25 /* FirebaseAppCheck */; };
 		4C98BEE72AE6A1D000482D25 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE62AE6A1D000482D25 /* CategoryModel.swift */; };
@@ -70,6 +80,16 @@
 		4CF1D18A2AE2C194007B72DE /* ItemFoodCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4C3AE5412B32C32300C36EEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C731E8D2ADA8B6300B60760 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C3AE5352B32C32100C36EEB;
+			remoteInfo = "skripsi-watch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		4C92716E2B2B0821009409ED /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -77,6 +97,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
+				4C3AE5432B32C32300C36EEB /* skripsi-watch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +115,15 @@
 		4C0D6F362AE3DD4A00C74BF7 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		4C0D6F382AE422F800C74BF7 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		4C25362C2AE4EC7200DACB6E /* ScanQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRView.swift; sourceTree = "<group>"; };
+		4C3AE50F2B327E9F00C36EEB /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
+		4C3AE5362B32C32100C36EEB /* skripsi-watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "skripsi-watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C3AE5382B32C32100C36EEB /* skripsi_watchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skripsi_watchApp.swift; sourceTree = "<group>"; };
+		4C3AE53A2B32C32100C36EEB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4C3AE53C2B32C32300C36EEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C3AE53F2B32C32300C36EEB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4C3AE54A2B32D31800C36EEB /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		4C3AE54C2B32D38E00C36EEB /* TodayRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRevenueView.swift; sourceTree = "<group>"; };
+		4C3AE54E2B32D4A100C36EEB /* MonthlyRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRevenueView.swift; sourceTree = "<group>"; };
 		4C583EB82B0092540066C4E4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4C591F752B1E183600B82C9C /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
 		4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalOmzetUseCase.swift; sourceTree = "<group>"; };
@@ -121,9 +151,8 @@
 		4C8E6D8D2AFE157300D853C6 /* TransactionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionResponse.swift; sourceTree = "<group>"; };
 		4C8E6D8F2AFE290F00D853C6 /* TransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepository.swift; sourceTree = "<group>"; };
 		4C8E6D922AFE5FB200D853C6 /* GetTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionUseCase.swift; sourceTree = "<group>"; };
-		4C9271532B284F91009409ED /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
+		4C9271532B284F91009409ED /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
 		4C9753ED2B2C2DD9008BF421 /* SwipeActionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionModifier.swift; sourceTree = "<group>"; };
-		4C9753EF2B2D1254008BF421 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		4C9753F32B2EFFB6008BF421 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		4C98BEE62AE6A1D000482D25 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		4C98BEE82AE6A29C00482D25 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
@@ -141,6 +170,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4C3AE5332B32C32100C36EEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C731E922ADA8B6300B60760 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -150,6 +186,7 @@
 				4C98BF0B2AE92A8500482D25 /* FirebaseFirestoreSwift in Frameworks */,
 				4C98BF112AE94D8B00482D25 /* FirebaseAnalytics in Frameworks */,
 				4C98BEE52AE5737700482D25 /* FirebaseAppCheck in Frameworks */,
+				4C3AE5102B327E9F00C36EEB /* WatchConnectivity.framework in Frameworks */,
 				4C98BF132AE94D9300482D25 /* FirebaseAnalyticsSwift in Frameworks */,
 				4C98BF092AE92A7600482D25 /* FirebaseFirestore in Frameworks */,
 				4C98BF0D2AE92A9200482D25 /* FirebaseAuth in Frameworks */,
@@ -168,6 +205,60 @@
 				4C05035F2B00CCE40042BDEA /* PaymentView.swift */,
 			);
 			path = SubView;
+			sourceTree = "<group>";
+		};
+		4C3AE5372B32C32100C36EEB /* skripsi-watch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				4C3AE5482B32D2E100C36EEB /* Features */,
+				4C3AE5382B32C32100C36EEB /* skripsi_watchApp.swift */,
+				4C3AE53A2B32C32100C36EEB /* ContentView.swift */,
+				4C3AE53C2B32C32300C36EEB /* Assets.xcassets */,
+				4C3AE53E2B32C32300C36EEB /* Preview Content */,
+			);
+			path = "skripsi-watch Watch App";
+			sourceTree = "<group>";
+		};
+		4C3AE53E2B32C32300C36EEB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4C3AE53F2B32C32300C36EEB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4C3AE5482B32D2E100C36EEB /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				4C3AE5512B32D9CA00C36EEB /* Components */,
+				4C3AE5502B32D9BE00C36EEB /* MonthlyRevenue */,
+				4C3AE5492B32D2F200C36EEB /* TodayRevenue */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		4C3AE5492B32D2F200C36EEB /* TodayRevenue */ = {
+			isa = PBXGroup;
+			children = (
+				4C3AE54C2B32D38E00C36EEB /* TodayRevenueView.swift */,
+			);
+			path = TodayRevenue;
+			sourceTree = "<group>";
+		};
+		4C3AE5502B32D9BE00C36EEB /* MonthlyRevenue */ = {
+			isa = PBXGroup;
+			children = (
+				4C3AE54E2B32D4A100C36EEB /* MonthlyRevenueView.swift */,
+			);
+			path = MonthlyRevenue;
+			sourceTree = "<group>";
+		};
+		4C3AE5512B32D9CA00C36EEB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4C3AE54A2B32D31800C36EEB /* ReportView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		4C583EB72B00924B0066C4E4 /* Router */ = {
@@ -277,8 +368,7 @@
 				4C6A289E2ADA98230097FAB1 /* Rounded+Ext.swift */,
 				4C0D6F382AE422F800C74BF7 /* Date+Ext.swift */,
 				4C0C08D62B066F6000207617 /* Logger.swift */,
-				4C9271532B284F91009409ED /* Double+Ext.swift */,
-				4C9753EF2B2D1254008BF421 /* String+Ext.swift */,
+				4C9271532B284F91009409ED /* Int+Ext.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -442,6 +532,7 @@
 			children = (
 				4C98BF182AE956D100482D25 /* GoogleService-Info.plist */,
 				4C731E972ADA8B6300B60760 /* skripsi */,
+				4C3AE5372B32C32100C36EEB /* skripsi-watch Watch App */,
 				4C731E962ADA8B6300B60760 /* Products */,
 				4C98BF072AE92A7600482D25 /* Frameworks */,
 			);
@@ -451,6 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				4C731E952ADA8B6300B60760 /* skripsi.app */,
+				4C3AE5362B32C32100C36EEB /* skripsi-watch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -551,6 +643,7 @@
 		4C98BF072AE92A7600482D25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C3AE50F2B327E9F00C36EEB /* WatchConnectivity.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -558,6 +651,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4C3AE5352B32C32100C36EEB /* skripsi-watch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C3AE5442B32C32300C36EEB /* Build configuration list for PBXNativeTarget "skripsi-watch Watch App" */;
+			buildPhases = (
+				4C3AE5322B32C32100C36EEB /* Sources */,
+				4C3AE5332B32C32100C36EEB /* Frameworks */,
+				4C3AE5342B32C32100C36EEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "skripsi-watch Watch App";
+			productName = "skripsi-watch Watch App";
+			productReference = 4C3AE5362B32C32100C36EEB /* skripsi-watch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4C731E942ADA8B6300B60760 /* skripsi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C731EA32ADA8B6400B60760 /* Build configuration list for PBXNativeTarget "skripsi" */;
@@ -570,6 +680,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4C3AE5422B32C32300C36EEB /* PBXTargetDependency */,
 			);
 			name = skripsi;
 			packageProductDependencies = (
@@ -596,6 +707,9 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					4C3AE5352B32C32100C36EEB = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
 					4C731E942ADA8B6300B60760 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -619,11 +733,21 @@
 			projectRoot = "";
 			targets = (
 				4C731E942ADA8B6300B60760 /* skripsi */,
+				4C3AE5352B32C32100C36EEB /* skripsi-watch Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4C3AE5342B32C32100C36EEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C3AE5402B32C32300C36EEB /* Preview Assets.xcassets in Resources */,
+				4C3AE53D2B32C32300C36EEB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C731E932ADA8B6300B60760 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -637,6 +761,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4C3AE5322B32C32100C36EEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C3AE53B2B32C32100C36EEB /* ContentView.swift in Sources */,
+				4C3AE5392B32C32100C36EEB /* skripsi_watchApp.swift in Sources */,
+				4C3AE54B2B32D31800C36EEB /* ReportView.swift in Sources */,
+				4C3AE54D2B32D38E00C36EEB /* TodayRevenueView.swift in Sources */,
+				4C3AE5522B32DAC200C36EEB /* Int+Ext.swift in Sources */,
+				4C3AE5472B32C36500C36EEB /* Colors+Ext.swift in Sources */,
+				4C3AE54F2B32D4A100C36EEB /* MonthlyRevenueView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C731E912ADA8B6300B60760 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -645,7 +783,7 @@
 				4C98BF002AE6BF0300482D25 /* GetItemsUseCase.swift in Sources */,
 				4C98BF022AE921BB00482D25 /* FoodListViewModel.swift in Sources */,
 				4C6A28B32ADBA64D0097FAB1 /* HistoryTransactionCard.swift in Sources */,
-				4C9271542B284F91009409ED /* Double+Ext.swift in Sources */,
+				4C9271542B284F91009409ED /* Int+Ext.swift in Sources */,
 				4C0C08D52B05D4FC00207617 /* DeleteTransactionUseCase.swift in Sources */,
 				4C0D6F352AE348E700C74BF7 /* RevenueCardView.swift in Sources */,
 				4C6A28962ADA962D0097FAB1 /* SettingsManager.swift in Sources */,
@@ -659,7 +797,6 @@
 				4C98BF042AE9281900482D25 /* CategoryResponse.swift in Sources */,
 				4C6A28C02ADC26290097FAB1 /* StatisticsView.swift in Sources */,
 				4C98BEFD2AE6BE6600482D25 /* GetCategoriesUseCase.swift in Sources */,
-				4C9753F02B2D1254008BF421 /* String+Ext.swift in Sources */,
 				4C98BEEF2AE6A7B600482D25 /* RemoteDataSource.swift in Sources */,
 				4C9753EE2B2C2DD9008BF421 /* SwipeActionModifier.swift in Sources */,
 				4C731E9B2ADA8B6300B60760 /* ContentView.swift in Sources */,
@@ -696,7 +833,75 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4C3AE5422B32C32300C36EEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C3AE5352B32C32100C36EEB /* skripsi-watch Watch App */;
+			targetProxy = 4C3AE5412B32C32300C36EEB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		4C3AE5452B32C32300C36EEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"skripsi-watch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 8DNTD99SB6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "skripsi-watch";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kuliah.skripsi;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kuliah.skripsi.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		4C3AE5462B32C32300C36EEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"skripsi-watch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 8DNTD99SB6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "skripsi-watch";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kuliah.skripsi;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kuliah.skripsi.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 		4C731EA12ADA8B6400B60760 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -821,6 +1026,7 @@
 		4C731EA42ADA8B6400B60760 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -850,6 +1056,7 @@
 		4C731EA52ADA8B6400B60760 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -879,6 +1086,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4C3AE5442B32C32300C36EEB /* Build configuration list for PBXNativeTarget "skripsi-watch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C3AE5452B32C32300C36EEB /* Debug */,
+				4C3AE5462B32C32300C36EEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4C731E902ADA8B6300B60760 /* Build configuration list for PBXProject "skripsi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

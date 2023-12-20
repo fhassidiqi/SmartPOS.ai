@@ -12,22 +12,24 @@ struct ScanQRView: View {
     @EnvironmentObject private var router: Router
     
     var body: some View {
-        ZStack (alignment: .bottom) {
+        ZStack {
             Color.background.primary
                 .ignoresSafeArea()
             
-            Image("QR")
-                .resizable()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            FloatingButtonView (
-                color: Color.primary100,
-                image: "",
-                text1: "Done",
-                text2: "",
-                quantity: 0
-            ) {
-                router.navigateBack()
+            VStack {
+                Image("QR")
+                    .resizable()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                FloatingButtonView (
+                    color: Color.primary100,
+                    image: "",
+                    text1: "Done",
+                    text2: "",
+                    quantity: 0
+                ) {
+                    router.navigateBack()
+                }
             }
         }
         .toolbar {

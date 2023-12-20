@@ -1,5 +1,5 @@
 //
-//  Double+Ext.swift
+//  Int+Ext.swift
 //  skripsi
 //
 //  Created by Falah Hasbi Assidiqi on 12/12/23.

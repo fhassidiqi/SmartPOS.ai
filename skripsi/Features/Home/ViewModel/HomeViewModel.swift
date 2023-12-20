@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import WatchConnectivity
 
-class HomeViewModel: ObservableObject {
+class HomeViewModel: NSObject, ObservableObject {
     
     @Published var fetchingTransaction = false
     @Published var currentSortingOption: SortType = .date
@@ -17,7 +18,7 @@ class HomeViewModel: ObservableObject {
     private let deleteItemTransactionUseCase = DeleteTransactionUseCase()
     
     var todayIncome: String {
-        let today = Date() 
+        let today = Date()
         let filteredTransactions = transactionModel.filter { Calendar.current.isDate($0.date, inSameDayAs: today) }
         let totalIncome = filteredTransactions.reduce(0) { $0 + $1.totalTransaction }
         let formattedIncome = NumberFormatter.localizedString(from: NSNumber(value: totalIncome), number: .currency)
@@ -90,13 +91,40 @@ enum SortType: String, CaseIterable, Identifiable {
     case orderNumber
     case date
     
-    var id: Self { return self }  // Identifiable conformance
+    var id: Self { return self }
     
     var title: String {
         switch self {
         case .cashier: return "Cashier"
         case .orderNumber: return "Order Number"
         case .date: return "Date"
+        }
+    }
+}
+
+extension HomeViewModel: WCSessionDelegate {
+    func sessionDidBecomeInactive(_ session: WCSession) {
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        guard let request = message["request"] as? String else {
+            print("Invalid request")
+            return
+        }
+        
+        switch request {
+        case "getTodayIncome":
+            let todayIncomeData = ["todayIncome": "\(todayIncome)"]
+            session.sendMessage(todayIncomeData, replyHandler: nil, errorHandler: nil)
+            break
+        default:
+            print("Invalid request")
+            break
         }
     }
 }

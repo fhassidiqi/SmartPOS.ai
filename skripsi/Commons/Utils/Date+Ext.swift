@@ -7,10 +7,9 @@
 
 import Foundation
 import SwiftUI
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 extension Date {
+    
     static func from(year: Int, month: Int, day: Int) -> Date {
         let components = DateComponents(year: year, month: month, day: day)
         
@@ -41,16 +40,5 @@ extension Date {
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
         return dateFormatter.string(from: self)
-    }
-    
-    func toTimeStamp() -> Timestamp {
-        return Timestamp(date: self)
-    }
-    
-    func formatDate(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
-        return dateFormatter.string(from: date)
     }
 }
