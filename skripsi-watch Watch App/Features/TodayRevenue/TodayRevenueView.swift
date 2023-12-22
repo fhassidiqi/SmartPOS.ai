@@ -10,7 +10,7 @@ import SwiftUI
 struct TodayRevenueView: View {
     
     @State private var selectedTab = 0
-    @StateObject private var vm = WatchHomeViewModel()
+    @StateObject private var vm = WatchViewModel()
     
     var body: some View {
         NavigationStack {
@@ -21,7 +21,7 @@ struct TodayRevenueView: View {
                     ScrollViewReader { scrollViewProxy in
                         ReportView(
                             title: "Income",
-                            current: 5000000,
+                            current: Int(vm.todayIncome) ?? 0,
                             previous: 3000000,
                             percentage: 20.2
                         )

@@ -8,11 +8,13 @@
 import Foundation
 import WatchConnectivity
 
-class HomeViewModel: NSObject, ObservableObject {
+class HomeViewModel: ObservableObject {
     
     @Published var fetchingTransaction = false
     @Published var currentSortingOption: SortType = .date
     @Published var transactionModel = [TransactionModel]()
+    
+    let watchConnector = WatchConnector()
     
     private let getTransactionUseCase = GetTransactionUseCase()
     private let deleteItemTransactionUseCase = DeleteTransactionUseCase()
@@ -37,6 +39,12 @@ class HomeViewModel: NSObject, ObservableObject {
                 DispatchQueue.main.sync {
                     self.transactionModel = transaction
                     self.fetchingTransaction = false
+                    
+                    let todayIncome = self.todayIncome
+                    print("Activation state before sending income: \(watchConnector.session.activationState.rawValue)")
+                    
+                    watchConnector.sendTodayIncome(income: todayIncome)
+                    print("\(todayIncome)")
                 }
                 break
             case .failure(let error):
@@ -98,34 +106,6 @@ enum SortType: String, CaseIterable, Identifiable {
         case .cashier: return "Cashier"
         case .orderNumber: return "Order Number"
         case .date: return "Date"
-        }
-    }
-}
-
-extension HomeViewModel: WCSessionDelegate {
-    func sessionDidBecomeInactive(_ session: WCSession) {
-    }
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-    }
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
-        guard let request = message["request"] as? String else {
-            print("Invalid request")
-            return
-        }
-
-        switch request {
-        case "getTodayIncome":
-            let todayIncome = self.todayIncome
-            let todayIncomeData = ["todayIncome": "\(todayIncome)"]
-            session.sendMessage(todayIncomeData, replyHandler: nil, errorHandler: nil)
-            break
-        default:
-            print("Invalid request")
-            break
         }
     }
 }
