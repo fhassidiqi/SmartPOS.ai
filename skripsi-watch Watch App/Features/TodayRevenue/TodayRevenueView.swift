@@ -10,18 +10,19 @@ import SwiftUI
 struct TodayRevenueView: View {
     
     @State private var selectedTab = 0
-    @StateObject private var vm = WatchHomeViewModel()
+    @StateObject private var vm = WatchViewModel()
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.background.base
+                    .ignoresSafeArea()
                 
                 ScrollView {
                     ScrollViewReader { scrollViewProxy in
                         ReportView(
                             title: "Income",
-                            current: 5000000,
+                            current: Int(vm.todayIncome) ?? 0,
                             previous: 3000000,
                             percentage: 20.2
                         )
@@ -33,9 +34,18 @@ struct TodayRevenueView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Daily Report")
                         .font(.headline)
-                    
+                        .foregroundStyle(Color.primaryColor100)
                 }
             }
+        }
+        .onAppear {
+            vm.activateWatchConnectivity()
+            vm.sendRequestToPhone()
+        }
+        .onChange(of: vm.todayIncome) { newTodayIncome in
+            // React to changes in today's income
+            print("Today's income changed to \(newTodayIncome)")
+            // You can update your view as needed
         }
     }
 }

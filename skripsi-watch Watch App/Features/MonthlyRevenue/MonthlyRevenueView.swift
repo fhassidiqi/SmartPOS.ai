@@ -13,6 +13,7 @@ struct MonthlyRevenueView: View {
         NavigationStack {
             ZStack {
                 Color.background.base
+                    .ignoresSafeArea()
 
                 ScrollView {
                     ScrollViewReader { scrollViewProxy in
@@ -39,6 +40,7 @@ struct MonthlyRevenueView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Monthly Report")
                         .font(.headline)
+                        .foregroundStyle(Color.primaryColor100)
                     
                 }
             }

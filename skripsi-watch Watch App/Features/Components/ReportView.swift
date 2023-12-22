@@ -37,7 +37,8 @@ struct ReportView: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(Color.gray)
+        .foregroundStyle(Color.white)
+        .background(Color.background.primary)
         .cornerRadius(12)
         .padding()
     }

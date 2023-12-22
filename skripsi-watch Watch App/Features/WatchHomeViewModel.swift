@@ -8,33 +8,51 @@
 import Foundation
 import WatchConnectivity
 
-final class WatchHomeViewModel: NSObject, ObservableObject, WCSessionDelegate {
-    
-    @Published var selectedTransaction: TransactionModel?
-    @Published var transactionModel = [TransactionModel]()
-    
-    private let session: WCSession = .default
-    
-    var todayIncome: String {
-        let today = Date()
-        let filteredTransactions = transactionModel.filter { Calendar.current.isDate($0.date, inSameDayAs: today) }
-        let totalIncome = filteredTransactions.reduce(0) { $0 + $1.totalTransaction }
-        let formattedIncome = NumberFormatter.localizedString(from: NSNumber(value: totalIncome), number: .currency)
-        return formattedIncome
+class WatchViewModel: NSObject, ObservableObject {
+    @Published var todayIncome: String = "Loading..."
+
+    func activateWatchConnectivity() {
+        if WCSession.isSupported() {
+            WCSession.default.delegate = self
+            WCSession.default.activate()
+        }
     }
-    
-    override init() {
-        super.init()
-        self.selectedTransaction = selectedTransaction
-        self.transactionModel = transactionModel
-        session.delegate = self
-        session.activate()
+
+    func sendRequestToPhone() {
+        if WCSession.default.isReachable {
+            let message = ["request": "getTodayIncome"]
+
+            WCSession.default.sendMessage(message, replyHandler: { response in
+                if let todayIncome = response["todayIncome"] as? String {
+                    DispatchQueue.main.async {
+                        self.todayIncome = todayIncome
+                    }
+                }
+            }, errorHandler: { error in
+                print("Error sending message to iPhone: \(error.localizedDescription)")
+            })
+        } else {
+            print("WatchConnectivity session is not reachable")
+        }
     }
-    
+}
+
+extension WatchViewModel: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if activationState == .activated {
+            print("Watch session activated")
+            sendRequestToPhone()
+        } else {
+            print("Watch session not activated")
+        }
     }
-    
-    func fetchTransaction() {
-        session.sendMessage(["fetchTransaction": true], replyHandler: nil, errorHandler: nil)
+
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        if session.isReachable {
+            print("WatchConnectivity session is now reachable")
+            sendRequestToPhone()
+        } else {
+            print("WatchConnectivity session is not reachable")
+        }
     }
 }
