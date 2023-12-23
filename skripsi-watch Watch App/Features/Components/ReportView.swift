@@ -10,7 +10,7 @@ import SwiftUI
 struct ReportView: View {
     
     let title: String
-    let current: Int
+    let current: String
     let previous: Int
     let percentage: Double
 
@@ -28,7 +28,7 @@ struct ReportView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
             
-            Text("\(current.formattedAsRupiah)")
+            Text(current)
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -44,5 +44,5 @@ struct ReportView: View {
 }
 
 #Preview {
-    ReportView(title: "Omzet", current: 5000000, previous: 3000000, percentage: 20.0)
+    ReportView(title: "Omzet", current: "5000000", previous: 3000000, percentage: 20.0)
 }

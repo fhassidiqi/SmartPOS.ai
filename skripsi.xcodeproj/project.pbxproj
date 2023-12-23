@@ -20,6 +20,7 @@
 		4C3374672B3522B500FEB4A0 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3374662B3522B500FEB4A0 /* WatchConnector.swift */; };
 		4C3374692B35262200FEB4A0 /* WatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3374682B35262200FEB4A0 /* WatchViewModel.swift */; };
 		4C33746A2B353F6400FEB4A0 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C3AE50F2B327E9F00C36EEB /* WatchConnectivity.framework */; };
+		4C33746F2B35673700FEB4A0 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3374662B3522B500FEB4A0 /* WatchConnector.swift */; };
 		4C3AE5392B32C32100C36EEB /* skripsi_watchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5382B32C32100C36EEB /* skripsi_watchApp.swift */; };
 		4C3AE53B2B32C32100C36EEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE53A2B32C32100C36EEB /* ContentView.swift */; };
 		4C3AE53D2B32C32300C36EEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AE53C2B32C32300C36EEB /* Assets.xcassets */; };
@@ -30,7 +31,6 @@
 		4C3AE54D2B32D38E00C36EEB /* TodayRevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE54C2B32D38E00C36EEB /* TodayRevenueView.swift */; };
 		4C3AE54F2B32D4A100C36EEB /* MonthlyRevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE54E2B32D4A100C36EEB /* MonthlyRevenueView.swift */; };
 		4C3AE5522B32DAC200C36EEB /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9271532B284F91009409ED /* Int+Ext.swift */; };
-		4C3AE5542B3327AC00C36EEB /* WatchConnectorToIos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5532B3327AC00C36EEB /* WatchConnectorToIos.swift */; };
 		4C3AE5552B33281B00C36EEB /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE82AE6A29C00482D25 /* TransactionModel.swift */; };
 		4C3AE5562B33282000C36EEB /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEEA2AE6A2E300482D25 /* ItemModel.swift */; };
 		4C3AE5572B33282300C36EEB /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE62AE6A1D000482D25 /* CategoryModel.swift */; };
@@ -141,7 +141,6 @@
 		4C3AE54A2B32D31800C36EEB /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		4C3AE54C2B32D38E00C36EEB /* TodayRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRevenueView.swift; sourceTree = "<group>"; };
 		4C3AE54E2B32D4A100C36EEB /* MonthlyRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRevenueView.swift; sourceTree = "<group>"; };
-		4C3AE5532B3327AC00C36EEB /* WatchConnectorToIos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectorToIos.swift; sourceTree = "<group>"; };
 		4C3AE5582B332F4A00C36EEB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4C3AE55A2B33D49D00C36EEB /* Camera+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Camera+Ext.swift"; sourceTree = "<group>"; };
 		4C3AE55C2B33D4CA00C36EEB /* CameraServices+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CameraServices+Enum.swift"; sourceTree = "<group>"; };
@@ -268,7 +267,6 @@
 				4C3AE5512B32D9CA00C36EEB /* Components */,
 				4C3AE5502B32D9BE00C36EEB /* MonthlyRevenue */,
 				4C3AE5492B32D2F200C36EEB /* TodayRevenue */,
-				4C3AE5532B3327AC00C36EEB /* WatchConnectorToIos.swift */,
 				4C3374682B35262200FEB4A0 /* WatchViewModel.swift */,
 			);
 			path = Features;
@@ -819,6 +817,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C3AE5562B33282000C36EEB /* ItemModel.swift in Sources */,
+				4C33746F2B35673700FEB4A0 /* WatchConnector.swift in Sources */,
 				4C3AE5552B33281B00C36EEB /* TransactionModel.swift in Sources */,
 				4C3374692B35262200FEB4A0 /* WatchViewModel.swift in Sources */,
 				4C3AE53B2B32C32100C36EEB /* ContentView.swift in Sources */,
@@ -829,7 +828,6 @@
 				4C3AE5572B33282300C36EEB /* CategoryModel.swift in Sources */,
 				4C3AE5472B32C36500C36EEB /* Colors+Ext.swift in Sources */,
 				4C3AE54F2B32D4A100C36EEB /* MonthlyRevenueView.swift in Sources */,
-				4C3AE5542B3327AC00C36EEB /* WatchConnectorToIos.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

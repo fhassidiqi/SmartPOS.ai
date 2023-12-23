@@ -19,14 +19,14 @@ struct MonthlyRevenueView: View {
                         VStack {
                             ReportView(
                                 title: "Omzet",
-                                current: 5000000,
+                                current: "5000000",
                                 previous: 3000000,
                                 percentage: 20.2
                             )
 
                             ReportView(
                                 title: "Profit",
-                                current: 4000000,
+                                current: "4000000",
                                 previous: 2500000,
                                 percentage: 20.2
                             )

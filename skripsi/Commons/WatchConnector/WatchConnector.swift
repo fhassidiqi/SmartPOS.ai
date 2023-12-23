@@ -1,97 +1,163 @@
-//
-//  WatchConnector.swift
-//  skripsi
-//
-//  Created by Falah Hasbi Assidiqi on 22/12/23.
-//
-
+// WatchConnector.swift
 import Foundation
 import WatchConnectivity
+import Combine
 
-class WatchConnector: NSObject {
-    
-    var session: WCSession
-    
-    init(session: WCSession = .default) {
-        self.session = session
-        super.init()
-        
-        if WCSession.isSupported() {
-            session.delegate = self
-            session.activate()
-        }
-    }
-    
-    func sendTodayIncome(income: String) {
-        // Check if the session is activated
-        guard session.activationState == .activated else {
-            print("Session not activated")
-            return
-        }
-        
-        print("Activation state before sending income: \(session.activationState.rawValue)")
-        print("Income: \(income)")
-        
-        guard session.isReachable else {
-            print("Watch is not reachable")
-            return
-        }
-        
-        let contextData = ["todayIncome": income]
-
-        session.sendMessage(contextData, replyHandler: { response in
-            print("Application context data sent to watch")
-        }, errorHandler: { error in
-            print("Error sending application context data to watch: \(error.localizedDescription)")
-        })
-    }
-    
-    func sessionReachabilityDidChange(_ session: WCSession) {
-        print("Reachability changed. Is reachable: \(session.isReachable)")
-    }
+struct SerializedIncome: Codable {
+    let income: Int
+    let profit: Int
+    let omzet: Int
+    let date: Date
 }
 
-extension WatchConnector: WCSessionDelegate {
+class WatchSessionDelegate: NSObject, WCSessionDelegate {
+    
+    private var session: WCSession?
+    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("Activation state after completion: \(activationState.rawValue)")
         if let error = error {
-            print("Activation error: \(error.localizedDescription)")
-        } else {
-            print("The session has completed activation.")
+            print("Activation failed with error: \(error.localizedDescription)")
+            return
         }
+        self.session = session
+        print("Activation state: \(activationState.rawValue)")
     }
-
+    
+#if os(iOS)
+    
     func sessionDidBecomeInactive(_ session: WCSession) {
-        print("Session did become inactive.")
-        // Reactivate the session
-        session.activate()
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        // Reactivate the session
         session.activate()
     }
     
-    func session(_ session: WCSession, didBecomeReachable reachable: Bool) {
-        if reachable {
-            sessionReachabilityDidChange(session)
+    func isReachable() {
+        if let session = session, session.isReachable {
+            print("Reachable")
+        } else {
+            print("Not reachable")
         }
-    }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        // Handle received message if needed
     }
     
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        if let income = applicationContext["todayIncome"] as? String {
-            print("Received today's income: \(income)")
-            // Handle the received income data as needed
-        } else {
-            print("Received nil or unexpected application context data.")
+        DispatchQueue.main.async {
+            
+            if session.isReachable {
+                print("Reachable")
+            } else {
+                print("Not reachable")
+            }
+            
+            if let incomeData = applicationContext["todayIncome"] as? Data {
+                let decoder = JSONDecoder()
+                if let todayIncome = try? decoder.decode(String.self, from: incomeData) {
+                    // handle today's income
+                    print("Today's Income: \(todayIncome)")
+                    self.dataSubject.send(todayIncome)
+                } else {
+                    print("some sort of communication error :(")
+                }
+            } else {
+                print("some sort of communication error :(")
+            }
         }
     }
     
-    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-        // Handle received user info if needed
+    let dataSubject: CurrentValueSubject<String, Never>
+    
+    init(_ dataSubject: CurrentValueSubject<String, Never>) {
+        self.dataSubject = dataSubject
+        super.init()
+    }
+    
+    func sendTodayIncome(_ income: String) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(income) {
+            session?.sendMessage(["todayIncome": encoded], replyHandler: nil) { error in
+                print("Error sending income: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+#else
+    var dataSubject = PassthroughSubject<String, Never>()
+    
+    init(_ dataSubject: PassthroughSubject<String, Never>) {
+        self.dataSubject = dataSubject
+        super.init()
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        DispatchQueue.main.async {
+            if let incomeData = message["todayIncome"] as? Data {
+                let decoder = JSONDecoder()
+                if let todayIncome = try? decoder.decode(String.self, from: incomeData) {
+                    // handle today's income
+                    print("Today's Income: \(todayIncome)")
+                    self.dataSubject.send(todayIncome)
+                } else {
+                    print("some sort of communication error :(")
+                }
+            } else {
+                print("some sort of communication error :(")
+            }
+        }
+    }
+#endif
+}
+
+#if os(iOS)
+class CommunicationManager: ObservableObject {
+    var session: WCSession?
+    let delegate: WatchSessionDelegate?
+    let dataSubject = CurrentValueSubject<String, Never>("")
+    
+    @Published private(set) var initializedSuccessfully: Bool = false
+    
+    init(session: WCSession = .default) {
+        if WCSession.isSupported() {
+            let delegate = WatchSessionDelegate(dataSubject)
+            self.session = session
+            self.delegate = delegate
+            
+            session.delegate = delegate
+            session.activate()
+            self.initializedSuccessfully = true
+        } else {
+            self.session = nil
+            self.delegate = nil
+            self.initializedSuccessfully = false
+        }
+        
+    }
+    
+    public func sendTodayIncome(_ income: String) {
+        self.delegate?.sendTodayIncome(income)
     }
 }
+#else
+class CommunicationManager: ObservableObject {
+    var session: WCSession?
+    let delegate: WatchSessionDelegate?
+    let dataSubject = PassthroughSubject<String, Never>()
+    @Published private(set) var initializedSuccessfully: Bool = false
+    
+    init(session: WCSession = .default) {
+        if WCSession.isSupported() {
+            let delegate = WatchSessionDelegate(dataSubject)
+            self.session = session
+            self.delegate = delegate
+            
+            session.delegate = delegate
+            session.activate()
+            self.initializedSuccessfully = true
+            
+        } else {
+            self.session = nil
+            self.delegate = nil
+            self.initializedSuccessfully = false
+        }
+    }
+}
+#endif

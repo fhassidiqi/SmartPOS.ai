@@ -10,7 +10,8 @@ import SwiftUI
 struct TodayRevenueView: View {
     
     @State private var selectedTab = 0
-    @StateObject private var vm = WatchViewModel()
+    @StateObject private var comManager = CommunicationManager()
+    @State private var todayIncome: String = ""
     
     var body: some View {
         NavigationStack {
@@ -21,7 +22,7 @@ struct TodayRevenueView: View {
                     ScrollViewReader { scrollViewProxy in
                         ReportView(
                             title: "Income",
-                            current: Int(vm.todayIncome) ?? 0,
+                            current: todayIncome,
                             previous: 3000000,
                             percentage: 20.2
                         )
@@ -36,6 +37,10 @@ struct TodayRevenueView: View {
                     
                 }
             }
+        }
+        .onReceive(comManager.dataSubject) { data in
+            todayIncome = data
+            print("Data received: \(data)")
         }
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import WatchConnectivity
+import Combine
 
 class HomeViewModel: ObservableObject {
     
@@ -14,7 +15,7 @@ class HomeViewModel: ObservableObject {
     @Published var currentSortingOption: SortType = .date
     @Published var transactionModel = [TransactionModel]()
     
-    let watchConnector = WatchConnector()
+    let communcationManager = CommunicationManager()
     
     private let getTransactionUseCase = GetTransactionUseCase()
     private let deleteItemTransactionUseCase = DeleteTransactionUseCase()
@@ -41,10 +42,8 @@ class HomeViewModel: ObservableObject {
                     self.fetchingTransaction = false
                     
                     let todayIncome = self.todayIncome
-                    print("Activation state before sending income: \(watchConnector.session.activationState.rawValue)")
                     
-                    watchConnector.sendTodayIncome(income: todayIncome)
-                    print("\(todayIncome)")
+                    communcationManager.sendTodayIncome(todayIncome)
                 }
                 break
             case .failure(let error):
