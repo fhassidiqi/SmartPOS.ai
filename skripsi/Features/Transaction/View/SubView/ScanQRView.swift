@@ -26,7 +26,7 @@ struct ScanQRView: View {
                 Spacer()
                 
                 FloatingButtonView (
-                    color: Color.primary100,
+                    color: Color.text.white,
                     image: "",
                     text1: "Done",
                     text2: "",
@@ -45,6 +45,6 @@ struct ScanQRView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.visible, for: .automatic)
         .navigationBarBackButtonHidden()
-        .toolbarBackground(Color.primary100, for: .automatic)
+        .toolbarBackground(Color.primaryColor100, for: .automatic)
     }
 }

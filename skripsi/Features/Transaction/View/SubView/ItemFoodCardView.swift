@@ -41,13 +41,13 @@ struct ItemFoodCardView: View {
                         Text("Add")
                             .font(.caption)
                             .fontWeight(.semibold)
-                            .foregroundStyle(Color.primary100)
+                            .foregroundStyle(Color.primaryColor100)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 4)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 20)
                                     .inset(by: 0.5)
-                                    .strokeBorder(Color.primary100, lineWidth: 1)
+                                    .strokeBorder(Color.primaryColor100, lineWidth: 1)
                             )
                     }
                 } else {
@@ -59,12 +59,12 @@ struct ItemFoodCardView: View {
                             Image(systemName: "minus.circle")
                                 .font(.caption)
                                 .fontWeight(.semibold)
-                                .foregroundStyle(Color.primary100)
+                                .foregroundStyle(Color.primaryColor100)
                         }
                         
                         Text("\(itemTransactionModel.quantity)")
                             .font(.caption).bold()
-                            .foregroundStyle(Color.text.black)
+                            .foregroundStyle(Color.text.primary100)
                             .padding(6)
                         
                         Button {
@@ -74,7 +74,7 @@ struct ItemFoodCardView: View {
                             Image(systemName: "plus.circle")
                                 .font(.caption)
                                 .fontWeight(.semibold)
-                                .foregroundStyle(Color.primary100)
+                                .foregroundStyle(Color.primaryColor100)
                         }
                     }
                 }

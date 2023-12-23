@@ -11,7 +11,7 @@ struct TodayRevenueView: View {
     
     @State private var selectedTab = 0
     @StateObject private var comManager = CommunicationManager()
-    @State private var todayIncome: String = ""
+    @StateObject private var vm = WatchViewModel()
     
     var body: some View {
         NavigationStack {
@@ -21,10 +21,10 @@ struct TodayRevenueView: View {
                 ScrollView {
                     ScrollViewReader { scrollViewProxy in
                         ReportView(
-                            title: "Income",
-                            current: todayIncome,
-                            previous: 3000000,
-                            percentage: 20.2
+                            title: "Today's Income",
+                            current: vm.todayIncome.formattedAsAbbreviation,
+                            previous: vm.yesterdayIncome.formattedAsAbbreviation,
+                            percentage: vm.percentageChange(current: vm.todayIncome, previous: vm.yesterdayIncome)
                         )
                     }
                 }
@@ -39,7 +39,8 @@ struct TodayRevenueView: View {
             }
         }
         .onReceive(comManager.dataSubject) { data in
-            todayIncome = data
+            vm.todayIncome = data[0]
+            vm.yesterdayIncome = data[1]
             print("Data received: \(data)")
         }
     }

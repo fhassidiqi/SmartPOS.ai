@@ -59,7 +59,7 @@ struct DetailHistoryView: View {
         .toolbarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .toolbarBackground(.visible, for: .automatic)
-        .toolbarBackground(Color.primary100, for: .automatic)
+        .toolbarBackground(Color.primaryColor100, for: .automatic)
     }
     
 }

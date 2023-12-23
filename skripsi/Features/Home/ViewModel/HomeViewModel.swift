@@ -20,12 +20,27 @@ class HomeViewModel: ObservableObject {
     private let getTransactionUseCase = GetTransactionUseCase()
     private let deleteItemTransactionUseCase = DeleteTransactionUseCase()
     
-    var todayIncome: String {
+    var incomeTransaction: [Int] {
         let today = Date()
-        let filteredTransactions = transactionModel.filter { Calendar.current.isDate($0.date, inSameDayAs: today) }
-        let totalIncome = filteredTransactions.reduce(0) { $0 + $1.totalTransaction }
-        let formattedIncome = NumberFormatter.localizedString(from: NSNumber(value: totalIncome), number: .currency)
-        return formattedIncome
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
+        let currentMonth = Calendar.current.component(.month, from: Date())
+        let lastMonth = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+        
+        let todayTransactions = transactionModel.filter { Calendar.current.isDate($0.date, inSameDayAs: today) }
+        let yesterdayTransactions = transactionModel.filter { Calendar.current.isDate($0.date, inSameDayAs: yesterday) }
+        let currentMonthTransactions = transactionModel.filter { Calendar.current.component(.month, from: $0.date) == currentMonth }
+        let lastMonthTransactions = transactionModel.filter { Calendar.current.component(.month, from: $0.date) == Calendar.current.component(.month, from: lastMonth) }
+        
+        let todayIncome = todayTransactions.reduce(0) { $0 + $1.totalTransaction }
+        let yesterdayIncome = yesterdayTransactions.reduce(0) { $0 + $1.totalTransaction }
+        
+        let currentOmzet = currentMonthTransactions.flatMap { $0.items.map { $0.totalOmzetPerItem } }.reduce(0, +)
+        let previousOmzet = lastMonthTransactions.flatMap { $0.items.map { $0.totalOmzetPerItem } }.reduce(0, +)
+        
+        let currentProfit = currentMonthTransactions.flatMap { $0.items.map { $0.totalProfitPerItem } }.reduce(0, +)
+        let previousProfit = lastMonthTransactions.flatMap { $0.items.map { $0.totalProfitPerItem } }.reduce(0, +)
+        
+        return [todayIncome, yesterdayIncome, currentOmzet, previousOmzet, currentProfit, previousProfit]
     }
     
     func getTransactions() {
@@ -41,9 +56,9 @@ class HomeViewModel: ObservableObject {
                     self.transactionModel = transaction
                     self.fetchingTransaction = false
                     
-                    let todayIncome = self.todayIncome
+                    let incomeTransaction = self.incomeTransaction
                     
-                    communcationManager.sendTodayIncome(todayIncome)
+                    communcationManager.sendTodayIncome(incomeTransaction)
                 }
                 break
             case .failure(let error):

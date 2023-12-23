@@ -42,13 +42,13 @@ struct PromoCardView: View {
                         .font(.caption)
                         .strikethrough()
                 }
-                .foregroundStyle(Color.text.black)
+                .foregroundStyle(Color.text.primary100)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("Rp. 25.000")
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(Color.text.blue)
+                    .foregroundStyle(Color.text.primary100)
             }
         }
     }

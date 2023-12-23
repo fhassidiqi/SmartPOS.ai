@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct MonthlyRevenueView: View {
+    
+    @StateObject private var comManager = CommunicationManager()
+    @StateObject private var vm = WatchViewModel()
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -19,16 +23,16 @@ struct MonthlyRevenueView: View {
                         VStack {
                             ReportView(
                                 title: "Omzet",
-                                current: "5000000",
-                                previous: 3000000,
-                                percentage: 20.2
+                                current: vm.currentMonthOmzet.formattedAsAbbreviation,
+                                previous: vm.previousMonthOmzet.formattedAsAbbreviation,
+                                percentage: vm.percentageChange(current: vm.currentMonthOmzet, previous: vm.previousMonthOmzet)
                             )
 
                             ReportView(
                                 title: "Profit",
-                                current: "4000000",
-                                previous: 2500000,
-                                percentage: 20.2
+                                current: vm.currentMonthProfit.formattedAsAbbreviation,
+                                previous: vm.previousMonthProfit.formattedAsAbbreviation,
+                                percentage: vm.percentageChange(current: vm.currentMonthProfit, previous: vm.previousMonthProfit)
                             )
                         }
                     }
@@ -39,11 +43,16 @@ struct MonthlyRevenueView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Monthly Report")
                         .font(.headline)
-                    
+                        .foregroundStyle(Color.text.titleWatch)
                 }
             }
         }
-        
+        .onReceive(comManager.dataSubject) { data in
+            vm.currentMonthOmzet = data[2]
+            vm.previousMonthOmzet = data[3]
+            vm.currentMonthProfit = data[4]
+            vm.previousMonthProfit = data[5]
+        }
     }
 }
 

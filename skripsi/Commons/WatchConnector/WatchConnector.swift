@@ -3,13 +3,6 @@ import Foundation
 import WatchConnectivity
 import Combine
 
-struct SerializedIncome: Codable {
-    let income: Int
-    let profit: Int
-    let omzet: Int
-    let date: Date
-}
-
 class WatchSessionDelegate: NSObject, WCSessionDelegate {
     
     private var session: WCSession?
@@ -32,28 +25,12 @@ class WatchSessionDelegate: NSObject, WCSessionDelegate {
         session.activate()
     }
     
-    func isReachable() {
-        if let session = session, session.isReachable {
-            print("Reachable")
-        } else {
-            print("Not reachable")
-        }
-    }
-    
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         DispatchQueue.main.async {
             
-            if session.isReachable {
-                print("Reachable")
-            } else {
-                print("Not reachable")
-            }
-            
             if let incomeData = applicationContext["todayIncome"] as? Data {
                 let decoder = JSONDecoder()
-                if let todayIncome = try? decoder.decode(String.self, from: incomeData) {
-                    // handle today's income
-                    print("Today's Income: \(todayIncome)")
+                if let todayIncome = try? decoder.decode([Int].self, from: incomeData) {
                     self.dataSubject.send(todayIncome)
                 } else {
                     print("some sort of communication error :(")
@@ -64,14 +41,14 @@ class WatchSessionDelegate: NSObject, WCSessionDelegate {
         }
     }
     
-    let dataSubject: CurrentValueSubject<String, Never>
+    let dataSubject: CurrentValueSubject<[Int], Never>
     
-    init(_ dataSubject: CurrentValueSubject<String, Never>) {
+    init(_ dataSubject: CurrentValueSubject<[Int], Never>) {
         self.dataSubject = dataSubject
         super.init()
     }
     
-    func sendTodayIncome(_ income: String) {
+    func sendTodayIncome(_ income: [Int]) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(income) {
             session?.sendMessage(["todayIncome": encoded], replyHandler: nil) { error in
@@ -81,9 +58,9 @@ class WatchSessionDelegate: NSObject, WCSessionDelegate {
     }
     
 #else
-    var dataSubject = PassthroughSubject<String, Never>()
+    var dataSubject = PassthroughSubject<[Int], Never>()
     
-    init(_ dataSubject: PassthroughSubject<String, Never>) {
+    init(_ dataSubject: PassthroughSubject<[Int], Never>) {
         self.dataSubject = dataSubject
         super.init()
     }
@@ -92,9 +69,7 @@ class WatchSessionDelegate: NSObject, WCSessionDelegate {
         DispatchQueue.main.async {
             if let incomeData = message["todayIncome"] as? Data {
                 let decoder = JSONDecoder()
-                if let todayIncome = try? decoder.decode(String.self, from: incomeData) {
-                    // handle today's income
-                    print("Today's Income: \(todayIncome)")
+                if let todayIncome = try? decoder.decode([Int].self, from: incomeData) {
                     self.dataSubject.send(todayIncome)
                 } else {
                     print("some sort of communication error :(")
@@ -111,7 +86,7 @@ class WatchSessionDelegate: NSObject, WCSessionDelegate {
 class CommunicationManager: ObservableObject {
     var session: WCSession?
     let delegate: WatchSessionDelegate?
-    let dataSubject = CurrentValueSubject<String, Never>("")
+    let dataSubject = CurrentValueSubject<[Int], Never>([])
     
     @Published private(set) var initializedSuccessfully: Bool = false
     
@@ -132,7 +107,7 @@ class CommunicationManager: ObservableObject {
         
     }
     
-    public func sendTodayIncome(_ income: String) {
+    public func sendTodayIncome(_ income: [Int]) {
         self.delegate?.sendTodayIncome(income)
     }
 }
@@ -140,7 +115,7 @@ class CommunicationManager: ObservableObject {
 class CommunicationManager: ObservableObject {
     var session: WCSession?
     let delegate: WatchSessionDelegate?
-    let dataSubject = PassthroughSubject<String, Never>()
+    let dataSubject = PassthroughSubject<[Int], Never>()
     @Published private(set) var initializedSuccessfully: Bool = false
     
     init(session: WCSession = .default) {

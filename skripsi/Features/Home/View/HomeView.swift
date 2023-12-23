@@ -23,7 +23,7 @@ struct HomeView: View {
                         .font(.title2)
                     
                     VStack(alignment: .leading, spacing: 5) {
-                        Text("\(vm.todayIncome)")
+                        Text(vm.incomeTransaction[0].formattedAsRupiah)
                             .font(.largeTitle).bold()
                         
                         Text("Updated **2 mins ago**")
@@ -38,7 +38,7 @@ struct HomeView: View {
                 .background(
                     UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 40, bottomTrailing: 40))
                         .ignoresSafeArea()
-                        .foregroundStyle(Color.primary100)
+                        .foregroundStyle(Color.primaryColor100)
                 )
                 
                 HStack {

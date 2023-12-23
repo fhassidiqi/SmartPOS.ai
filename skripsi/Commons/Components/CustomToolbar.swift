@@ -17,7 +17,7 @@ struct CustomToolbar: ToolbarContent {
         ToolbarItem(placement: .principal) {
             Text(title)
                 .font(.headline)
-                .foregroundStyle(Color.text.white)
+                .foregroundStyle(Color.text.primary100)
         }
         
         ToolbarItem(placement: .topBarLeading) {
@@ -31,7 +31,7 @@ struct CustomToolbar: ToolbarContent {
                     Text(leadingTitle)
                         .font(.headline)
                 }
-                .foregroundStyle(Color.text.white)
+                .foregroundStyle(Color.text.primary100)
             }
         }
     }

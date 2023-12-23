@@ -17,4 +17,22 @@ extension Int {
         
         return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
     }
+    
+    var formattedAsAbbreviation: String {
+        let number = Double(self)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1
+        
+        if number >= 1_000_000 {
+            let millionValue = number / 1_000_000
+            return "Rp. \(formatter.string(from: NSNumber(value: millionValue)) ?? "\(millionValue)")M"
+        } else if number >= 1_000 {
+            let thousandValue = number / 1_000
+            return "Rp. \(formatter.string(from: NSNumber(value: thousandValue)) ?? "\(thousandValue)")K"
+        } else {
+            return "Rp. \(self)"
+        }
+    }
 }

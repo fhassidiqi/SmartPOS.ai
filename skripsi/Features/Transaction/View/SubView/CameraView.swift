@@ -137,7 +137,7 @@ struct CameraView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.visible, for: .automatic)
         .navigationBarBackButtonHidden()
-        .toolbarBackground(Color.primary100, for: .automatic)
+        .toolbarBackground(Color.primaryColor100, for: .automatic)
     }
 }
 
