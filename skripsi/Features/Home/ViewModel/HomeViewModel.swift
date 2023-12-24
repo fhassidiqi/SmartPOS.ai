@@ -57,7 +57,6 @@ class HomeViewModel: ObservableObject {
                     self.fetchingTransaction = false
                     
                     let incomeTransaction = self.incomeTransaction
-                    
                     communcationManager.sendTodayIncome(incomeTransaction)
                 }
                 break

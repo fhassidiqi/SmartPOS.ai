@@ -113,7 +113,7 @@ struct CategoryView: View {
             .padding(.horizontal, 25)
             .padding(.vertical, 8)
             .foregroundStyle(isActive == true ? Color.white : Color.text.primary100)
-            .background(isActive == true ? Color.primaryColor100 : Color.primary20)
+            .background(isActive == true ? Color.primaryColor100 : Color.primaryColor20)
             .cornerRadius(12)
     }
 }

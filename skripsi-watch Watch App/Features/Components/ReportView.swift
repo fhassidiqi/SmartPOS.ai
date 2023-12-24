@@ -11,8 +11,8 @@ struct ReportView: View {
     
     let title: String
     let current: String
-    let previous: String
     let percentage: Double
+    let comparison: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -35,7 +35,7 @@ struct ReportView: View {
                 .foregroundStyle(percentage >= 0.0 ? Color.green : Color.red)
             }
             
-            Text("Compared to yesterday (\(previous))")
+            Text(comparison)
                 .font(.caption2)
         }
         .frame(maxWidth: .infinity)
@@ -47,5 +47,5 @@ struct ReportView: View {
 }
 
 #Preview {
-    ReportView(title: "Omzet", current: "5000000", previous: "3000000", percentage: 20.0)
+    ReportView(title: "Omzet", current: "5000000", percentage: 20.0, comparison: "")
 }

@@ -10,13 +10,14 @@ import SwiftUI
 
 struct MonthlyRevenueView: View {
     
+    @EnvironmentObject var vm: WatchViewModel
     @StateObject private var comManager = CommunicationManager()
-    @StateObject private var vm = WatchViewModel()
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.background.base
+                    .ignoresSafeArea()
 
                 ScrollView {
                     ScrollViewReader { scrollViewProxy in
@@ -24,15 +25,15 @@ struct MonthlyRevenueView: View {
                             ReportView(
                                 title: "Omzet",
                                 current: vm.currentMonthOmzet.formattedAsAbbreviation,
-                                previous: vm.previousMonthOmzet.formattedAsAbbreviation,
-                                percentage: vm.percentageChange(current: vm.currentMonthOmzet, previous: vm.previousMonthOmzet)
+                                percentage: vm.percentageChange(current: vm.currentMonthOmzet, previous: vm.previousMonthOmzet),
+                                comparison: "Compared to Last Month (\(vm.previousMonthOmzet.formattedAsAbbreviation))"
                             )
 
                             ReportView(
                                 title: "Profit",
                                 current: vm.currentMonthProfit.formattedAsAbbreviation,
-                                previous: vm.previousMonthProfit.formattedAsAbbreviation,
-                                percentage: vm.percentageChange(current: vm.currentMonthProfit, previous: vm.previousMonthProfit)
+                                percentage: vm.percentageChange(current: vm.currentMonthProfit, previous: vm.previousMonthProfit),
+                                comparison: "Compared to Last Month (\(vm.previousMonthProfit.formattedAsAbbreviation))"
                             )
                         }
                     }
@@ -47,15 +48,5 @@ struct MonthlyRevenueView: View {
                 }
             }
         }
-        .onReceive(comManager.dataSubject) { data in
-            vm.currentMonthOmzet = data[2]
-            vm.previousMonthOmzet = data[3]
-            vm.currentMonthProfit = data[4]
-            vm.previousMonthProfit = data[5]
-        }
     }
-}
-
-#Preview {
-    MonthlyRevenueView()
 }

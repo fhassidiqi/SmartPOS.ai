@@ -9,22 +9,22 @@ import SwiftUI
 
 struct TodayRevenueView: View {
     
-    @State private var selectedTab = 0
+    @EnvironmentObject var vm: WatchViewModel
     @StateObject private var comManager = CommunicationManager()
-    @StateObject private var vm = WatchViewModel()
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.background.base
+                    .ignoresSafeArea()
                 
                 ScrollView {
                     ScrollViewReader { scrollViewProxy in
                         ReportView(
                             title: "Today's Income",
                             current: vm.todayIncome.formattedAsAbbreviation,
-                            previous: vm.yesterdayIncome.formattedAsAbbreviation,
-                            percentage: vm.percentageChange(current: vm.todayIncome, previous: vm.yesterdayIncome)
+                            percentage: vm.percentageChange(current: vm.todayIncome, previous: vm.yesterdayIncome),
+                            comparison: "Compared to Yesterday (\(vm.yesterdayIncome.formattedAsAbbreviation))"
                         )
                     }
                 }
@@ -34,18 +34,17 @@ struct TodayRevenueView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Daily Report")
                         .font(.headline)
-                    
+                        .foregroundStyle(Color.text.titleWatch)
                 }
             }
         }
         .onReceive(comManager.dataSubject) { data in
             vm.todayIncome = data[0]
             vm.yesterdayIncome = data[1]
-            print("Data received: \(data)")
+            vm.currentMonthOmzet = data[2]
+            vm.previousMonthOmzet = data[3]
+            vm.currentMonthProfit = data[4]
+            vm.previousMonthProfit = data[5]
         }
     }
-}
-
-#Preview {
-    TodayRevenueView()
 }

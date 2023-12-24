@@ -224,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */,
+				4C6A28C12ADCDCE50097FAB1 /* PromoCardView.swift */,
 				4C25362C2AE4EC7200DACB6E /* ScanQRView.swift */,
 				4C9753F32B2EFFB6008BF421 /* CameraView.swift */,
 				4C05035F2B00CCE40042BDEA /* PaymentView.swift */,
@@ -401,7 +402,6 @@
 		4C6A28892ADA95440097FAB1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				4C6A28C12ADCDCE50097FAB1 /* PromoCardView.swift */,
 				4C0503612B010D960042BDEA /* CustomToolbar.swift */,
 				4C0C08CE2B029BC100207617 /* FloatingButtonView.swift */,
 			);

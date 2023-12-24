@@ -13,7 +13,6 @@ class WatchSessionDelegate: NSObject, WCSessionDelegate {
             return
         }
         self.session = session
-        print("Activation state: \(activationState.rawValue)")
     }
     
 #if os(iOS)
