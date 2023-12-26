@@ -115,5 +115,9 @@ struct CategoryView: View {
             .foregroundStyle(isActive == true ? Color.white : Color.text.primary100)
             .background(isActive == true ? Color.primaryColor100 : Color.primaryColor20)
             .cornerRadius(12)
+            .overlay {
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.primaryColor100, lineWidth: isActive == true ? 1 : 0)
+            }
     }
 }

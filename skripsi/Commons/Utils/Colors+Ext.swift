@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Color {
     static let primaryColor100 = Color("Primary100")
-    static let primaryColor20 = Color("Priamry20")
+    static let primaryColor20 = Color("Primary20")
     static let secondaryColor = Color("Secondary100")
     static let tertiaryColor = Color("Tertiary")
     static let quartenaryColor = Color("Quartenary")

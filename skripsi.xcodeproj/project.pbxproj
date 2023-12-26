@@ -90,6 +90,9 @@
 		4C98BF022AE921BB00482D25 /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BF012AE921BB00482D25 /* FoodListViewModel.swift */; };
 		4C98BF042AE9281900482D25 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BF032AE9281900482D25 /* CategoryResponse.swift */; };
 		4C98BF192AE956D100482D25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C98BF182AE956D100482D25 /* GoogleService-Info.plist */; };
+		4C9CDDAD2B3A82C400537F4E /* Detector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDDAC2B3A82C400537F4E /* Detector.swift */; };
+		4C9CDDAF2B3A82CF00537F4E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDDAE2B3A82CF00537F4E /* CameraViewController.swift */; };
+		4C9CDDB92B3A9CE200537F4E /* modelAISkripsi.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDDB82B3A9CE200537F4E /* modelAISkripsi.mlmodel */; };
 		4CF1D18A2AE2C194007B72DE /* ItemFoodCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */; };
 /* End PBXBuildFile section */
 
@@ -190,6 +193,9 @@
 		4C98BF012AE921BB00482D25 /* FoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListViewModel.swift; sourceTree = "<group>"; };
 		4C98BF032AE9281900482D25 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
 		4C98BF182AE956D100482D25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4C9CDDAC2B3A82C400537F4E /* Detector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detector.swift; sourceTree = "<group>"; };
+		4C9CDDAE2B3A82CF00537F4E /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		4C9CDDB82B3A9CE200537F4E /* modelAISkripsi.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = modelAISkripsi.mlmodel; sourceTree = "<group>"; };
 		4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFoodCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -303,7 +309,10 @@
 				4C3AE55F2B33D50100C36EEB /* CameraServices.swift */,
 				4C3AE5612B33D52700C36EEB /* ImageResizer.swift */,
 				4C3AE5632B33D54400C36EEB /* PhotoCaptureProcessor.swift */,
+				4C9CDDB82B3A9CE200537F4E /* modelAISkripsi.mlmodel */,
 				4C3AE5652B33D7B700C36EEB /* CameraPreview.swift */,
+				4C9CDDAC2B3A82C400537F4E /* Detector.swift */,
+				4C9CDDAE2B3A82CF00537F4E /* CameraViewController.swift */,
 			);
 			path = CameraServices;
 			sourceTree = "<group>";
@@ -837,6 +846,7 @@
 			files = (
 				4C6A28C42ADD72BD0097FAB1 /* FoodListView.swift in Sources */,
 				4C98BF002AE6BF0300482D25 /* GetItemsUseCase.swift in Sources */,
+				4C9CDDB92B3A9CE200537F4E /* modelAISkripsi.mlmodel in Sources */,
 				4C98BF022AE921BB00482D25 /* FoodListViewModel.swift in Sources */,
 				4C6A28B32ADBA64D0097FAB1 /* HistoryTransactionCard.swift in Sources */,
 				4C9271542B284F91009409ED /* Int+Ext.swift in Sources */,
@@ -875,8 +885,10 @@
 				4C3AE5622B33D52700C36EEB /* ImageResizer.swift in Sources */,
 				4C6A289C2ADA967C0097FAB1 /* Colors+Ext.swift in Sources */,
 				4C25362D2AE4EC7200DACB6E /* ScanQRView.swift in Sources */,
+				4C9CDDAF2B3A82CF00537F4E /* CameraViewController.swift in Sources */,
 				4C0503602B00CCE40042BDEA /* PaymentView.swift in Sources */,
 				4C6A28982ADA964F0097FAB1 /* BaseUseCase.swift in Sources */,
+				4C9CDDAD2B3A82C400537F4E /* Detector.swift in Sources */,
 				4C583EB92B0092540066C4E4 /* Router.swift in Sources */,
 				4C591F762B1E183600B82C9C /* StatisticViewModel.swift in Sources */,
 				4C6A28942ADA960A0097FAB1 /* UserDefault.swift in Sources */,
