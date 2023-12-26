@@ -76,7 +76,7 @@ struct FoodListView: View {
             
             if vm.selectedItems.contains(where: { $0.quantity > 0 }) {
                 FloatingButtonView(
-                    color: Color.primary100,
+                    color: Color.text.white,
                     image: "chevron.right.circle.fill",
                     text1: "Item",
                     text2: "\(vm.selectedItems.reduce(0) { $0 + $1.totalPricePerItem }.formattedAsRupiah)",
@@ -112,8 +112,12 @@ struct CategoryView: View {
             .fontWeight(isActive == true ? .bold : .regular)
             .padding(.horizontal, 25)
             .padding(.vertical, 8)
-            .foregroundStyle(isActive == true ? Color.text.white : Color.text.primary100)
-            .background(isActive == true ? Color.primary100 : Color.primary20)
+            .foregroundStyle(isActive == true ? Color.white : Color.text.primary100)
+            .background(isActive == true ? Color.primaryColor100 : Color.primaryColor20)
             .cornerRadius(12)
+            .overlay {
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.primaryColor100, lineWidth: isActive == true ? 1 : 0)
+            }
     }
 }

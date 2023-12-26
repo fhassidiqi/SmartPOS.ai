@@ -9,8 +9,8 @@ import SwiftUI
 
 struct TodayRevenueView: View {
     
-    @State private var selectedTab = 0
-    @StateObject private var vm = WatchViewModel()
+    @EnvironmentObject var vm: WatchViewModel
+    @StateObject private var comManager = CommunicationManager()
     
     var body: some View {
         NavigationStack {
@@ -21,10 +21,10 @@ struct TodayRevenueView: View {
                 ScrollView {
                     ScrollViewReader { scrollViewProxy in
                         ReportView(
-                            title: "Income",
-                            current: Int(vm.todayIncome) ?? 0,
-                            previous: 3000000,
-                            percentage: 20.2
+                            title: "Today's Income",
+                            current: vm.todayIncome.formattedAsAbbreviation,
+                            percentage: vm.percentageChange(current: vm.todayIncome, previous: vm.yesterdayIncome),
+                            comparison: "Compared to Yesterday (\(vm.yesterdayIncome.formattedAsAbbreviation))"
                         )
                     }
                 }
@@ -34,22 +34,17 @@ struct TodayRevenueView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Daily Report")
                         .font(.headline)
-                        .foregroundStyle(Color.primaryColor100)
+                        .foregroundStyle(Color.text.titleWatch)
                 }
             }
         }
-        .onAppear {
-            vm.activateWatchConnectivity()
-            vm.sendRequestToPhone()
-        }
-        .onChange(of: vm.todayIncome) { newTodayIncome in
-            // React to changes in today's income
-            print("Today's income changed to \(newTodayIncome)")
-            // You can update your view as needed
+        .onReceive(comManager.dataSubject) { data in
+            vm.todayIncome = data[0]
+            vm.yesterdayIncome = data[1]
+            vm.currentMonthOmzet = data[2]
+            vm.previousMonthOmzet = data[3]
+            vm.currentMonthProfit = data[4]
+            vm.previousMonthProfit = data[5]
         }
     }
-}
-
-#Preview {
-    TodayRevenueView()
 }

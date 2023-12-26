@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct MonthlyRevenueView: View {
+    
+    @EnvironmentObject var vm: WatchViewModel
+    @StateObject private var comManager = CommunicationManager()
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -20,16 +24,16 @@ struct MonthlyRevenueView: View {
                         VStack {
                             ReportView(
                                 title: "Omzet",
-                                current: 5000000,
-                                previous: 3000000,
-                                percentage: 20.2
+                                current: vm.currentMonthOmzet.formattedAsAbbreviation,
+                                percentage: vm.percentageChange(current: vm.currentMonthOmzet, previous: vm.previousMonthOmzet),
+                                comparison: "Compared to Last Month (\(vm.previousMonthOmzet.formattedAsAbbreviation))"
                             )
 
                             ReportView(
                                 title: "Profit",
-                                current: 4000000,
-                                previous: 2500000,
-                                percentage: 20.2
+                                current: vm.currentMonthProfit.formattedAsAbbreviation,
+                                percentage: vm.percentageChange(current: vm.currentMonthProfit, previous: vm.previousMonthProfit),
+                                comparison: "Compared to Last Month (\(vm.previousMonthProfit.formattedAsAbbreviation))"
                             )
                         }
                     }
@@ -40,15 +44,9 @@ struct MonthlyRevenueView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Monthly Report")
                         .font(.headline)
-                        .foregroundStyle(Color.primaryColor100)
-                    
+                        .foregroundStyle(Color.text.titleWatch)
                 }
             }
         }
-        
     }
-}
-
-#Preview {
-    MonthlyRevenueView()
 }

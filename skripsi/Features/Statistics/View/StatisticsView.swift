@@ -77,12 +77,12 @@ struct StatisticsView: View {
                 ToolbarItem (placement: .principal) {
                     Text("Statistics")
                         .font(.headline)
-                        .foregroundStyle(Color.text.white)
+                        .foregroundStyle(Color.text.primary100)
                 }
             }
             .toolbarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .automatic)
-            .toolbarBackground(Color.primary100, for: .automatic)
+            .toolbarBackground(Color.primaryColor100, for: .automatic)
         }
         .onAppear {
             Task {

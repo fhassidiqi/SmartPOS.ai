@@ -17,7 +17,10 @@
 		4C0D6F372AE3DD4A00C74BF7 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F362AE3DD4A00C74BF7 /* ChartView.swift */; };
 		4C0D6F392AE422F800C74BF7 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D6F382AE422F800C74BF7 /* Date+Ext.swift */; };
 		4C25362D2AE4EC7200DACB6E /* ScanQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25362C2AE4EC7200DACB6E /* ScanQRView.swift */; };
-		4C3AE5102B327E9F00C36EEB /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C3AE50F2B327E9F00C36EEB /* WatchConnectivity.framework */; };
+		4C3374672B3522B500FEB4A0 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3374662B3522B500FEB4A0 /* WatchConnector.swift */; };
+		4C3374692B35262200FEB4A0 /* WatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3374682B35262200FEB4A0 /* WatchViewModel.swift */; };
+		4C33746A2B353F6400FEB4A0 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C3AE50F2B327E9F00C36EEB /* WatchConnectivity.framework */; };
+		4C33746F2B35673700FEB4A0 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3374662B3522B500FEB4A0 /* WatchConnector.swift */; };
 		4C3AE5392B32C32100C36EEB /* skripsi_watchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5382B32C32100C36EEB /* skripsi_watchApp.swift */; };
 		4C3AE53B2B32C32100C36EEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE53A2B32C32100C36EEB /* ContentView.swift */; };
 		4C3AE53D2B32C32300C36EEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AE53C2B32C32300C36EEB /* Assets.xcassets */; };
@@ -28,7 +31,6 @@
 		4C3AE54D2B32D38E00C36EEB /* TodayRevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE54C2B32D38E00C36EEB /* TodayRevenueView.swift */; };
 		4C3AE54F2B32D4A100C36EEB /* MonthlyRevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE54E2B32D4A100C36EEB /* MonthlyRevenueView.swift */; };
 		4C3AE5522B32DAC200C36EEB /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9271532B284F91009409ED /* Int+Ext.swift */; };
-		4C3AE5542B3327AC00C36EEB /* WatchHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5532B3327AC00C36EEB /* WatchHomeViewModel.swift */; };
 		4C3AE5552B33281B00C36EEB /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE82AE6A29C00482D25 /* TransactionModel.swift */; };
 		4C3AE5562B33282000C36EEB /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEEA2AE6A2E300482D25 /* ItemModel.swift */; };
 		4C3AE5572B33282300C36EEB /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE62AE6A1D000482D25 /* CategoryModel.swift */; };
@@ -39,6 +41,14 @@
 		4C3AE5622B33D52700C36EEB /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5612B33D52700C36EEB /* ImageResizer.swift */; };
 		4C3AE5642B33D54400C36EEB /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5632B33D54400C36EEB /* PhotoCaptureProcessor.swift */; };
 		4C3AE5662B33D7B700C36EEB /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5652B33D7B700C36EEB /* CameraPreview.swift */; };
+		4C3F7FB22B351ECA00D3AD57 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3F7FB12B351ECA00D3AD57 /* Alamofire */; };
+		4C3F7FB42B351EF800D3AD57 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3F7FB32B351EF800D3AD57 /* FirebaseAnalytics */; };
+		4C3F7FB62B351EF800D3AD57 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3F7FB52B351EF800D3AD57 /* FirebaseAnalyticsSwift */; };
+		4C3F7FB82B351EF800D3AD57 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3F7FB72B351EF800D3AD57 /* FirebaseAppCheck */; };
+		4C3F7FBA2B351EF800D3AD57 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3F7FB92B351EF800D3AD57 /* FirebaseAuth */; };
+		4C3F7FBC2B351EF800D3AD57 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3F7FBB2B351EF800D3AD57 /* FirebaseFirestore */; };
+		4C3F7FBE2B351EF800D3AD57 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3F7FBD2B351EF800D3AD57 /* FirebaseFirestoreSwift */; };
+		4C3F7FC02B351EF800D3AD57 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3F7FBF2B351EF800D3AD57 /* FirebaseStorage */; };
 		4C583EB92B0092540066C4E4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C583EB82B0092540066C4E4 /* Router.swift */; };
 		4C591F762B1E183600B82C9C /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C591F752B1E183600B82C9C /* StatisticViewModel.swift */; };
 		4C67122E2B21F6710038933D /* TotalOmzetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */; };
@@ -68,7 +78,6 @@
 		4C9271542B284F91009409ED /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9271532B284F91009409ED /* Int+Ext.swift */; };
 		4C9753EE2B2C2DD9008BF421 /* SwipeActionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9753ED2B2C2DD9008BF421 /* SwipeActionModifier.swift */; };
 		4C9753F42B2EFFB6008BF421 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9753F32B2EFFB6008BF421 /* CameraView.swift */; };
-		4C98BEE52AE5737700482D25 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 4C98BEE42AE5737700482D25 /* FirebaseAppCheck */; };
 		4C98BEE72AE6A1D000482D25 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE62AE6A1D000482D25 /* CategoryModel.swift */; };
 		4C98BEE92AE6A29C00482D25 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE82AE6A29C00482D25 /* TransactionModel.swift */; };
 		4C98BEEB2AE6A2E300482D25 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEEA2AE6A2E300482D25 /* ItemModel.swift */; };
@@ -80,19 +89,15 @@
 		4C98BF002AE6BF0300482D25 /* GetItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEFF2AE6BF0300482D25 /* GetItemsUseCase.swift */; };
 		4C98BF022AE921BB00482D25 /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BF012AE921BB00482D25 /* FoodListViewModel.swift */; };
 		4C98BF042AE9281900482D25 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BF032AE9281900482D25 /* CategoryResponse.swift */; };
-		4C98BF092AE92A7600482D25 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4C98BF082AE92A7600482D25 /* FirebaseFirestore */; };
-		4C98BF0B2AE92A8500482D25 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C98BF0A2AE92A8500482D25 /* FirebaseFirestoreSwift */; };
-		4C98BF0D2AE92A9200482D25 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4C98BF0C2AE92A9200482D25 /* FirebaseAuth */; };
-		4C98BF0F2AE92AA000482D25 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4C98BF0E2AE92AA000482D25 /* FirebaseStorage */; };
-		4C98BF112AE94D8B00482D25 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4C98BF102AE94D8B00482D25 /* FirebaseAnalytics */; };
-		4C98BF132AE94D9300482D25 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C98BF122AE94D9300482D25 /* FirebaseAnalyticsSwift */; };
 		4C98BF192AE956D100482D25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C98BF182AE956D100482D25 /* GoogleService-Info.plist */; };
-		4CE238A32AEB9321003D3562 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE238A22AEB9321003D3562 /* Alamofire */; };
+		4C9CDDAD2B3A82C400537F4E /* Detector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDDAC2B3A82C400537F4E /* Detector.swift */; };
+		4C9CDDAF2B3A82CF00537F4E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDDAE2B3A82CF00537F4E /* CameraViewController.swift */; };
+		4C9CDDB92B3A9CE200537F4E /* modelAISkripsi.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDDB82B3A9CE200537F4E /* modelAISkripsi.mlmodel */; };
 		4CF1D18A2AE2C194007B72DE /* ItemFoodCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4C3AE5412B32C32300C36EEB /* PBXContainerItemProxy */ = {
+		4C3F7FC52B351FCA00D3AD57 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4C731E8D2ADA8B6300B60760 /* Project object */;
 			proxyType = 1;
@@ -126,6 +131,10 @@
 		4C0D6F362AE3DD4A00C74BF7 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		4C0D6F382AE422F800C74BF7 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		4C25362C2AE4EC7200DACB6E /* ScanQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRView.swift; sourceTree = "<group>"; };
+		4C3374662B3522B500FEB4A0 /* WatchConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnector.swift; sourceTree = "<group>"; };
+		4C3374682B35262200FEB4A0 /* WatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchViewModel.swift; sourceTree = "<group>"; };
+		4C33746D2B35469F00FEB4A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4C33746E2B3546AE00FEB4A0 /* skripsi-watch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "skripsi-watch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4C3AE50F2B327E9F00C36EEB /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		4C3AE5362B32C32100C36EEB /* skripsi-watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "skripsi-watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3AE5382B32C32100C36EEB /* skripsi_watchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skripsi_watchApp.swift; sourceTree = "<group>"; };
@@ -135,7 +144,6 @@
 		4C3AE54A2B32D31800C36EEB /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		4C3AE54C2B32D38E00C36EEB /* TodayRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRevenueView.swift; sourceTree = "<group>"; };
 		4C3AE54E2B32D4A100C36EEB /* MonthlyRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRevenueView.swift; sourceTree = "<group>"; };
-		4C3AE5532B3327AC00C36EEB /* WatchHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHomeViewModel.swift; sourceTree = "<group>"; };
 		4C3AE5582B332F4A00C36EEB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4C3AE55A2B33D49D00C36EEB /* Camera+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Camera+Ext.swift"; sourceTree = "<group>"; };
 		4C3AE55C2B33D4CA00C36EEB /* CameraServices+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CameraServices+Enum.swift"; sourceTree = "<group>"; };
@@ -185,6 +193,9 @@
 		4C98BF012AE921BB00482D25 /* FoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListViewModel.swift; sourceTree = "<group>"; };
 		4C98BF032AE9281900482D25 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
 		4C98BF182AE956D100482D25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4C9CDDAC2B3A82C400537F4E /* Detector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detector.swift; sourceTree = "<group>"; };
+		4C9CDDAE2B3A82CF00537F4E /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		4C9CDDB82B3A9CE200537F4E /* modelAISkripsi.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = modelAISkripsi.mlmodel; sourceTree = "<group>"; };
 		4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFoodCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,15 +211,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C98BF0F2AE92AA000482D25 /* FirebaseStorage in Frameworks */,
-				4CE238A32AEB9321003D3562 /* Alamofire in Frameworks */,
-				4C98BF0B2AE92A8500482D25 /* FirebaseFirestoreSwift in Frameworks */,
-				4C98BF112AE94D8B00482D25 /* FirebaseAnalytics in Frameworks */,
-				4C98BEE52AE5737700482D25 /* FirebaseAppCheck in Frameworks */,
-				4C3AE5102B327E9F00C36EEB /* WatchConnectivity.framework in Frameworks */,
-				4C98BF132AE94D9300482D25 /* FirebaseAnalyticsSwift in Frameworks */,
-				4C98BF092AE92A7600482D25 /* FirebaseFirestore in Frameworks */,
-				4C98BF0D2AE92A9200482D25 /* FirebaseAuth in Frameworks */,
+				4C3F7FB82B351EF800D3AD57 /* FirebaseAppCheck in Frameworks */,
+				4C3F7FBA2B351EF800D3AD57 /* FirebaseAuth in Frameworks */,
+				4C3F7FB62B351EF800D3AD57 /* FirebaseAnalyticsSwift in Frameworks */,
+				4C3F7FBE2B351EF800D3AD57 /* FirebaseFirestoreSwift in Frameworks */,
+				4C3F7FB42B351EF800D3AD57 /* FirebaseAnalytics in Frameworks */,
+				4C33746A2B353F6400FEB4A0 /* WatchConnectivity.framework in Frameworks */,
+				4C3F7FC02B351EF800D3AD57 /* FirebaseStorage in Frameworks */,
+				4C3F7FB22B351ECA00D3AD57 /* Alamofire in Frameworks */,
+				4C3F7FBC2B351EF800D3AD57 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */,
+				4C6A28C12ADCDCE50097FAB1 /* PromoCardView.swift */,
 				4C25362C2AE4EC7200DACB6E /* ScanQRView.swift */,
 				4C9753F32B2EFFB6008BF421 /* CameraView.swift */,
 				4C05035F2B00CCE40042BDEA /* PaymentView.swift */,
@@ -227,9 +239,18 @@
 			path = SubView;
 			sourceTree = "<group>";
 		};
+		4C3374652B3522A700FEB4A0 /* WatchConnector */ = {
+			isa = PBXGroup;
+			children = (
+				4C3374662B3522B500FEB4A0 /* WatchConnector.swift */,
+			);
+			path = WatchConnector;
+			sourceTree = "<group>";
+		};
 		4C3AE5372B32C32100C36EEB /* skripsi-watch Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				4C33746E2B3546AE00FEB4A0 /* skripsi-watch-Watch-App-Info.plist */,
 				4C3AE5482B32D2E100C36EEB /* Features */,
 				4C3AE5382B32C32100C36EEB /* skripsi_watchApp.swift */,
 				4C3AE53A2B32C32100C36EEB /* ContentView.swift */,
@@ -253,7 +274,7 @@
 				4C3AE5512B32D9CA00C36EEB /* Components */,
 				4C3AE5502B32D9BE00C36EEB /* MonthlyRevenue */,
 				4C3AE5492B32D2F200C36EEB /* TodayRevenue */,
-				4C3AE5532B3327AC00C36EEB /* WatchHomeViewModel.swift */,
+				4C3374682B35262200FEB4A0 /* WatchViewModel.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -288,7 +309,10 @@
 				4C3AE55F2B33D50100C36EEB /* CameraServices.swift */,
 				4C3AE5612B33D52700C36EEB /* ImageResizer.swift */,
 				4C3AE5632B33D54400C36EEB /* PhotoCaptureProcessor.swift */,
+				4C9CDDB82B3A9CE200537F4E /* modelAISkripsi.mlmodel */,
 				4C3AE5652B33D7B700C36EEB /* CameraPreview.swift */,
+				4C9CDDAC2B3A82C400537F4E /* Detector.swift */,
+				4C9CDDAE2B3A82CF00537F4E /* CameraViewController.swift */,
 			);
 			path = CameraServices;
 			sourceTree = "<group>";
@@ -322,6 +346,7 @@
 		4C6A28832ADA94DF0097FAB1 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				4C3374652B3522A700FEB4A0 /* WatchConnector */,
 				4C3AE55E2B33D4EF00C36EEB /* CameraServices */,
 				4C583EB72B00924B0066C4E4 /* Router */,
 				4C6A288B2ADA95510097FAB1 /* Constants */,
@@ -386,7 +411,6 @@
 		4C6A28892ADA95440097FAB1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				4C6A28C12ADCDCE50097FAB1 /* PromoCardView.swift */,
 				4C0503612B010D960042BDEA /* CustomToolbar.swift */,
 				4C0C08CE2B029BC100207617 /* FloatingButtonView.swift */,
 			);
@@ -585,6 +609,7 @@
 		4C731E972ADA8B6300B60760 /* skripsi */ = {
 			isa = PBXGroup;
 			children = (
+				4C33746D2B35469F00FEB4A0 /* Info.plist */,
 				4C6A28832ADA94DF0097FAB1 /* Commons */,
 				4C6A28822ADA94DA0097FAB1 /* Domain */,
 				4C6A28842ADA94EB0097FAB1 /* Data */,
@@ -715,18 +740,18 @@
 			buildRules = (
 			);
 			dependencies = (
-				4C3AE5422B32C32300C36EEB /* PBXTargetDependency */,
+				4C3F7FC62B351FCA00D3AD57 /* PBXTargetDependency */,
 			);
 			name = skripsi;
 			packageProductDependencies = (
-				4C98BEE42AE5737700482D25 /* FirebaseAppCheck */,
-				4C98BF082AE92A7600482D25 /* FirebaseFirestore */,
-				4C98BF0A2AE92A8500482D25 /* FirebaseFirestoreSwift */,
-				4C98BF0C2AE92A9200482D25 /* FirebaseAuth */,
-				4C98BF0E2AE92AA000482D25 /* FirebaseStorage */,
-				4C98BF102AE94D8B00482D25 /* FirebaseAnalytics */,
-				4C98BF122AE94D9300482D25 /* FirebaseAnalyticsSwift */,
-				4CE238A22AEB9321003D3562 /* Alamofire */,
+				4C3F7FB12B351ECA00D3AD57 /* Alamofire */,
+				4C3F7FB32B351EF800D3AD57 /* FirebaseAnalytics */,
+				4C3F7FB52B351EF800D3AD57 /* FirebaseAnalyticsSwift */,
+				4C3F7FB72B351EF800D3AD57 /* FirebaseAppCheck */,
+				4C3F7FB92B351EF800D3AD57 /* FirebaseAuth */,
+				4C3F7FBB2B351EF800D3AD57 /* FirebaseFirestore */,
+				4C3F7FBD2B351EF800D3AD57 /* FirebaseFirestoreSwift */,
+				4C3F7FBF2B351EF800D3AD57 /* FirebaseStorage */,
 			);
 			productName = skripsi;
 			productReference = 4C731E952ADA8B6300B60760 /* skripsi.app */;
@@ -801,7 +826,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C3AE5562B33282000C36EEB /* ItemModel.swift in Sources */,
+				4C33746F2B35673700FEB4A0 /* WatchConnector.swift in Sources */,
 				4C3AE5552B33281B00C36EEB /* TransactionModel.swift in Sources */,
+				4C3374692B35262200FEB4A0 /* WatchViewModel.swift in Sources */,
 				4C3AE53B2B32C32100C36EEB /* ContentView.swift in Sources */,
 				4C3AE5392B32C32100C36EEB /* skripsi_watchApp.swift in Sources */,
 				4C3AE54B2B32D31800C36EEB /* ReportView.swift in Sources */,
@@ -810,7 +837,6 @@
 				4C3AE5572B33282300C36EEB /* CategoryModel.swift in Sources */,
 				4C3AE5472B32C36500C36EEB /* Colors+Ext.swift in Sources */,
 				4C3AE54F2B32D4A100C36EEB /* MonthlyRevenueView.swift in Sources */,
-				4C3AE5542B3327AC00C36EEB /* WatchHomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +846,7 @@
 			files = (
 				4C6A28C42ADD72BD0097FAB1 /* FoodListView.swift in Sources */,
 				4C98BF002AE6BF0300482D25 /* GetItemsUseCase.swift in Sources */,
+				4C9CDDB92B3A9CE200537F4E /* modelAISkripsi.mlmodel in Sources */,
 				4C98BF022AE921BB00482D25 /* FoodListViewModel.swift in Sources */,
 				4C6A28B32ADBA64D0097FAB1 /* HistoryTransactionCard.swift in Sources */,
 				4C9271542B284F91009409ED /* Int+Ext.swift in Sources */,
@@ -831,6 +858,7 @@
 				4C0C08D72B066F6000207617 /* Logger.swift in Sources */,
 				4C3AE5642B33D54400C36EEB /* PhotoCaptureProcessor.swift in Sources */,
 				4CF1D18A2AE2C194007B72DE /* ItemFoodCardView.swift in Sources */,
+				4C3374672B3522B500FEB4A0 /* WatchConnector.swift in Sources */,
 				4C6A28C22ADCDCE50097FAB1 /* PromoCardView.swift in Sources */,
 				4C6A289F2ADA98230097FAB1 /* Rounded+Ext.swift in Sources */,
 				4C98BEEB2AE6A2E300482D25 /* ItemModel.swift in Sources */,
@@ -857,8 +885,10 @@
 				4C3AE5622B33D52700C36EEB /* ImageResizer.swift in Sources */,
 				4C6A289C2ADA967C0097FAB1 /* Colors+Ext.swift in Sources */,
 				4C25362D2AE4EC7200DACB6E /* ScanQRView.swift in Sources */,
+				4C9CDDAF2B3A82CF00537F4E /* CameraViewController.swift in Sources */,
 				4C0503602B00CCE40042BDEA /* PaymentView.swift in Sources */,
 				4C6A28982ADA964F0097FAB1 /* BaseUseCase.swift in Sources */,
+				4C9CDDAD2B3A82C400537F4E /* Detector.swift in Sources */,
 				4C583EB92B0092540066C4E4 /* Router.swift in Sources */,
 				4C591F762B1E183600B82C9C /* StatisticViewModel.swift in Sources */,
 				4C6A28942ADA960A0097FAB1 /* UserDefault.swift in Sources */,
@@ -880,10 +910,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4C3AE5422B32C32300C36EEB /* PBXTargetDependency */ = {
+		4C3F7FC62B351FCA00D3AD57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4C3AE5352B32C32100C36EEB /* skripsi-watch Watch App */;
-			targetProxy = 4C3AE5412B32C32300C36EEB /* PBXContainerItemProxy */;
+			targetProxy = 4C3F7FC52B351FCA00D3AD57 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -899,9 +929,11 @@
 				DEVELOPMENT_TEAM = 8DNTD99SB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "skripsi-watch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "skripsi-watch";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kuliah.skripsi;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -929,9 +961,11 @@
 				DEVELOPMENT_TEAM = 8DNTD99SB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "skripsi-watch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "skripsi-watch";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kuliah.skripsi;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1081,6 +1115,7 @@
 				DEVELOPMENT_TEAM = 8DNTD99SB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = skripsi/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "SwiftCamera needs access to your camera to capture photo and video";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SwiftCamera captures photos and saves them into your photo library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1113,6 +1148,7 @@
 				DEVELOPMENT_TEAM = 8DNTD99SB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = skripsi/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "SwiftCamera needs access to your camera to capture photo and video";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "SwiftCamera captures photos and saves them into your photo library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1178,52 +1214,52 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.8.1;
+				kind = exactVersion;
+				version = 5.8.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4C98BEE42AE5737700482D25 /* FirebaseAppCheck */ = {
+		4C3F7FB12B351ECA00D3AD57 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAppCheck;
+			package = 4CE238A12AEB9321003D3562 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
-		4C98BF082AE92A7600482D25 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		4C98BF0A2AE92A8500482D25 /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
-		};
-		4C98BF0C2AE92A9200482D25 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		4C98BF0E2AE92AA000482D25 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
-		4C98BF102AE94D8B00482D25 /* FirebaseAnalytics */ = {
+		4C3F7FB32B351EF800D3AD57 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		4C98BF122AE94D9300482D25 /* FirebaseAnalyticsSwift */ = {
+		4C3F7FB52B351EF800D3AD57 /* FirebaseAnalyticsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
 		};
-		4CE238A22AEB9321003D3562 /* Alamofire */ = {
+		4C3F7FB72B351EF800D3AD57 /* FirebaseAppCheck */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4CE238A12AEB9321003D3562 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		4C3F7FB92B351EF800D3AD57 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		4C3F7FBB2B351EF800D3AD57 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		4C3F7FBD2B351EF800D3AD57 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		4C3F7FBF2B351EF800D3AD57 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C98BEDB2AE5737700482D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

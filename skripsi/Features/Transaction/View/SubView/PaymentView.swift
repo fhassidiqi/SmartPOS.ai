@@ -26,7 +26,7 @@ struct PaymentView: View {
             
             if !vm.payment.isEmpty && Double(vm.payment) ?? 0 >= Double(vm.calculateTotalWithTax()) {
                 FloatingButtonView(
-                    color: Color.primary100,
+                    color: Color.text.white,
                     image: "",
                     text1: "Proceed",
                     text2: "",
@@ -45,7 +45,7 @@ struct PaymentView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.visible, for: .automatic)
         .navigationBarBackButtonHidden()
-        .toolbarBackground(Color.primary100, for: .automatic)
+        .toolbarBackground(Color.primaryColor100, for: .automatic)
     }
     
     private var itemSection: some View {
@@ -121,7 +121,7 @@ struct PaymentView: View {
                 .overlay {
                     RoundedRectangle(cornerRadius: 16)
                         .inset(by: 0.5)
-                        .stroke(Color.primary100)
+                        .stroke(Color.primaryColor100)
                 }
                 .onChange(of: paymentType, perform: handlePaymentTypeSelection)
                 

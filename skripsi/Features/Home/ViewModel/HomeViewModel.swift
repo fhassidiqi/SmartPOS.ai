@@ -7,22 +7,40 @@
 
 import Foundation
 import WatchConnectivity
+import Combine
 
-class HomeViewModel: NSObject, ObservableObject {
+class HomeViewModel: ObservableObject {
     
     @Published var fetchingTransaction = false
     @Published var currentSortingOption: SortType = .date
     @Published var transactionModel = [TransactionModel]()
     
+    let communcationManager = CommunicationManager()
+    
     private let getTransactionUseCase = GetTransactionUseCase()
     private let deleteItemTransactionUseCase = DeleteTransactionUseCase()
     
-    var todayIncome: String {
+    var incomeTransaction: [Int] {
         let today = Date()
-        let filteredTransactions = transactionModel.filter { Calendar.current.isDate($0.date, inSameDayAs: today) }
-        let totalIncome = filteredTransactions.reduce(0) { $0 + $1.totalTransaction }
-        let formattedIncome = NumberFormatter.localizedString(from: NSNumber(value: totalIncome), number: .currency)
-        return formattedIncome
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
+        let currentMonth = Calendar.current.component(.month, from: Date())
+        let lastMonth = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+        
+        let todayTransactions = transactionModel.filter { Calendar.current.isDate($0.date, inSameDayAs: today) }
+        let yesterdayTransactions = transactionModel.filter { Calendar.current.isDate($0.date, inSameDayAs: yesterday) }
+        let currentMonthTransactions = transactionModel.filter { Calendar.current.component(.month, from: $0.date) == currentMonth }
+        let lastMonthTransactions = transactionModel.filter { Calendar.current.component(.month, from: $0.date) == Calendar.current.component(.month, from: lastMonth) }
+        
+        let todayIncome = todayTransactions.reduce(0) { $0 + $1.totalTransaction }
+        let yesterdayIncome = yesterdayTransactions.reduce(0) { $0 + $1.totalTransaction }
+        
+        let currentOmzet = currentMonthTransactions.flatMap { $0.items.map { $0.totalOmzetPerItem } }.reduce(0, +)
+        let previousOmzet = lastMonthTransactions.flatMap { $0.items.map { $0.totalOmzetPerItem } }.reduce(0, +)
+        
+        let currentProfit = currentMonthTransactions.flatMap { $0.items.map { $0.totalProfitPerItem } }.reduce(0, +)
+        let previousProfit = lastMonthTransactions.flatMap { $0.items.map { $0.totalProfitPerItem } }.reduce(0, +)
+        
+        return [todayIncome, yesterdayIncome, currentOmzet, previousOmzet, currentProfit, previousProfit]
     }
     
     func getTransactions() {
@@ -37,6 +55,9 @@ class HomeViewModel: NSObject, ObservableObject {
                 DispatchQueue.main.sync {
                     self.transactionModel = transaction
                     self.fetchingTransaction = false
+                    
+                    let incomeTransaction = self.incomeTransaction
+                    communcationManager.sendTodayIncome(incomeTransaction)
                 }
                 break
             case .failure(let error):
@@ -98,34 +119,6 @@ enum SortType: String, CaseIterable, Identifiable {
         case .cashier: return "Cashier"
         case .orderNumber: return "Order Number"
         case .date: return "Date"
-        }
-    }
-}
-
-extension HomeViewModel: WCSessionDelegate {
-    func sessionDidBecomeInactive(_ session: WCSession) {
-    }
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-    }
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
-        guard let request = message["request"] as? String else {
-            print("Invalid request")
-            return
-        }
-
-        switch request {
-        case "getTodayIncome":
-            let todayIncome = self.todayIncome
-            let todayIncomeData = ["todayIncome": "\(todayIncome)"]
-            session.sendMessage(todayIncomeData, replyHandler: nil, errorHandler: nil)
-            break
-        default:
-            print("Invalid request")
-            break
         }
     }
 }
