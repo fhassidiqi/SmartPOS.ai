@@ -31,12 +31,32 @@ extension ViewController {
         }
     }
     
-    //callback to detect object request
     func detectionDidComplete(request: VNRequest, error: Error?) {
         DispatchQueue.main.async {
             if let results = request.results {
                 self.extractDetections(results)
             }
+        }
+    }
+    
+    func getColorForLabel(_ label: String) -> (boxColor: UIColor, textColor: UIColor) {
+        switch label {
+        case "1000", "1000 -2016-":
+            return (.red, .red)
+        case "2000", "2000 -2016-":
+            return (.blue, .blue)
+        case "5000", "5000 -2016-":
+            return (.green, .green)
+        case "10000", "10000 -2016-":
+            return (.yellow, .yellow)
+        case "20000", "20000 -2016-":
+            return (.orange, .orange)
+        case "50000", "50000 -2016-":
+            return (.brown, .brown)
+        case "100000", "100000 -2016-":
+            return (.purple, .purple)
+        default:
+            return (.black, .white)
         }
     }
     
@@ -46,17 +66,15 @@ extension ViewController {
         for observation in results where observation is VNRecognizedObjectObservation {
             guard let objectObservation = observation as? VNRecognizedObjectObservation else {return}
             
-            //set label name
             labelName = objectObservation.labels.first!.identifier
             
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(screenRect.size.width), Int(screenRect.size.height))
             let transformedBounds = CGRect(x: objectBounds.minX, y: screenRect.size.height - objectBounds.maxY, width: objectBounds.maxX - objectBounds.minX, height: objectBounds.maxY - objectBounds.minY)
             
-            let boxLayer = self.drawBoundingBox(transformedBounds, label: objectObservation.labels.first!.identifier)
+            let boxLayer = self.drawBoundingBox(transformedBounds, label: labelName, boxColor: getColorForLabel(labelName).boxColor, textColor: getColorForLabel(labelName).textColor)
             objectLayer.addSublayer(boxLayer)
         }
         
-        //Person Counter Label
         personCounterText.text = "Label: \(labelName)"
         personCounterText.backgroundColor = .black
         personCounterText.textColor = .white
@@ -67,21 +85,20 @@ extension ViewController {
         labelName = ""
     }
     
-    func drawBoundingBox(_ bounds: CGRect, label: String) -> CALayer {
-        //Box
+    func drawBoundingBox(_ bounds: CGRect, label: String, boxColor: UIColor, textColor: UIColor) -> CALayer {
+        
         let boxLayer = CALayer()
         boxLayer.frame = bounds
         boxLayer.borderWidth = 3.0
-        boxLayer.borderColor = UIColor.green.cgColor
+        boxLayer.borderColor = boxColor.cgColor
         boxLayer.cornerRadius = 4.0
         
-        //Text
         let textLayer = CATextLayer()
-        textLayer.frame = CGRect(x: 0, y: 0, width: boxLayer.frame.width, height: 30)
+        textLayer.frame = CGRect(x: 0, y: 0, width: boxLayer.frame.width, height: boxLayer.frame.height)
         textLayer.alignmentMode = .center
-        textLayer.foregroundColor = UIColor.orange.cgColor
+        textLayer.foregroundColor = textColor.cgColor
         textLayer.string = label
-        textLayer.fontSize = 10.0
+        textLayer.fontSize = 15.0
         
         boxLayer.addSublayer(textLayer)
         

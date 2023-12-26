@@ -11,7 +11,7 @@ import Vision
 import SwiftUI
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
-
+    
     let captureSession = AVCaptureSession()
     
     //preview layer = camera layer
@@ -27,16 +27,22 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var labelName: String = "" //set the label name to the UI
     var personCounterText = UILabel()
     
+    var captureButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         DispatchQueue(label: "createdQueue").async {
             self.cameraSetUp()
             self.showCamera()
             self.getCameraFrames()
-
+            
             self.setUpLayer()
             self.captureSession.startRunning()
+            
+            // Add the capture button
+            self.setupCaptureButton()
+            self.view.addSubview(self.captureButton)
         }
     }
     
@@ -52,31 +58,58 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         previewLayer.videoGravity = .resizeAspectFill
         previewLayer.connection!.videoOrientation = .portrait
     }
-
+    
     func getCameraFrames() {
         videoDataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(videoDataOutput)
         
         videoDataOutput.connection(with: .video)!.videoOrientation = .portrait
-
-        //Preview Layer (Camera Layer) must be run in main thread
+        
         DispatchQueue.main.async {
             self.view.layer.addSublayer(self.previewLayer)
         }
     }
+    
+    func setupCaptureButton() {
+        let buttonSize: CGFloat = 50.0
+        let buttonPadding: CGFloat = 10.0
+        let circleSize: CGFloat = buttonSize + 2 * buttonPadding
+        
+        let circleView = UIView()
+        circleView.frame = CGRect(x: (view.bounds.width - circleSize) / 2,
+                                  y: view.bounds.height - circleSize - 10.0,
+                                  width: circleSize,
+                                  height: circleSize)
+        circleView.backgroundColor = UIColor.clear
+        circleView.layer.cornerRadius = circleSize / 2.0
+        circleView.layer.borderWidth = 2.0
+        circleView.layer.borderColor = UIColor.white.cgColor
+        
+        captureButton.frame = CGRect(x: ((view.bounds.width - circleSize) / 2) + buttonPadding,
+                                     y: (view.bounds.height - circleSize - 10.0) + buttonPadding,
+                                     width: buttonSize,
+                                     height: buttonSize)
+        captureButton.backgroundColor = UIColor.white
+        captureButton.layer.cornerRadius = buttonSize / 2.0
+        captureButton.addTarget(self, action: #selector(captureButtonPressed), for: .touchUpInside)
+        
+        circleView.addSubview(captureButton)
+        view.addSubview(circleView)
+    }
+    
+    @objc func captureButtonPressed() {
+        print("captureButtonPressed")
+    }
 }
 
 struct CameraViewControllerRepresentable: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> ViewController {
-        let vc = ViewController()
-        return vc
-    }
-    
-    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
-        
-    }
     
     typealias UIViewControllerType = ViewController
     
+    func makeUIViewController(context: Context) -> ViewController {
+        return ViewController()
+    }
     
+    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
+    }
 }
