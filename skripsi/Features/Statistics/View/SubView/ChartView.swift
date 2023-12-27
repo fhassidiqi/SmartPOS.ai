@@ -20,9 +20,10 @@ struct ChartView: View {
             .map { $0.date.formatToMonth }
     }
     
+        var yAxisValues: [Int] = [0, 1000000, 2000000, 3000000, 4000000]
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            
             HStack {
                 Text("REVENUE")
                     .font(.headline).bold()
@@ -53,7 +54,7 @@ struct ChartView: View {
                     .foregroundStyle(revenueChart == .omzet ? Color.secondaryColor : Color.tertiaryColor)
                 }
                 
-                RuleMark(y: .value("Target", revenueChart == .omzet ? 700000 : 400000))
+                RuleMark(y: .value("Target", revenueChart == .omzet ? 3500000 : 250000))
                     .foregroundStyle(Color.mint)
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                     .annotation(alignment: .leading) {
@@ -63,9 +64,17 @@ struct ChartView: View {
                     }
             }
             .frame(height: 180)
-            .chartYScale(domain: 0...1000000)
+            .chartYScale(domain: 0...5000000)
             .chartYAxis {
-                AxisMarks(position: .leading, values: [0, 250000, 500000, 750000, 1000000])
+                AxisMarks(position: .leading, values: yAxisValues) { value in
+                    AxisGridLine(centered: true, stroke: StrokeStyle(lineWidth: 1))
+                    AxisValueLabel() {
+                        if let intValue = value.as(Int.self) {
+                            Text(intValue.formattedYAxisLabel)
+                                .font(.caption)
+                        }
+                    }
+                }
             }
             .chartXAxis {
                 AxisMarks(position: .bottom, values: xAxisValues)

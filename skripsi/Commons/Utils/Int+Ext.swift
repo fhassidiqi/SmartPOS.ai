@@ -27,12 +27,29 @@ extension Int {
         
         if number >= 1_000_000 {
             let millionValue = number / 1_000_000
-            return "Rp. \(formatter.string(from: NSNumber(value: millionValue)) ?? "\(millionValue)")M"
+            return "Rp. \(formatter.string(from: NSNumber(value: millionValue)) ?? "\(millionValue)")Jt"
         } else if number >= 1_000 {
             let thousandValue = number / 1_000
-            return "Rp. \(formatter.string(from: NSNumber(value: thousandValue)) ?? "\(thousandValue)")K"
+            return "Rp. \(formatter.string(from: NSNumber(value: thousandValue)) ?? "\(thousandValue)")Rb"
         } else {
             return "Rp. \(self)"
+        }
+    }
+    
+    var formattedYAxisLabel: String {
+        let number = Int(self)
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1
+        
+        if number >= 1_000_000 {
+            let millionValue = number / 1_000_000
+            return "\(formatter.string(from: NSNumber(value: millionValue)) ?? "\(millionValue)")Jt"
+        } else if number >= 1_000 {
+            let thousandValue = number / 1_000
+            return "\(formatter.string(from: NSNumber(value: thousandValue)) ?? "\(thousandValue)")Rb"
+        } else {
+            return "\(self)"
         }
     }
 }

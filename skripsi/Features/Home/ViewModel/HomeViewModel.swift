@@ -54,6 +54,7 @@ class HomeViewModel: ObservableObject {
             case .success(let transaction):
                 DispatchQueue.main.sync {
                     self.transactionModel = transaction
+                    self.sortTransactions()
                     self.fetchingTransaction = false
                     
                     let incomeTransaction = self.incomeTransaction
@@ -93,32 +94,26 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func sortTransactions(by sortingOption: SortType) {
-        switch sortingOption {
-        case .orderNumber:
-            transactionModel.sort { $0.orderNumber < $1.orderNumber }
-        case .cashier:
-            transactionModel.sort { $0.cashier < $1.cashier }
-        case .date:
-            transactionModel.sort { $0.date < $1.date }
+    func changeSortType(to sortType: SortType) {
+            currentSortingOption = sortType
+            sortTransactions()
         }
-        
-        currentSortingOption = sortingOption
-    }
+    
+    private func sortTransactions() {
+            switch currentSortingOption {
+            case .cashier:
+                transactionModel.sort { $0.cashier < $1.cashier }
+            case .orderNumber:
+                transactionModel.sort { $0.orderNumber < $1.orderNumber }
+            case .date:
+                transactionModel.sort { $0.date < $1.date }
+            }
+        }
 }
 
 enum SortType: String, CaseIterable, Identifiable {
-    case cashier
-    case orderNumber
-    case date
-    
-    var id: Self { return self }
-    
-    var title: String {
-        switch self {
-        case .cashier: return "Cashier"
-        case .orderNumber: return "Order Number"
-        case .date: return "Date"
-        }
-    }
+    case cashier = "Kasir"
+    case orderNumber = "No. Pesanan"
+    case date = "Tanggal"
+    var id: SortType { self }
 }

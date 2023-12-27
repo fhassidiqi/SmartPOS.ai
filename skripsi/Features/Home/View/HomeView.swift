@@ -48,20 +48,23 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    Button {
-                        withAnimation {
-                            switch sortOption {
-                            case .cashier: sortOption = .orderNumber
-                            case .orderNumber: sortOption = .date
-                            case .date: sortOption = .cashier
-                            }
-                            
-                            vm.sortTransactions(by: sortOption)
+                    Picker("Choosing Sort", selection: $sortOption) {
+                        ForEach(SortType.allCases) { sortType in
+                            Text(sortType.rawValue)
+                                .foregroundColor(Color.text.primary100)
+                                .tag(sortType)
                         }
-                    } label: {
-                        Image(systemName: "line.3.horizontal.decrease")
-                            .foregroundColor(Color.text.primary100)
                     }
+                    .onChange(of: sortOption) { newSortOption in
+                        vm.changeSortType(to: newSortOption)
+                    }
+                    
+//                    Button {
+//
+//                    } label: {
+//                        Image(systemName: "line.3.horizontal.decrease")
+//                            .foregroundColor(Color.text.primary100)
+//                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -84,7 +87,9 @@ struct HomeView: View {
                     }
                 }
                 .scrollIndicators(.hidden)
-                
+                .refreshable {
+                    vm.getTransactions()
+                }
                 Spacer()
             }
         }

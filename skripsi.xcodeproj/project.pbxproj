@@ -34,7 +34,6 @@
 		4C3AE5552B33281B00C36EEB /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE82AE6A29C00482D25 /* TransactionModel.swift */; };
 		4C3AE5562B33282000C36EEB /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEEA2AE6A2E300482D25 /* ItemModel.swift */; };
 		4C3AE5572B33282300C36EEB /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98BEE62AE6A1D000482D25 /* CategoryModel.swift */; };
-		4C3AE5592B332F4A00C36EEB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE5582B332F4A00C36EEB /* ImagePicker.swift */; };
 		4C3AE55B2B33D49D00C36EEB /* Camera+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE55A2B33D49D00C36EEB /* Camera+Ext.swift */; };
 		4C3AE55D2B33D4CA00C36EEB /* CameraServices+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE55C2B33D4CA00C36EEB /* CameraServices+Enum.swift */; };
 		4C3AE5602B33D50100C36EEB /* CameraServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE55F2B33D50100C36EEB /* CameraServices.swift */; };
@@ -93,7 +92,7 @@
 		4C9CDDAD2B3A82C400537F4E /* Detector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDDAC2B3A82C400537F4E /* Detector.swift */; };
 		4C9CDDAF2B3A82CF00537F4E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDDAE2B3A82CF00537F4E /* CameraViewController.swift */; };
 		4C9CDDB92B3A9CE200537F4E /* modelAISkripsi.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDDB82B3A9CE200537F4E /* modelAISkripsi.mlmodel */; };
-		4CF1D18A2AE2C194007B72DE /* ItemFoodCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */; };
+		4CCB5B2C2B3B08800072ADFD /* ItemFoodCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCB5B2B2B3B08800072ADFD /* ItemFoodCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,7 +143,6 @@
 		4C3AE54A2B32D31800C36EEB /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		4C3AE54C2B32D38E00C36EEB /* TodayRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRevenueView.swift; sourceTree = "<group>"; };
 		4C3AE54E2B32D4A100C36EEB /* MonthlyRevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRevenueView.swift; sourceTree = "<group>"; };
-		4C3AE5582B332F4A00C36EEB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4C3AE55A2B33D49D00C36EEB /* Camera+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Camera+Ext.swift"; sourceTree = "<group>"; };
 		4C3AE55C2B33D4CA00C36EEB /* CameraServices+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CameraServices+Enum.swift"; sourceTree = "<group>"; };
 		4C3AE55F2B33D50100C36EEB /* CameraServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraServices.swift; sourceTree = "<group>"; };
@@ -196,7 +194,7 @@
 		4C9CDDAC2B3A82C400537F4E /* Detector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detector.swift; sourceTree = "<group>"; };
 		4C9CDDAE2B3A82CF00537F4E /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		4C9CDDB82B3A9CE200537F4E /* modelAISkripsi.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = modelAISkripsi.mlmodel; sourceTree = "<group>"; };
-		4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFoodCardView.swift; sourceTree = "<group>"; };
+		4CCB5B2B2B3B08800072ADFD /* ItemFoodCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFoodCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,12 +227,11 @@
 		4C0D6F2D2AE2D3AF00C74BF7 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
-				4CF1D1892AE2C194007B72DE /* ItemFoodCardView.swift */,
 				4C6A28C12ADCDCE50097FAB1 /* PromoCardView.swift */,
 				4C25362C2AE4EC7200DACB6E /* ScanQRView.swift */,
 				4C9753F32B2EFFB6008BF421 /* CameraView.swift */,
 				4C05035F2B00CCE40042BDEA /* PaymentView.swift */,
-				4C3AE5582B332F4A00C36EEB /* ImagePicker.swift */,
+				4CCB5B2B2B3B08800072ADFD /* ItemFoodCardView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -857,7 +854,6 @@
 				4C6A28AD2ADA9A720097FAB1 /* HomeViewModel.swift in Sources */,
 				4C0C08D72B066F6000207617 /* Logger.swift in Sources */,
 				4C3AE5642B33D54400C36EEB /* PhotoCaptureProcessor.swift in Sources */,
-				4CF1D18A2AE2C194007B72DE /* ItemFoodCardView.swift in Sources */,
 				4C3374672B3522B500FEB4A0 /* WatchConnector.swift in Sources */,
 				4C6A28C22ADCDCE50097FAB1 /* PromoCardView.swift in Sources */,
 				4C6A289F2ADA98230097FAB1 /* Rounded+Ext.swift in Sources */,
@@ -869,6 +865,7 @@
 				4C98BEFD2AE6BE6600482D25 /* GetCategoriesUseCase.swift in Sources */,
 				4C98BEEF2AE6A7B600482D25 /* RemoteDataSource.swift in Sources */,
 				4C9753EE2B2C2DD9008BF421 /* SwipeActionModifier.swift in Sources */,
+				4CCB5B2C2B3B08800072ADFD /* ItemFoodCardView.swift in Sources */,
 				4C731E9B2ADA8B6300B60760 /* ContentView.swift in Sources */,
 				4C6712302B21F9AD0038933D /* TotalProfitUseCase.swift in Sources */,
 				4C9753F42B2EFFB6008BF421 /* CameraView.swift in Sources */,
@@ -876,7 +873,6 @@
 				4C7B94312B24051100179A1F /* AddTransactionUseCase.swift in Sources */,
 				4C67122E2B21F6710038933D /* TotalOmzetUseCase.swift in Sources */,
 				4C731E992ADA8B6300B60760 /* skripsiApp.swift in Sources */,
-				4C3AE5592B332F4A00C36EEB /* ImagePicker.swift in Sources */,
 				4C0D6F332AE3424A00C74BF7 /* RoundedCornerShape.swift in Sources */,
 				4C6A28B62ADC1D8A0097FAB1 /* DetailHistoryView.swift in Sources */,
 				4C0503622B010D960042BDEA /* CustomToolbar.swift in Sources */,
