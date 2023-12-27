@@ -34,7 +34,7 @@ struct RevenueCardView: View {
             Text(currentValue.formattedAsRupiah)
                 .font(.headline)
             
-            Text("Compared to (\(previousValue.formattedAsRupiah) in last month)")
+            Text("Compared to (\(previousValue.formattedAsRupiah)) in last month")
                 .font(.caption2)
                 .foregroundStyle(Color.text.primary30)
         }

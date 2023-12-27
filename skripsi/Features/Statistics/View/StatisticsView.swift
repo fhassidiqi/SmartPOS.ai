@@ -15,10 +15,11 @@ struct StatisticsView: View {
     @ObservedObject var vm: StatisticViewModel
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.background.primary
-                    .edgesIgnoringSafeArea(.top)
+        ZStack {
+            Color.background.primary
+                .ignoresSafeArea()
+            ScrollView {
+                
                 
                 VStack(alignment: .leading, spacing: 16) {
                     VStack(alignment: .leading, spacing: 0) {
@@ -98,6 +99,9 @@ struct StatisticsView: View {
                 }
             }
             .presentationDetents([.medium, .large], selection: $settingsDetent)
+        }
+        .refreshable {
+            await vm.updateData(for: selectedDate)
         }
     }
 }

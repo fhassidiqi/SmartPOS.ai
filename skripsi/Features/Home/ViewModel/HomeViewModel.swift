@@ -7,13 +7,13 @@
 
 import Foundation
 import WatchConnectivity
-import Combine
 
 class HomeViewModel: ObservableObject {
     
     @Published var fetchingTransaction = false
     @Published var currentSortingOption: SortType = .date
     @Published var transactionModel = [TransactionModel]()
+    @Published var lastUpdateTimestamp: Date?
     
     let communcationManager = CommunicationManager()
     
@@ -54,10 +54,13 @@ class HomeViewModel: ObservableObject {
             case .success(let transaction):
                 DispatchQueue.main.sync {
                     self.transactionModel = transaction
+                    self.sortTransactions()
                     self.fetchingTransaction = false
                     
                     let incomeTransaction = self.incomeTransaction
                     communcationManager.sendTodayIncome(incomeTransaction)
+                    
+                    self.lastUpdateTimestamp = Date()
                 }
                 break
             case .failure(let error):
@@ -93,32 +96,26 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func sortTransactions(by sortingOption: SortType) {
-        switch sortingOption {
-        case .orderNumber:
-            transactionModel.sort { $0.orderNumber < $1.orderNumber }
+    func changeSortType(to sortType: SortType) {
+        currentSortingOption = sortType
+        sortTransactions()
+    }
+    
+    private func sortTransactions() {
+        switch currentSortingOption {
         case .cashier:
             transactionModel.sort { $0.cashier < $1.cashier }
+        case .orderNumber:
+            transactionModel.sort { $0.orderNumber < $1.orderNumber }
         case .date:
-            transactionModel.sort { $0.date < $1.date }
+            transactionModel.sort { $0.date > $1.date }
         }
-        
-        currentSortingOption = sortingOption
     }
 }
 
 enum SortType: String, CaseIterable, Identifiable {
-    case cashier
-    case orderNumber
-    case date
-    
-    var id: Self { return self }
-    
-    var title: String {
-        switch self {
-        case .cashier: return "Cashier"
-        case .orderNumber: return "Order Number"
-        case .date: return "Date"
-        }
-    }
+    case cashier = "Cashier"
+    case orderNumber = "Order"
+    case date = "Date"
+    var id: SortType { self }
 }

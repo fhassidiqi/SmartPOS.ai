@@ -26,7 +26,7 @@ struct HomeView: View {
                         Text(vm.incomeTransaction[0].formattedAsRupiah)
                             .font(.largeTitle).bold()
                         
-                        Text("Updated **2 mins ago**")
+                        Text("Updated \(vm.lastUpdateTimestamp?.formattedAsTimeAgo() ?? "a moment ago")")
                             .font(.footnote)
                     }
                     .padding(.bottom, 20)
@@ -48,20 +48,22 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    Button {
-                        withAnimation {
-                            switch sortOption {
-                            case .cashier: sortOption = .orderNumber
-                            case .orderNumber: sortOption = .date
-                            case .date: sortOption = .cashier
+                    HStack(spacing: 0) {
+                        Text("Sort by:")
+                            .foregroundStyle(Color.text.primary100)
+                        
+                        Picker("Choosing Sort", selection: $sortOption) {
+                            ForEach(SortType.allCases) { sortType in
+                                Text(sortType.rawValue)
+                                    .foregroundColor(Color.text.primary100)
+                                    .tag(sortType)
                             }
-                            
-                            vm.sortTransactions(by: sortOption)
                         }
-                    } label: {
-                        Image(systemName: "line.3.horizontal.decrease")
-                            .foregroundColor(Color.text.primary100)
+                        .onChange(of: sortOption) { newSortOption in
+                            vm.changeSortType(to: newSortOption)
+                        }
                     }
+                    .font(.callout)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -84,7 +86,9 @@ struct HomeView: View {
                     }
                 }
                 .scrollIndicators(.hidden)
-                
+                .refreshable {
+                    vm.getTransactions()
+                }
                 Spacer()
             }
         }

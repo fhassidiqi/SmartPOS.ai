@@ -139,7 +139,7 @@ struct PaymentView: View {
                         }
                     ))
                     .font(.callout)
-                    .keyboardType(.numberPad)
+                    .keyboardType(.numbersAndPunctuation)
                     .multilineTextAlignment(.trailing)
                 }
                 .frame(width: 100)

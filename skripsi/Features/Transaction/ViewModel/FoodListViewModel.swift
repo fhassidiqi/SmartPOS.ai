@@ -14,7 +14,6 @@ import FirebaseFirestoreSwift
 
 class FoodListViewModel: ObservableObject {
     
-    @Published var photo: Photo!
     @Published var isFlashOn = false
     @Published var payment: String = ""
     @Published var showAlertError = false
@@ -26,47 +25,22 @@ class FoodListViewModel: ObservableObject {
     @Published var selectedItems = [ItemTransactionModel]()
     @Published var itemTransactionModel = [ItemTransactionModel]()
     
-    var alertError: AlertError!
-    var session: AVCaptureSession
-    
-    private let service = CameraService()
     private let getItemUseCase = GetItemsUseCase()
     private let getCategoriesUseCase = GetCategoriesUseCase()
     private let addTransactionUseCase = AddTransactionUseCase()
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init() {
-        self.session = service.session
-        
-        service.$photo.sink { [weak self] (photo) in
-            guard let pic = photo else { return }
-            self?.photo = pic
-        }
-        .store(in: &self.subscriptions)
-        
-        service.$shouldShowAlertView.sink { [weak self] (val) in
-            self?.alertError = self?.service.alertError
-            self?.showAlertError = val
-        }
-        .store(in: &self.subscriptions)
-        
-        service.$flashMode.sink { [weak self] (mode) in
-            self?.isFlashOn = mode == .on
-        }
-        .store(in: &self.subscriptions)
-    }
-    
     func getCategories() {
         Task {
             let result = await getCategoriesUseCase.execute(params: GetCategoriesUseCase.Param())
-            switch result {
-            case .success(let categories):
-                DispatchQueue.main.sync {
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let categories):
                     self.categoriesModel = categories
+                case .failure(let error):
+                    print("Error fetching categories: \(error.localizedDescription)")
                 }
-            case .failure(let error):
-                print("Error fetching categories: \(error.localizedDescription)")
             }
         }
     }
@@ -79,15 +53,19 @@ class FoodListViewModel: ObservableObject {
             }
             
             let result = await getItemUseCase.execute(params: GetItemsUseCase.Param(categories: categories))
-            switch result {
-            case .success(let items):
-                DispatchQueue.main.sync {
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let items):
                     self.itemsModel = items
+                case .failure(let error):
+                    print("Error fetching items: \(error.localizedDescription)")
                 }
-            case .failure(let error):
-                print("Error fetching items: \(error.localizedDescription)")
             }
         }
+    }
+    
+    func updatePayment(withLabelName labelName: String) {
+        self.payment = labelName
     }
     
     func addTransaction(date: Date) {
@@ -167,27 +145,6 @@ class FoodListViewModel: ObservableObject {
                 return itemTransaction
             }
         }.compactMap { $0 }
-    }
-    
-    func configure() {
-        service.checkForPermissions()
-        service.configure()
-    }
-    
-    func capturePhoto() {
-        service.capturePhoto()
-    }
-    
-    func flipCamera() {
-        service.changeCamera()
-    }
-    
-    func zoom(with factor: CGFloat) {
-        service.set(zoom: factor)
-    }
-    
-    func switchFlash() {
-        service.flashMode = service.flashMode == .on ? .off : .on
     }
     
     func calculateTotalPrice() -> Int {

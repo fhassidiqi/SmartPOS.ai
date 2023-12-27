@@ -37,6 +37,14 @@ struct FoodListView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
+                            CategoryView(
+                                isActive: selectedCategory == nil,
+                                categoryModel: CategoryModel(id: "", name: "All")
+                            )
+                            .onTapGesture {
+                                selectedCategory = nil
+                            }
+                            
                             ForEach(vm.categoriesModel.indices, id: \.self) { index in
                                 CategoryView(
                                     isActive: vm.categoriesModel[index] == selectedCategory,
@@ -72,6 +80,9 @@ struct FoodListView: View {
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(Color.background.base)
+                .refreshable {
+                    vm.getItems()
+                }
             }
             
             if vm.selectedItems.contains(where: { $0.quantity > 0 }) {
@@ -117,7 +128,9 @@ struct CategoryView: View {
             .cornerRadius(12)
             .overlay {
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.primaryColor100, lineWidth: isActive == true ? 1 : 0)
+                    .inset(by: 0.5)
+                    .stroke(Color.primaryColor100, lineWidth: 1)
+                
             }
     }
 }
