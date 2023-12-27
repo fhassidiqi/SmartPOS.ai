@@ -7,13 +7,13 @@
 
 import Foundation
 import WatchConnectivity
-import Combine
 
 class HomeViewModel: ObservableObject {
     
     @Published var fetchingTransaction = false
     @Published var currentSortingOption: SortType = .date
     @Published var transactionModel = [TransactionModel]()
+    @Published var lastUpdateTimestamp: Date?
     
     let communcationManager = CommunicationManager()
     
@@ -59,6 +59,8 @@ class HomeViewModel: ObservableObject {
                     
                     let incomeTransaction = self.incomeTransaction
                     communcationManager.sendTodayIncome(incomeTransaction)
+                    
+                    self.lastUpdateTimestamp = Date()
                 }
                 break
             case .failure(let error):
@@ -95,25 +97,25 @@ class HomeViewModel: ObservableObject {
     }
     
     func changeSortType(to sortType: SortType) {
-            currentSortingOption = sortType
-            sortTransactions()
-        }
+        currentSortingOption = sortType
+        sortTransactions()
+    }
     
     private func sortTransactions() {
-            switch currentSortingOption {
-            case .cashier:
-                transactionModel.sort { $0.cashier < $1.cashier }
-            case .orderNumber:
-                transactionModel.sort { $0.orderNumber < $1.orderNumber }
-            case .date:
-                transactionModel.sort { $0.date < $1.date }
-            }
+        switch currentSortingOption {
+        case .cashier:
+            transactionModel.sort { $0.cashier < $1.cashier }
+        case .orderNumber:
+            transactionModel.sort { $0.orderNumber < $1.orderNumber }
+        case .date:
+            transactionModel.sort { $0.date > $1.date }
         }
+    }
 }
 
 enum SortType: String, CaseIterable, Identifiable {
-    case cashier = "Kasir"
-    case orderNumber = "No. Pesanan"
-    case date = "Tanggal"
+    case cashier = "Cashier"
+    case orderNumber = "Order"
+    case date = "Date"
     var id: SortType { self }
 }

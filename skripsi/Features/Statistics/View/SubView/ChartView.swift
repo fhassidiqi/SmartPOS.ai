@@ -54,7 +54,7 @@ struct ChartView: View {
                     .foregroundStyle(revenueChart == .omzet ? Color.secondaryColor : Color.tertiaryColor)
                 }
                 
-                RuleMark(y: .value("Target", revenueChart == .omzet ? 3500000 : 250000))
+                RuleMark(y: .value("Target", revenueChart == .omzet ? 3500000 : 2500000))
                     .foregroundStyle(Color.mint)
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                     .annotation(alignment: .leading) {

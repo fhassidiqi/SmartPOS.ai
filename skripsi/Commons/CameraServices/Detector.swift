@@ -81,8 +81,6 @@ extension ViewController {
         personCounterText.textAlignment = .center
         
         self.view.addSubview(personCounterText)
-        
-        labelName = ""
     }
     
     func drawBoundingBox(_ bounds: CGRect, label: String, boxColor: UIColor, textColor: UIColor) -> CALayer {

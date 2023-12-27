@@ -12,22 +12,22 @@ import SwiftUI
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
+    var router: Router!
     let captureSession = AVCaptureSession()
+    var foodListViewModel = FoodListViewModel()
     
-    //preview layer = camera layer
-    lazy var previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-    
-    var screenRect: CGRect = UIScreen.main.bounds
+    var labelName: String = ""
     var objectLayer: CALayer! = nil
+    var screenRect: CGRect = UIScreen.main.bounds
     
-    //send the frame through the model
     var requests = [VNRequest]()
     var videoDataOutput = AVCaptureVideoDataOutput()
     var yolov3Url = Bundle.main.url(forResource: "modelAISkripsi", withExtension: "mlmodelc")
-    var labelName: String = "" //set the label name to the UI
-    var personCounterText = UILabel()
     
     var captureButton = UIButton()
+    var personCounterText = UILabel()
+    
+    lazy var previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             self.setUpLayer()
             self.captureSession.startRunning()
             
-            // Add the capture button
+            let cameraViewController = CameraViewControllerRepresentable(viewModel: self.foodListViewModel, router: self.router)
+            
             self.setupCaptureButton()
             self.view.addSubview(self.captureButton)
         }
@@ -98,18 +99,26 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     @objc func captureButtonPressed() {
-        print("captureButtonPressed")
+        let cleanedLabel = labelName.replacingOccurrences(of: " -2016-", with: "")
+        foodListViewModel.updatePayment(withLabelName: cleanedLabel)
+        router.navigateBack()
     }
 }
 
 struct CameraViewControllerRepresentable: UIViewControllerRepresentable {
-    
     typealias UIViewControllerType = ViewController
-    
+
+    var viewModel: FoodListViewModel
+    var router: Router
+
     func makeUIViewController(context: Context) -> ViewController {
-        return ViewController()
+        let viewController = ViewController()
+        viewController.foodListViewModel = viewModel
+        viewController.router = router
+        return viewController
     }
-    
+
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {
+        // Update UI if needed
     }
 }
