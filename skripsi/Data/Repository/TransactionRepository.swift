@@ -45,7 +45,7 @@ class TransactionRepository: ITransactionRepository {
     
     func addTransaction(itemTransaction: [ItemTransactionModel], transaction: TransactionModel, transactionId: String?) async throws -> Bool {
         let result = try await remoteDataSource.addTransaction(itemTransaction: itemTransaction, transaction: transaction, transactionId: transactionId.orEmpty())
-        print("Transaction ID in transactionRepository: \(transaction.id.orEmpty())")
+        
         return result
         
     }

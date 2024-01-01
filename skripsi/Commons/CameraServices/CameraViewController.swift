@@ -22,7 +22,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     var requests = [VNRequest]()
     var videoDataOutput = AVCaptureVideoDataOutput()
-    var yolov3Url = Bundle.main.url(forResource: "modelAISkripsi", withExtension: "mlmodelc")
+    var yolov2Url = Bundle.main.url(forResource: "modelAISkripsi", withExtension: "mlmodelc")
     
     var captureButton = UIButton()
     var personCounterText = UILabel()

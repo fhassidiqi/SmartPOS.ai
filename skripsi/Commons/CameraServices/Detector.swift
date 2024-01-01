@@ -10,7 +10,6 @@ import AVFoundation
 import Vision
 import UIKit
 
-
 extension ViewController {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {return}
@@ -19,7 +18,7 @@ extension ViewController {
     
     func detectObject(_ image: CVPixelBuffer) {
         do {
-            let yoloV3Model = try VNCoreMLModel(for: MLModel(contentsOf: yolov3Url!))
+            let yoloV3Model = try VNCoreMLModel(for: MLModel(contentsOf: yolov2Url!))
             let recognitions = VNCoreMLRequest(model: yoloV3Model, completionHandler: detectionDidComplete)
             
             requests = [recognitions]

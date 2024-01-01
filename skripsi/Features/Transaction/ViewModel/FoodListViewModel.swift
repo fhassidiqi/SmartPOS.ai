@@ -5,31 +5,22 @@
 //  Created by Falah Hasbi Assidiqi on 25/10/23.
 //
 
-import Foundation
-import SwiftUI
 import AVFoundation
-import Combine
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class FoodListViewModel: ObservableObject {
     
-    @Published var isFlashOn = false
     @Published var payment: String = ""
-    @Published var showAlertError = false
-    @Published var willCapturePhoto = false
-    
     @Published var itemsModel = [ItemModel]()
     @Published var categoriesModel = [CategoryModel]()
     @Published var transactionModel = [TransactionModel]()
     @Published var selectedItems = [ItemTransactionModel]()
-    @Published var itemTransactionModel = [ItemTransactionModel]()
     
     private let getItemUseCase = GetItemsUseCase()
+    private let plusMinusUseCase = PlusMinusUseCase()
     private let getCategoriesUseCase = GetCategoriesUseCase()
     private let addTransactionUseCase = AddTransactionUseCase()
-    
-    private var subscriptions = Set<AnyCancellable>()
     
     func getCategories() {
         Task {
@@ -44,7 +35,7 @@ class FoodListViewModel: ObservableObject {
             }
         }
     }
-    
+
     func getItems(categoryIDs: [String] = []) {
         Task {
             var categories: [String]? = nil
@@ -118,33 +109,31 @@ class FoodListViewModel: ObservableObject {
     }
     
     func incrementQuantity(for item: ItemModel) {
-        itemTransactionModel = itemTransactionModel.map { itemTransaction -> ItemTransactionModel in
-            if itemTransaction.item.id == item.id {
-                var mutableItemTransaction = itemTransaction
-                mutableItemTransaction.quantity += 1
-                return mutableItemTransaction
-            } else {
-                return itemTransaction
+        Task {
+            let params = PlusMinusUseCase.Param(item: item, itemTransaction: selectedItems, quantity: 1)
+            let result = await plusMinusUseCase.execute(params: params)
+            
+            switch result {
+            case .success(let (increment, _)):
+                selectedItems = increment
+            case .failure(let error):
+                print("Error incrementing quantity: \(error.localizedDescription)")
             }
         }
     }
     
     func decrementQuantity(for item: ItemModel) {
-        itemTransactionModel = itemTransactionModel.map { itemTransaction -> ItemTransactionModel in
-            if itemTransaction.item.id == item.id {
-                var mutableItemTransaction = itemTransaction
-                if mutableItemTransaction.quantity > 0 {
-                    mutableItemTransaction.quantity -= 1
-                }
-                if mutableItemTransaction.quantity <= 0 {
-                    return itemTransaction
-                } else {
-                    return mutableItemTransaction
-                }
-            } else {
-                return itemTransaction
+        Task {
+            let params = PlusMinusUseCase.Param(item: item, itemTransaction: selectedItems, quantity: -1)
+            let result = await plusMinusUseCase.execute(params: params)
+            
+            switch result {
+            case .success(let (_, decrement)):
+                selectedItems = decrement
+            case .failure(let error):
+                print("Error decrementing quantity: \(error.localizedDescription)")
             }
-        }.compactMap { $0 }
+        }
     }
     
     func calculateTotalPrice() -> Int {
@@ -173,5 +162,4 @@ class FoodListViewModel: ObservableObject {
         
         return orderNumber
     }
-    
 }
