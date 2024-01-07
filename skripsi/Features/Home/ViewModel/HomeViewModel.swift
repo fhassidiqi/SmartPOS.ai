@@ -45,27 +45,36 @@ class HomeViewModel: ObservableObject {
     
     func getTransactions() {
         Task {
-            DispatchQueue.main.sync {
-                self.fetchingTransaction = true
-            }
-            
             let result = await getTransactionUseCase.execute(params: GetTransactionUseCase.Params())
-            switch result {
-            case .success(let transaction):
-                DispatchQueue.main.sync {
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let transaction):
                     self.transactionModel = transaction
                     self.sortTransactions()
-                    self.fetchingTransaction = false
-                    
-                    let incomeTransaction = self.incomeTransaction
-                    communcationManager.sendTodayIncome(incomeTransaction)
-                    
                     self.lastUpdateTimestamp = Date()
+                case .failure(let error):
+                    print("Error fetching transaction: \(error)")
+                }
+            }
+        }
+    }
+    
+    func deleteTransaction(transactionId: String) {
+        Task {
+            DispatchQueue.main.async {
+                self.fetchingTransaction = true
+            }
+            let result = await deleteItemTransactionUseCase.execute(params: DeleteTransactionUseCase.Param(transactionId: transactionId))
+            switch result {
+            case .success :
+                DispatchQueue.main.async {
+                    self.getTransactions()
+                    self.fetchingTransaction = false
                 }
                 break
             case .failure(let error):
-                print("Error fetching transaction: \(error)")
-                DispatchQueue.main.sync {
+                print("Error \(error)")
+                DispatchQueue.main.async {
                     self.fetchingTransaction = false
                 }
                 break
@@ -73,27 +82,9 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func deleteTransaction(transactionId: String) {
-        Task {
-            DispatchQueue.main.sync {
-                self.fetchingTransaction = true
-            }
-            let result = await deleteItemTransactionUseCase.execute(params: DeleteTransactionUseCase.Param(transactionId: transactionId))
-            switch result {
-            case .success :
-                DispatchQueue.main.sync {
-                    self.getTransactions()
-                    self.fetchingTransaction = false
-                }
-                break
-            case .failure(let error):
-                print("Error \(error)")
-                DispatchQueue.main.sync {
-                    self.fetchingTransaction = false
-                }
-                break
-            }
-        }
+    func sendDataToWatch() {
+        let incomeTransaction = self.incomeTransaction
+        communcationManager.sendTodayIncome(incomeTransaction)
     }
     
     func changeSortType(to sortType: SortType) {

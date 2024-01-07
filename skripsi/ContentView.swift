@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @EnvironmentObject var router: Router
-    @State private var selectedTab = "transaction"
+    @State private var selectedTab = "home"
     @StateObject private var vm = StatisticViewModel()
     
     var body: some View {

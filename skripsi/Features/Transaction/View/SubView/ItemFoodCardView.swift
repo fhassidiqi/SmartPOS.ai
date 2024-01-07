@@ -34,8 +34,10 @@ struct ItemFoodCardView: View {
                 
                 if itemTransactionModel.quantity == 0 {
                     Button {
-                        vm.incrementQuantity(for: itemModel)
-                        onAddButtonTapped(vm.createUpdatedItemTransaction(for: itemModel, withQuantity: itemTransactionModel.quantity + 1))
+                        Task {
+                            vm.incrementQuantity(for: itemModel)
+                            onAddButtonTapped(vm.createUpdatedItemTransaction(for: itemModel, withQuantity: itemTransactionModel.quantity + 1))
+                        }
                         
                     } label: {
                         Text("Add")
@@ -53,8 +55,10 @@ struct ItemFoodCardView: View {
                 } else {
                     HStack {
                         Button {
-                            vm.decrementQuantity(for: itemModel)
-                            onAddButtonTapped(vm.createUpdatedItemTransaction(for: itemModel, withQuantity: itemTransactionModel.quantity - 1))
+                            Task {
+                                vm.decrementQuantity(for: itemModel)
+                                onAddButtonTapped(vm.createUpdatedItemTransaction(for: itemModel, withQuantity: itemTransactionModel.quantity - 1))
+                            }
                         } label: {
                             Image(systemName: "minus.circle")
                                 .font(.caption)
@@ -68,8 +72,10 @@ struct ItemFoodCardView: View {
                             .padding(6)
                         
                         Button {
-                            vm.incrementQuantity(for: itemModel)
-                            onAddButtonTapped(vm.createUpdatedItemTransaction(for: itemModel, withQuantity: itemTransactionModel.quantity + 1))
+                            Task {
+                                vm.incrementQuantity(for: itemModel)
+                                onAddButtonTapped(vm.createUpdatedItemTransaction(for: itemModel, withQuantity: itemTransactionModel.quantity + 1))
+                            }
                         } label: {
                             Image(systemName: "plus.circle")
                                 .font(.caption)

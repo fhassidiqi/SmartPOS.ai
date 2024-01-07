@@ -88,7 +88,7 @@ struct StatisticsView: View {
         .onAppear {
             Task {
                 await vm.updateData(for: selectedDate)
-                await vm.calculateTotalOmzet(forMonth: selectedDate)
+                vm.calculateTotalOmzet(forMonth: selectedDate)
                 await vm.calculateTotalProfit(forMonth: selectedDate)
             }
         }

@@ -24,9 +24,10 @@ class StatisticViewModel: ObservableObject {
     private let totalProfitUseCase = TotalProfitUseCase()
     private let getTransactionUseCase = GetTransactionUseCase()
     
-    func getTransactions() async {
+    func getTransactions() {
         Task {
-            let result = await getTransactionUseCase.execute(params: GetTransactionUseCase.Params())
+            let params = GetTransactionUseCase.Params()
+            let result = await getTransactionUseCase.execute(params: params)
             
             switch result {
             case .success(let transaction):
@@ -43,13 +44,13 @@ class StatisticViewModel: ObservableObject {
     
     func updateData(for date: Date) async {
         Task {
-            await getTransactions()
-            await calculateTotalOmzet(forMonth: date)
+            getTransactions()
+            calculateTotalOmzet(forMonth: date)
             await calculateTotalProfit(forMonth: date)
         }
     }
     
-    func calculateTotalOmzet(forMonth date: Date) async {
+    func calculateTotalOmzet(forMonth date: Date) {
         Task {
             DispatchQueue.main.sync {
                 self.fetchingOmzetData = true

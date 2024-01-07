@@ -10,7 +10,6 @@ import AVFoundation
 import Vision
 import UIKit
 
-
 extension ViewController {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {return}
@@ -19,8 +18,8 @@ extension ViewController {
     
     func detectObject(_ image: CVPixelBuffer) {
         do {
-            let yoloV3Model = try VNCoreMLModel(for: MLModel(contentsOf: yolov3Url!))
-            let recognitions = VNCoreMLRequest(model: yoloV3Model, completionHandler: detectionDidComplete)
+            let yoloV2Model = try VNCoreMLModel(for: MLModel(contentsOf: yolov2Url!))
+            let recognitions = VNCoreMLRequest(model: yoloV2Model, completionHandler: detectionDidComplete)
             
             requests = [recognitions]
             
@@ -75,12 +74,12 @@ extension ViewController {
             objectLayer.addSublayer(boxLayer)
         }
         
-        personCounterText.text = "Label: \(labelName)"
-        personCounterText.backgroundColor = .black
-        personCounterText.textColor = .white
-        personCounterText.textAlignment = .center
+        labelDetected.text = "Label: \(labelName)"
+        labelDetected.backgroundColor = .black
+        labelDetected.textColor = .white
+        labelDetected.textAlignment = .center
         
-        self.view.addSubview(personCounterText)
+        self.view.addSubview(labelDetected)
     }
     
     func drawBoundingBox(_ bounds: CGRect, label: String, boxColor: UIColor, textColor: UIColor) -> CALayer {
