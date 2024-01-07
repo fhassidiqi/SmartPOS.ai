@@ -94,6 +94,7 @@ struct HomeView: View {
         }
         .onAppear {
             vm.getTransactions()
+            vm.sendDataToWatch()
         }
     }
     

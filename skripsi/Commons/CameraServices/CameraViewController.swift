@@ -25,7 +25,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var yolov2Url = Bundle.main.url(forResource: "modelAISkripsi", withExtension: "mlmodelc")
     
     var captureButton = UIButton()
-    var personCounterText = UILabel()
+    var labelDetected = UILabel()
     
     lazy var previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
     

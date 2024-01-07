@@ -45,6 +45,7 @@
 		4C3F7FC02B351EF800D3AD57 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3F7FBF2B351EF800D3AD57 /* FirebaseStorage */; };
 		4C583EB92B0092540066C4E4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C583EB82B0092540066C4E4 /* Router.swift */; };
 		4C591F762B1E183600B82C9C /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C591F752B1E183600B82C9C /* StatisticViewModel.swift */; };
+		4C60936D2B44F7D4005DD3F6 /* skripsiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C60936C2B44F7D4005DD3F6 /* skripsiTests.swift */; };
 		4C67122E2B21F6710038933D /* TotalOmzetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */; };
 		4C6712302B21F9AD0038933D /* TotalProfitUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67122F2B21F9AD0038933D /* TotalProfitUseCase.swift */; };
 		4C6A28942ADA960A0097FAB1 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A28932ADA960A0097FAB1 /* UserDefault.swift */; };
@@ -99,6 +100,13 @@
 			remoteGlobalIDString = 4C3AE5352B32C32100C36EEB;
 			remoteInfo = "skripsi-watch Watch App";
 		};
+		4C60936E2B44F7D4005DD3F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C731E8D2ADA8B6300B60760 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C731E942ADA8B6300B60760;
+			remoteInfo = skripsi;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -142,6 +150,8 @@
 		4C3AE55A2B33D49D00C36EEB /* Camera+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Camera+Ext.swift"; sourceTree = "<group>"; };
 		4C583EB82B0092540066C4E4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4C591F752B1E183600B82C9C /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
+		4C60936A2B44F7D4005DD3F6 /* skripsiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = skripsiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C60936C2B44F7D4005DD3F6 /* skripsiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skripsiTests.swift; sourceTree = "<group>"; };
 		4C67122D2B21F6710038933D /* TotalOmzetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalOmzetUseCase.swift; sourceTree = "<group>"; };
 		4C67122F2B21F9AD0038933D /* TotalProfitUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalProfitUseCase.swift; sourceTree = "<group>"; };
 		4C6A28932ADA960A0097FAB1 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
@@ -191,6 +201,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		4C3AE5332B32C32100C36EEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C6093672B44F7D4005DD3F6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -308,6 +325,14 @@
 				4C583EB82B0092540066C4E4 /* Router.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		4C60936B2B44F7D4005DD3F6 /* skripsiTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C60936C2B44F7D4005DD3F6 /* skripsiTests.swift */,
+			);
+			path = skripsiTests;
 			sourceTree = "<group>";
 		};
 		4C6A28812ADA94BE0097FAB1 /* Resources */ = {
@@ -576,6 +601,7 @@
 				4C98BF182AE956D100482D25 /* GoogleService-Info.plist */,
 				4C731E972ADA8B6300B60760 /* skripsi */,
 				4C3AE5372B32C32100C36EEB /* skripsi-watch Watch App */,
+				4C60936B2B44F7D4005DD3F6 /* skripsiTests */,
 				4C731E962ADA8B6300B60760 /* Products */,
 				4C98BF072AE92A7600482D25 /* Frameworks */,
 			);
@@ -586,6 +612,7 @@
 			children = (
 				4C731E952ADA8B6300B60760 /* skripsi.app */,
 				4C3AE5362B32C32100C36EEB /* skripsi-watch Watch App.app */,
+				4C60936A2B44F7D4005DD3F6 /* skripsiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -713,6 +740,24 @@
 			productReference = 4C3AE5362B32C32100C36EEB /* skripsi-watch Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4C6093692B44F7D4005DD3F6 /* skripsiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C6093722B44F7D4005DD3F6 /* Build configuration list for PBXNativeTarget "skripsiTests" */;
+			buildPhases = (
+				4C6093662B44F7D4005DD3F6 /* Sources */,
+				4C6093672B44F7D4005DD3F6 /* Frameworks */,
+				4C6093682B44F7D4005DD3F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C60936F2B44F7D4005DD3F6 /* PBXTargetDependency */,
+			);
+			name = skripsiTests;
+			productName = skripsiTests;
+			productReference = 4C60936A2B44F7D4005DD3F6 /* skripsiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4C731E942ADA8B6300B60760 /* skripsi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C731EA32ADA8B6400B60760 /* Build configuration list for PBXNativeTarget "skripsi" */;
@@ -755,6 +800,10 @@
 					4C3AE5352B32C32100C36EEB = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
+					4C6093692B44F7D4005DD3F6 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 4C731E942ADA8B6300B60760;
+					};
 					4C731E942ADA8B6300B60760 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -779,6 +828,7 @@
 			targets = (
 				4C731E942ADA8B6300B60760 /* skripsi */,
 				4C3AE5352B32C32100C36EEB /* skripsi-watch Watch App */,
+				4C6093692B44F7D4005DD3F6 /* skripsiTests */,
 			);
 		};
 /* End PBXProject section */
@@ -790,6 +840,13 @@
 			files = (
 				4C3AE5402B32C32300C36EEB /* Preview Assets.xcassets in Resources */,
 				4C3AE53D2B32C32300C36EEB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C6093682B44F7D4005DD3F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,6 +879,14 @@
 				4C3AE5572B33282300C36EEB /* CategoryModel.swift in Sources */,
 				4C3AE5472B32C36500C36EEB /* Colors+Ext.swift in Sources */,
 				4C3AE54F2B32D4A100C36EEB /* MonthlyRevenueView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C6093662B44F7D4005DD3F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C60936D2B44F7D4005DD3F6 /* skripsiTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,6 +960,11 @@
 			target = 4C3AE5352B32C32100C36EEB /* skripsi-watch Watch App */;
 			targetProxy = 4C3F7FC52B351FCA00D3AD57 /* PBXContainerItemProxy */;
 		};
+		4C60936F2B44F7D4005DD3F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C731E942ADA8B6300B60760 /* skripsi */;
+			targetProxy = 4C60936E2B44F7D4005DD3F6 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -959,6 +1029,42 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		4C6093702B44F7D4005DD3F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8DNTD99SB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.skripsiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skripsi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/skripsi";
+			};
+			name = Debug;
+		};
+		4C6093712B44F7D4005DD3F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8DNTD99SB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.skripsiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skripsi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/skripsi";
 			};
 			name = Release;
 		};
@@ -1163,6 +1269,15 @@
 			buildConfigurations = (
 				4C3AE5452B32C32300C36EEB /* Debug */,
 				4C3AE5462B32C32300C36EEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C6093722B44F7D4005DD3F6 /* Build configuration list for PBXNativeTarget "skripsiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C6093702B44F7D4005DD3F6 /* Debug */,
+				4C6093712B44F7D4005DD3F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

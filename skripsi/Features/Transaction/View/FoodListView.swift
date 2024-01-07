@@ -59,8 +59,7 @@ struct FoodListView: View {
                 }
                 .padding()
                 
-                ScrollView(.vertical, showsIndicators: false) {
-                    ForEach(vm.itemsModel.filter { item in
+                ScrollView(.vertical, showsIndicators: false) {                    ForEach(vm.itemsModel.filter { item in
                         selectedCategory == nil || item.category == selectedCategory?.name
                     }) { item in
                         let itemTransactionModel = vm.selectedItems.first { selectedItem in
