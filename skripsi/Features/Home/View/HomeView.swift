@@ -88,6 +88,7 @@ struct HomeView: View {
                 .scrollIndicators(.hidden)
                 .refreshable {
                     vm.getTransactions()
+                    vm.sendDataToWatch()
                 }
                 Spacer()
             }

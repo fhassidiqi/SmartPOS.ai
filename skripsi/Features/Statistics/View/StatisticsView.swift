@@ -17,10 +17,9 @@ struct StatisticsView: View {
     var body: some View {
         ZStack {
             Color.background.primary
-                .ignoresSafeArea()
+                .edgesIgnoringSafeArea(.top)
+            
             ScrollView {
-                
-                
                 VStack(alignment: .leading, spacing: 16) {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Overview")

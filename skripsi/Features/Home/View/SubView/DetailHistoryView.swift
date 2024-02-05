@@ -19,7 +19,7 @@ struct DetailHistoryView: View {
                 .edgesIgnoringSafeArea(.top)
             VStack(spacing: 5) {
                 
-                titleSection("Total Belanja", content: Text("\(transactionModel.totalTransaction)")
+                titleSection("Total Transaction", content: Text("\(transactionModel.totalTransaction)")
                     .font(.title)
                     .fontWeight(.semibold)
                 )
