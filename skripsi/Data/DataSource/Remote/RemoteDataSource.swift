@@ -120,6 +120,23 @@ class RemoteDataSource {
         
     }
     
+    func updateTransaction(transactionId: String, updatedTransaction: TransactionModel) async throws -> Bool {
+        let transactionDocRef = transactionDocument(transactionId: transactionId)
+        
+        let updatedData: [String: Any] = [
+            "cashier": updatedTransaction.cashier,
+            "orderNumber": updatedTransaction.orderNumber,
+            "date": updatedTransaction.date,
+            "tax": updatedTransaction.tax,
+            "totalTransaction": updatedTransaction.totalTransaction,
+            "totalTransactionBeforeTax": updatedTransaction.totalTransactionBeforeTax
+        ]
+
+        try await transactionDocRef.setData(updatedData, merge: true)
+
+        return true
+    }
+    
     func deleteTransaction(transactionId: String) async throws -> Bool {
         try await db.collection(TransactionResponse.collectionName)
             .document(transactionId)

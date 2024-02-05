@@ -24,7 +24,7 @@ struct HistoryTransactionCard: View {
             }
             Spacer()
             
-            Text("\(transactionModel.totalTransaction)")
+            Text(transactionModel.totalTransaction.formattedAsRupiah)
             
             Image(systemName: "chevron.right")
         }

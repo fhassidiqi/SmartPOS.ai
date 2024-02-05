@@ -197,6 +197,8 @@
 		4C9CDDAE2B3A82CF00537F4E /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		4C9CDDB82B3A9CE200537F4E /* modelAISkripsi.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = modelAISkripsi.mlmodel; sourceTree = "<group>"; };
 		4CCB5B2B2B3B08800072ADFD /* ItemFoodCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFoodCardView.swift; sourceTree = "<group>"; };
+		4CFD13462B4ABB63006CC6C6 /* skripsi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skripsi.entitlements; sourceTree = "<group>"; };
+		4CFD13472B4ABB69006CC6C6 /* skripsi-watch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "skripsi-watch Watch App.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 		4C3AE5372B32C32100C36EEB /* skripsi-watch Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				4CFD13472B4ABB69006CC6C6 /* skripsi-watch Watch App.entitlements */,
 				4C33746E2B3546AE00FEB4A0 /* skripsi-watch-Watch-App-Info.plist */,
 				4C3AE5482B32D2E100C36EEB /* Features */,
 				4C3AE5382B32C32100C36EEB /* skripsi_watchApp.swift */,
@@ -620,6 +623,7 @@
 		4C731E972ADA8B6300B60760 /* skripsi */ = {
 			isa = PBXGroup;
 			children = (
+				4CFD13462B4ABB63006CC6C6 /* skripsi.entitlements */,
 				4C33746D2B35469F00FEB4A0 /* Info.plist */,
 				4C6A28832ADA94DF0097FAB1 /* Commons */,
 				4C6A28822ADA94DA0097FAB1 /* Domain */,
@@ -973,6 +977,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "skripsi-watch Watch App/skripsi-watch Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"skripsi-watch Watch App/Preview Content\"";
@@ -980,7 +986,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "skripsi-watch-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "skripsi-watch";
+				INFOPLIST_KEY_CFBundleDisplayName = SmartPOS.ai;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kuliah.skripsi;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
@@ -1005,6 +1011,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "skripsi-watch Watch App/skripsi-watch Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"skripsi-watch Watch App/Preview Content\"";
@@ -1012,7 +1020,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "skripsi-watch-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "skripsi-watch";
+				INFOPLIST_KEY_CFBundleDisplayName = SmartPOS.ai;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kuliah.skripsi;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
@@ -1196,6 +1204,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = skripsi/skripsi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"skripsi/Resources/Preview Content\"";
@@ -1232,6 +1241,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = skripsi/skripsi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"skripsi/Resources/Preview Content\"";

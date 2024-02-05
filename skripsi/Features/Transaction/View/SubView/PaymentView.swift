@@ -33,6 +33,7 @@ struct PaymentView: View {
                     quantity: 0
                 ) {
                     vm.addTransaction(date: Date())
+                    vm.payment = ""
                     router.navigateToRoot()
                 }
             }
